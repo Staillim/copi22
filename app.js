@@ -192,6 +192,17 @@ function showSendSuccessToast(amount) {
         });
     });
 
+    document.addEventListener("click", (e) => {
+        const tab = e.target.closest(".tab[data-tab], [data-go-to]");
+        if (!tab) return;
+        const tabName = tab.dataset.tab || tab.dataset.goTo;
+        if (!tabName || tabName === "pago") return;
+        if (tab.tagName === "A" || tab.getAttribute("href") || tab.dataset.goTo) {
+            e.preventDefault();
+        }
+        activateTab(tabName);
+    });
+
     // Mobile sidebar toggle (hamburger menu)
     const menuBtn = document.querySelector(".menu-button") || document.getElementById("header-menu-icon");
     const leftNav = document.querySelector(".left-nav");

@@ -698,6 +698,42 @@ svg { display: block; }
     font-weight: 600;
 }
 
+/* Mercado restore: keep the old marketplace section rendering reliably. */
+#mercado.section-active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#mercado .mercado-head,
+#mercado .mercado-search,
+#mercado .category-pills {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#mercado .mercado-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#mercado .item-card {
+    display: flex !important;
+    flex-direction: column !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#mercado .item-thumb,
+#mercado .item-thumb img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 /* ============== CREAR ============== */
 .crear-grid {
     display: grid;
