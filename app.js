@@ -158,12 +158,13 @@ function showSendSuccessToast(amount) {
     }, 2500);
 }
 
-// ============== TAB SWITCHING ==============
+// ============== TAB SWITCHING & LAYOUT INTERACTION ==============
 (function () {
     const tabs = document.querySelectorAll(".tab");
     const sections = document.querySelectorAll(".section");
 
     function activateTab(tabName) {
+        if (!tabName) return;
         tabs.forEach((t) => {
             t.classList.toggle("active", t.dataset.tab === tabName);
         });
@@ -174,13 +175,51 @@ function showSendSuccessToast(amount) {
     }
 
     tabs.forEach((tab) => {
-        tab.addEventListener("click", () => activateTab(tab.dataset.tab));
+        tab.addEventListener("click", (e) => {
+            if (tab.tagName === "A" || tab.getAttribute("href")) {
+                e.preventDefault();
+            }
+            activateTab(tab.dataset.tab);
+        });
     });
 
     // External buttons that jump to a specific tab (data-go-to="<tabname>")
     document.querySelectorAll("[data-go-to]").forEach((el) => {
-        el.addEventListener("click", () => activateTab(el.dataset.goTo));
+        el.addEventListener("click", (e) => {
+            if (el.dataset.goTo === "pago") return;
+            e.preventDefault();
+            activateTab(el.dataset.goTo);
+        });
     });
+
+    // Mobile sidebar toggle (hamburger menu)
+    const menuBtn = document.querySelector(".menu-button") || document.getElementById("header-menu-icon");
+    const leftNav = document.querySelector(".left-nav");
+    if (menuBtn && leftNav) {
+        menuBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            document.body.classList.toggle("sidebar-open");
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener("click", (e) => {
+            if (document.body.classList.contains("sidebar-open")) {
+                if (!leftNav.contains(e.target) && !menuBtn.contains(e.target)) {
+                    document.body.classList.remove("sidebar-open");
+                }
+            }
+        });
+    }
+
+    // Chat expand/collapse toggle
+    const chatHeader = document.getElementById("chat-header");
+    const chatContainer = document.getElementById("chat-container");
+    if (chatHeader && chatContainer) {
+        chatHeader.addEventListener("click", () => {
+            chatContainer.classList.toggle("collapsed");
+        });
+    }
 })();
 
 // ============== MODAL: ENVIAR ROBUX ==============
@@ -613,7 +652,7 @@ function showSendSuccessToast(amount) {
                         addTransaction("out", amount, recipient);
                         // Guardar el destinatario en recientes para la próxima vez
                         addRecent(sendState.user);
-                        // Mostrar el toast con check negro ARRIBA y cerrar el modal
+                        // Mostrar el toast flotante superior y cerrar el modal.
                         showSendSuccessToast(amount);
                         setTimeout(closeModal, 600);
                     }, 800);
@@ -744,6 +783,10 @@ function showSendSuccessToast(amount) {
     const backLink = pagoSection.querySelector('[data-action="back-to-main"]');
     const methodButtons = pagoSection.querySelectorAll(".pago-method");
     const pinInputs = pagoSection.querySelectorAll(".pago-pin");
+    const quickPayOverlay = document.getElementById("quickPayOverlay");
+    const quickPayClose = document.getElementById("quickPayClose");
+    const quickPayCancel = document.getElementById("quickPayCancel");
+    const quickPaySubmit = document.getElementById("quickPaySubmit");
 
     const METHOD_LABELS = {
         card: "Tarjeta de crédito o débito",
@@ -756,6 +799,31 @@ function showSendSuccessToast(amount) {
         return Number(n || 0).toLocaleString("en-US");
     }
 
+    function parseCopPrice(price) {
+        const cleaned = String(price || "").replace(/COP/gi, "").replace(/\s/g, "").replace(/[^\d,.-]/g, "");
+        if (!cleaned) return 0;
+        return Number(cleaned.replace(/[,.](?=\d{3}(?:\D|$))/g, "").replace(",", ".")) || 0;
+    }
+
+    function formatCopShort(value, options = {}) {
+        const amount = Number(value || 0);
+        if (amount >= 1000000) {
+            return `${(amount / 1000000).toLocaleString("es-CO", {
+                minimumFractionDigits: options.megaDigits ?? 4,
+                maximumFractionDigits: options.megaDigits ?? 4,
+            })} M COP`;
+        }
+        return `${(amount / 1000).toLocaleString("es-CO", {
+            minimumFractionDigits: options.milDigits ?? 1,
+            maximumFractionDigits: options.milDigits ?? 1,
+        })} mil COP`;
+    }
+
+    function productTitle(pkg) {
+        if (pkg.type === "subscription") return pkg.name || "Roblox Plus";
+        return `${formatNum(pkg.amount).replace(/,/g, "")} Robux`;
+    }
+
     function showView(name) {
         viewMain.hidden = name !== "main";
         viewVerify.hidden = name !== "verify";
@@ -763,24 +831,122 @@ function showSendSuccessToast(amount) {
     }
 
     // Estado del paquete seleccionado (para acreditar el bonus al verificar)
-    let currentPkg = { amount: 0, bonus: 0 };
+    let currentPkg = { amount: 0, bonus: 0, type: "package", name: "", price: 0 };
 
-    // 1. Click en un package → navega a #pago y rellena el resumen
+    function openQuickPay(btn) {
+        if (!quickPayOverlay) return;
+        const amount = parseInt(btn.dataset.pkgAmount, 10) || 0;
+        const bonus = parseInt(btn.dataset.pkgBonus, 10) || 0;
+        const type = btn.dataset.pkgType || "package";
+        const name = btn.dataset.pkgName || "";
+        const price = parseCopPrice(btn.dataset.pkgPrice);
+        currentPkg = { amount, bonus, type, name, price };
+
+        const priceText = formatCopShort(price);
+        const taxText = formatCopShort(price - (price / 1.19), { milDigits: 5 });
+        const titleEl = quickPayOverlay.querySelector("[data-quick-pay-title]");
+        const priceEls = quickPayOverlay.querySelectorAll("[data-quick-pay-price], [data-quick-pay-subtotal], [data-quick-pay-total]");
+        const taxEl = quickPayOverlay.querySelector("[data-quick-pay-tax]");
+
+        if (titleEl) titleEl.textContent = productTitle(currentPkg);
+        priceEls.forEach((el) => { el.textContent = priceText; });
+        if (taxEl) taxEl.textContent = taxText;
+
+        quickPayOverlay.classList.add("open");
+        quickPayOverlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => quickPaySubmit && quickPaySubmit.focus(), 80);
+    }
+
+    function closeQuickPay() {
+        if (!quickPayOverlay) return;
+        quickPayOverlay.classList.remove("open");
+        quickPayOverlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    if (quickPayClose) quickPayClose.addEventListener("click", closeQuickPay);
+    if (quickPayCancel) quickPayCancel.addEventListener("click", closeQuickPay);
+    if (quickPayOverlay) {
+        quickPayOverlay.addEventListener("click", (e) => {
+            if (e.target === quickPayOverlay) closeQuickPay();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && quickPayOverlay.classList.contains("open")) closeQuickPay();
+        });
+    }
+    if (quickPaySubmit) {
+        quickPaySubmit.addEventListener("click", () => {
+            setButtonLoading(quickPaySubmit, true, "Procesando...");
+            setTimeout(() => {
+                setButtonLoading(quickPaySubmit, false);
+                const totalRobux = (currentPkg.amount || 0) + (currentPkg.bonus || 0);
+                const txDesc = currentPkg.type === "subscription" ? `Suscripción ${currentPkg.name || "Roblox Plus"}` : "Compra de Robux";
+                if (totalRobux > 0) addTransaction("in", totalRobux, txDesc);
+                closeQuickPay();
+                showToast(currentPkg.type === "subscription" ? "Suscripción activada" : "Pago confirmado");
+            }, 900);
+        });
+    }
+
+    // 1. Click en un package → abre Pago rapido
     pkgButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openQuickPay(btn);
+            return;
             // Si el botón no estaba en un .package-row, igual leemos data-attrs
             const amount = parseInt(btn.dataset.pkgAmount, 10) || 0;
             const old = btn.dataset.pkgOld;
             const price = btn.dataset.pkgPrice;
             const bonus = parseInt(btn.dataset.pkgBonus, 10) || 0;
+            const type = btn.dataset.pkgType || "package";
+            const name = btn.dataset.pkgName || "";
 
             // Guardar en el estado del pago para usarlo al verificar
-            currentPkg = { amount, bonus };
+            currentPkg = { amount, bonus, type, name };
 
             pagoSection.querySelector("[data-pago-amount]").textContent = formatNum(amount);
-            pagoSection.querySelector("[data-pago-old]").textContent = formatNum(old);
-            pagoSection.querySelector("[data-pago-price]").textContent = `EUR ${parseFloat(price).toFixed(2)}`;
-            pagoSection.querySelector("[data-pago-bonus]").textContent = `+${formatNum(bonus)} bonificación`;
+            const oldEl = pagoSection.querySelector("[data-pago-old]");
+            if (oldEl) {
+                if (old && parseInt(old, 10) > 0) {
+                    oldEl.style.display = "inline";
+                    oldEl.textContent = formatNum(old);
+                } else {
+                    oldEl.style.display = "none";
+                }
+            }
+
+            const formattedPrice = isNaN(price) || isNaN(parseFloat(price)) ? price : `EUR ${parseFloat(price).toFixed(2)}`;
+            pagoSection.querySelector("[data-pago-price]").textContent = formattedPrice;
+
+            const bonusEl = pagoSection.querySelector("[data-pago-bonus]");
+            if (bonusEl) {
+                if (bonus > 0) {
+                    bonusEl.style.display = "inline-block";
+                    bonusEl.textContent = `+${formatNum(bonus)} bonificación`;
+                } else {
+                    bonusEl.style.display = "none";
+                }
+            }
+
+            // Objeto de bonificación / Suscripción Info
+            const bonusCard = pagoSection.querySelector(".pago-bonus-card");
+            if (bonusCard) {
+                if (type === "subscription") {
+                    bonusCard.style.display = "flex";
+                    bonusCard.querySelector(".pago-bonus-img").src = "recursos/Robux.webp";
+                    bonusCard.querySelector(".pago-bonus-title").textContent = "Suscripción Activa";
+                    bonusCard.querySelector(".pago-bonus-sub").textContent = `Planes mensuales de Roblox Plus (${name})`;
+                } else if (btn.dataset.pkgItemName && btn.dataset.pkgItemImg) {
+                    bonusCard.style.display = "flex";
+                    bonusCard.querySelector(".pago-bonus-img").src = btn.dataset.pkgItemImg;
+                    bonusCard.querySelector(".pago-bonus-title").textContent = "Objeto de bonificación gratis";
+                    bonusCard.querySelector(".pago-bonus-sub").textContent = btn.dataset.pkgItemName;
+                } else {
+                    bonusCard.style.display = "none";
+                }
+            }
 
             showView("main");
             // Reset PIN
@@ -825,10 +991,10 @@ function showSendSuccessToast(amount) {
             const v = e.target.value.replace(/\D/g, "");
             e.target.value = v;
             if (v) {
-                e.target.classList.add("filled");
+                input.classList.add("filled");
                 if (idx < pinInputs.length - 1) pinInputs[idx + 1].focus();
             } else {
-                e.target.classList.remove("filled");
+                input.classList.remove("filled");
             }
             // Habilitar verify cuando los 6 estén llenos
             const allFilled = Array.from(pinInputs).every((i) => i.value.length === 1);
@@ -869,20 +1035,29 @@ function showSendSuccessToast(amount) {
             const amount = currentPkg.amount || 0;
             const bonus = currentPkg.bonus || 0;
             const total = amount + bonus;
+            const type = currentPkg.type || "package";
+            const name = currentPkg.name || "";
+
             const succAmount = viewSuccess.querySelector("[data-pago-amount]");
             if (succAmount) succAmount.textContent = formatNum(total);
-            // Actualizar el mensaje de éxito con el desglose
+            
+            // Actualizar el mensaje de éxito con el desglose o la suscripción
             const succMsg = viewSuccess.querySelector("[data-pago-success-msg]");
             if (succMsg) {
-                if (bonus > 0) {
-                    succMsg.innerHTML = `Tus <strong>${formatNum(amount)} Robux</strong> + <strong>${formatNum(bonus)} de bonificación</strong> = <strong>${formatNum(total)} Robux</strong> han sido añadidos a tu cuenta. Serás redirigido a la sección Robux.`;
+                if (type === "subscription") {
+                    succMsg.innerHTML = `Tu suscripción a <strong>${name}</strong> ha sido activada con éxito. ${total > 0 ? `Se han abonado <strong>${formatNum(total)} Robux</strong> a tu cuenta.` : ""} Serás redirigido a la sección Robux.`;
                 } else {
-                    succMsg.innerHTML = `Tus <strong>${formatNum(total)} Robux</strong> han sido añadidos a tu cuenta. Serás redirigido a la sección Robux.`;
+                    if (bonus > 0) {
+                        succMsg.innerHTML = `Tus <strong>${formatNum(amount)} Robux</strong> + <strong>${formatNum(bonus)} de bonificación</strong> = <strong>${formatNum(total)} Robux</strong> han sido añadidos a tu cuenta. Serás redirigido a la sección Robux.`;
+                    } else {
+                        succMsg.innerHTML = `Tus <strong>${formatNum(total)} Robux</strong> han sido añadidos a tu cuenta. Serás redirigido a la sección Robux.`;
+                    }
                 }
             }
             // Sumar al balance y registrar transacción entrante
-            // (cantidad base + bonificación)
-            addTransaction("in", total, "Compra de Robux");
+            const txDesc = type === "subscription" ? `Suscripción ${name}` : "Compra de Robux";
+            addTransaction("in", total, txDesc);
+            
             showView("success");
             setTimeout(() => {
                 const robuxTab = document.querySelector('.tab[data-tab="robux"]');
@@ -1256,7 +1431,7 @@ function showSendSuccessToast(amount) {
         const session = getSession();
         const valid = isSessionValid(session);
         const loginTrigger = document.getElementById("openLoginModal");
-        const profileChip = document.querySelector(".profile-chip");
+        const profileChip = document.querySelector(".age-bracket-label");
         const adminTab = document.querySelector(".tab-admin");
 
         if (valid && session) {
@@ -1267,32 +1442,39 @@ function showSendSuccessToast(amount) {
             }
             if (loginTrigger) loginTrigger.hidden = true;
             if (profileChip) {
-                profileChip.hidden = false;
-                const nameEl = document.getElementById("profileName");
-                if (nameEl) nameEl.textContent = session.username;
-                const iconEl = document.getElementById("profileAvatarIcon");
-                if (iconEl) {
-                    // Si no hay avatar en la sesión, intentar leerlo de RTDB
-                    if (session.avatar) {
-                        iconEl.src = "recursos/iconos/" + session.avatar;
-                        iconEl.style.display = "";
-                    } else {
-                        // Fallback: letra inicial mientras carga el avatar
-                        iconEl.style.display = "none";
-                        // Buscar el avatar en RTDB
-                        findUser(session.username).then((u) => {
-                            if (u && u.avatar) {
-                                session.avatar = u.avatar;
-                                setSession(session);
-                                if (iconEl) {
-                                    iconEl.src = "recursos/iconos/" + u.avatar;
-                                    iconEl.style.display = "";
-                                }
-                            }
-                        }).catch(() => {});
-                    }
-                }
+                profileChip.style.display = "";
             }
+            
+            // Actualizar todos los nombres de usuario en la UI
+            const nameEls = document.querySelectorAll(".user-username-text");
+            nameEls.forEach((el) => {
+                el.textContent = session.username;
+            });
+            
+            // Actualizar todos los avatares en la UI
+            const avatarImgs = document.querySelectorAll(".user-avatar-img");
+            if (session.avatar) {
+                avatarImgs.forEach((img) => {
+                    img.src = "recursos/iconos/" + session.avatar;
+                    img.style.display = "";
+                });
+            } else {
+                avatarImgs.forEach((img) => {
+                    img.style.display = "none";
+                });
+                // Buscar el avatar en RTDB
+                findUser(session.username).then((u) => {
+                    if (u && u.avatar) {
+                        session.avatar = u.avatar;
+                        setSession(session);
+                        avatarImgs.forEach((img) => {
+                            img.src = "recursos/iconos/" + u.avatar;
+                            img.style.display = "";
+                        });
+                    }
+                }).catch(() => {});
+            }
+
             if (adminTab && session.role === "admin") {
                 adminTab.hidden = false;
                 adminTab.classList.add("visible");
@@ -1305,7 +1487,7 @@ function showSendSuccessToast(amount) {
             clearSession();
             if (loginTrigger) loginTrigger.hidden = false;
             if (profileChip) {
-                profileChip.hidden = true;
+                profileChip.style.display = "none";
             }
             if (adminTab) {
                 adminTab.hidden = true;
@@ -1834,3 +2016,44 @@ document.querySelectorAll(".game-card, .item-card, .crear-tile").forEach((el) =>
     el.addEventListener("pointerup", () => (el.style.opacity = ""));
     el.addEventListener("pointerleave", () => (el.style.opacity = ""));
 });
+
+// ============== Cuadrícula ondulada unificada (robux-grid-zone) ==============
+// Limita la altura de la cuadrícula (.robux-grid-zone::before) para que
+// termine a la mitad de la corona (no llegue al fondo del card). Se mide
+// la posición de la imagen de la corona y se setea --grid-h en el wrapper.
+(function () {
+    const wrapper = document.querySelector(".robux-grid-zone");
+    if (!wrapper) return;
+    const coronaImg = wrapper.querySelector('.bg-shift-200 img[alt*="Corona"]');
+    const coronaCard = wrapper.querySelector(".bg-shift-200");
+
+    function updateGridHeight() {
+        const wTop = wrapper.getBoundingClientRect().top;
+        let gridH = 0;
+        if (coronaImg && coronaImg.complete && coronaImg.naturalHeight > 0) {
+            const r = coronaImg.getBoundingClientRect();
+            gridH = (r.top - wTop) + r.height / 2;
+        } else if (coronaCard) {
+            const r = coronaCard.getBoundingClientRect();
+            gridH = (r.top - wTop) + r.height / 2;
+        }
+        if (gridH > 0) {
+            wrapper.style.setProperty("--grid-h", gridH + "px");
+        }
+    }
+
+    if (window.requestAnimationFrame) {
+        requestAnimationFrame(updateGridHeight);
+    } else {
+        setTimeout(updateGridHeight, 50);
+    }
+    if (coronaImg) {
+        coronaImg.addEventListener("load", updateGridHeight);
+    }
+    window.addEventListener("load", updateGridHeight);
+    let rId = null;
+    window.addEventListener("resize", () => {
+        if (rId) cancelAnimationFrame(rId);
+        rId = requestAnimationFrame(updateGridHeight);
+    });
+})();

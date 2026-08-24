@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#ffffff" />
-    <title>Roblox</title>
+    <link rel="stylesheet" href="https://css.rbxcdn.com/c322b91ca81a7865f4c49ac675d1ab14df2cdec6479bc4a7fe8af14dc5291044-FoundationCss.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/7e2fa6345e2c2b5f931bfda68f4574582a28a281905b6c18e028fa4f5d10d7b7-Navigation.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/cbc004c933c81fb07d6c57dd882001686ae4f26f1f13134ea1b138d7866af876-ReactStyleGuide.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/d0015d0fd7893c94a935e228b4ca3f79eece7593ab080cc2cdfdbc5d278b44b4-Footer.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/d2eaca6faaaa8d6fa2d157344f4ab73259728ecda54ed1cc6f2d7362a77b5983-StyleGuide.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/ef552f4ac70dd3209c70b94a377f66e3828905b9672bb67c661122403a6d15b7-Builder.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/688343ac55932b381fd997e201ccbecc43564ed1284a98556ff929eb4e65fbc6-Chat.css" />
+    <link rel="stylesheet" href="https://css.rbxcdn.com/727d8424b26be5ef5b256b6fa26a83b1e7eaf12d5cc2ade38b5afaeb6ddb337f-RobuxRedesign.css" />
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Firebase SDK (compat) -->
@@ -28,86 +35,347 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <!-- ============== HEADER (sticky) ============== -->
-    <header class="app-header">
-        <div class="header-left">
-            <button class="icon-btn" aria-label="Menú">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <line x1="3" y1="12" x2="21" y2="12" />
-                    <line x1="3" y1="18" x2="21" y2="18" />
-                </svg>
-            </button>
-            <a href="#" class="roblox-logo" aria-label="Roblox">
-                <img src="recursos/Logo.png" alt="Roblox" />
-            </a>
-        </div>
-        <div class="header-search">
-            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                <circle cx="11" cy="11" r="7" />
-                <line x1="16.5" y1="16.5" x2="21" y2="21" />
-            </svg>
-            <input type="text" placeholder="Buscar" aria-label="Buscar" />
-        </div>
-        <div class="header-right">
-            <button class="profile-chip" aria-label="Perfil">
-                <span class="avatar">
-                    <span class="avatar-face">
-                        <img class="avatar-icon" id="profileAvatarIcon" src="recursos/iconos/1.webp" alt="" />
-                    </span>
-                </span>
-                <span class="profile-name" id="profileName">Harryyt302</span>
-            </button>
-            <div class="robux-dropdown-wrap">
-                <button class="icon-btn robux-btn" aria-label="Robux" id="robuxMenuBtn" aria-haspopup="true" aria-expanded="false">
-                    <img src="recursos/Robux.webp" alt="Robux" class="robux-nav-icon" />
-                </button>
-                <div class="robux-dropdown" id="robuxDropdown" role="menu" aria-labelledby="robuxMenuBtn" hidden>
-                    <div class="robux-dropdown-header">
-                        <span class="robux-hex"></span>
-                        <span class="robux-dropdown-balance" data-app-balance>0</span>
+    <!-- ============== CONTENEDOR DESKTOP DE ROBLOX ============== -->
+    <div id="wrap" class="wrap no-gutter-ads logged-in left-nav-new-width">
+        <div id="navigation-container" class="builder-font ixp-marketplace-rename-treatment" data-number-of-autocomplete-suggestions="7" data-is-redirect-library-to-creator-marketplace-enabled="True" data-platform-event-left-nav-entry-start-time="10/23/2025 16:00:00" data-platform-event-left-nav-entry-end-time="11/03/2025 17:00:00" data-platform-event-left-nav-url="https://www.roblox.com/spotlight/halloween-spotlight">
+            <div id="header" class="navbar-fixed-top rbx-header" role="navigation">
+                <div class="container-fluid">
+                    <div class="rbx-navbar-header">
+                        <div id="header-menu-icon" class="rbx-nav-collapse">
+                            <button type="button" class="btn-primary-xs btn-min-width" id="skip-to-main-content">Ir a Contenido principal</button>
+                            <button type="button" class="menu-button btn-navigation-nav-menu-md" title="nav menu"><span class="icon-nav-menu"></span></button>
+                        </div>
+                        <div class="navbar-header">
+                            <a id="nav-logo-link" class="navbar-brand tab" href="#" data-tab="destacadas">
+                                <span class="icon-logo"></span><span class="icon-logo-r"></span>
+                            </a>
+                            <div id="age-badge-container"></div>
+                        </div>
                     </div>
-                    <ul class="robux-dropdown-list" role="none">
-                        <li role="none">
-                            <button class="robux-dropdown-item" role="menuitem" data-go-to="robux">Comprar Robux</button>
+                    
+                    <ul class="nav rbx-navbar hidden-xs hidden-sm col-md-5 col-lg-4">
+                        <li>
+                            <a id="nav-charts-md-link" class="font-header-2 nav-menu-title text-header tab" href="#" data-tab="destacadas">Destacadas</a>
                         </li>
-                        <li role="none">
-                            <button class="robux-dropdown-item" role="menuitem" data-go-to="transacciones">Mis transacciones</button>
+                        <li>
+                            <a id="nav-marketplace-md-link" class="font-header-2 nav-menu-title text-header tab" href="#" data-tab="mercado">Mercado</a>
                         </li>
-                        <li role="none">
-                            <button class="robux-dropdown-item" role="menuitem">Canjear códigos de Roblox</button>
+                        <li>
+                            <a id="header-develop-md-link" class="font-header-2 nav-menu-title text-header tab" href="#" data-tab="crear">Crear</a>
+                        </li>
+                        <li id="navigation-robux-container">
+                            <div>
+                                <a class="font-header-2 nav-menu-title text-header robux-menu-btn tab" href="#" data-tab="robux">Robux</a>
+                            </div>
                         </li>
                     </ul>
+                    
+                    <ul class="nav rbx-navbar hidden-md hidden-lg col-xs-12">
+                        <li>
+                            <a id="nav-charts-sm-link" class="font-header-2 nav-menu-title text-header tab" href="#" data-tab="destacadas">Destacadas</a>
+                        </li>
+                        <li>
+                            <a id="nav-marketplace-sm-link" class="font-header-2 nav-menu-title text-header tab" href="#" data-tab="mercado">Mercado</a>
+                        </li>
+                        <li>
+                            <a id="header-develop-sm-link" class="font-header-2 nav-menu-title text-header tab" href="#" data-tab="crear">Crear</a>
+                        </li>
+                        <li id="navigation-robux-mobile-container">
+                            <div>
+                                <a class="font-header-2 nav-menu-title text-header robux-menu-btn tab" href="#" data-tab="robux">Robux</a>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div id="right-navigation-header">
+                        <div data-testid="navigation-search-input" class="navbar-left navbar-search col-xs-5 col-sm-6 col-md-2 col-lg-3 shown" role="search">
+                            <div class="input-group">
+                                <form name="search-form" action="/search">
+                                    <div class="form-has-feedback">
+                                        <input id="navbar-search-input" type="search" name="search-bar" data-testid="navigation-search-input-field" class="form-control input-field new-input-field" placeholder="Buscar" maxlength="120" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
+                                    </div>
+                                </form>
+                                <div class="input-group-btn">
+                                    <button data-testid="navigation-search-input-search-button" class="input-addon-btn" type="submit">
+                                        <span class="icon-common-search-sm"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <ul class="dropdown-menu new-dropdown-menu" role="menu">
+                                <li class="navbar-search-option rbx-clickable-li new-selected"><a class="new-navbar-search-anchor" href="#"><span class="icon-menu-games-off navbar-list-option-icon"></span><span class="navbar-list-option-text"></span><span class="navbar-list-option-suffix">en Juegos</span></a></li>
+                                <li class="navbar-search-option rbx-clickable-li"><a class="new-navbar-search-anchor" href="#"><span class="icon-menu-profile navbar-list-option-icon"></span><span class="navbar-list-option-text"></span><span class="navbar-list-option-suffix">en Gente</span></a></li>
+                                <li class="navbar-search-option rbx-clickable-li"><a class="new-navbar-search-anchor" href="#"><span class="icon-menu-shop navbar-list-option-icon"></span><span class="navbar-list-option-text"></span><span class="navbar-list-option-suffix">en Mercado</span></a></li>
+                                <li class="navbar-search-option rbx-clickable-li"><a class="new-navbar-search-anchor" href="#"><span class="icon-menu-groups navbar-list-option-icon"></span><span class="navbar-list-option-text"></span><span class="navbar-list-option-suffix">en Comunidades</span></a></li>
+                                <li class="navbar-search-option rbx-clickable-li"><a class="new-navbar-search-anchor" href="#"><span class="icon-menu-library navbar-list-option-icon"></span><span class="navbar-list-option-text"></span><span class="navbar-list-option-suffix">en Tienda de creadores</span></a></li>
+                            </ul>
+                            <div id="search-landing-root" data-testid="search-landing-root" class="search-landing-root"></div>
+                        </div>
+                        <div class="search-overlay"></div>
+                        <div class="navbar-right rbx-navbar-right">
+                            <ul class="nav navbar-right rbx-navbar-icon-group">
+                                <div class="sg-system-feedback">
+                                    <div class="alert-system-feedback">
+                                        <div class="alert"><span class="alert-content"></span></div>
+                                    </div>
+                                </div>
+                                <div class="age-bracket-label text-header">
+                                    <a class="text-link dynamic-overflow-container tab" href="#" data-tab="destacadas">
+                                        <span class="avatar avatar-headshot-xs">
+                                            <span class="thumbnail-2d-container avatar-card-image">
+                                                <img class="user-avatar-img" src="recursos/iconos/1.webp" alt="Harryyt302">
+                                            </span>
+                                        </span>
+                                        <span class="text-overflow age-bracket-label-username font-caption-header user-username-text">Harryyt302</span>
+                                    </a>
+                                </div>
+                                <li class="rbx-navbar-right-search">
+                                    <button type="button" class="rbx-menu-item btn-navigation-nav-search-white-md" aria-label="Buscar">
+                                        <span class="icon-nav-search-white" aria-hidden="true"></span>
+                                    </button>
+                                </li>
+                                <li id="navbar-stream" class="navbar-icon-item navbar-stream notification-margins">
+                                    <button type="button" class="btn-uiblox-common-common-notification-bell-md" aria-label="Notificaciones: 4" aria-haspopup="true">
+                                        <span class="nav-robux-icon rbx-menu-item">
+                                            <div class="notification-stream-indicator">
+                                                <span id="nav-ns-icon" class="rbx-menu-item notification-stream-icon">
+                                                    <span class="icon-common-notification-bell" id="common-notification-bell"></span>
+                                                    <span class="notification-red notification bell-red-badge" id="notifications-bell-badge">4</span>
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </button>
+                                </li>
+                                <li id="navbar-robux" class="navbar-icon-item relative">
+                                    <button type="button" class="btn-navigation-nav-robux-md" aria-label="Robux: 22" aria-haspopup="true" id="robuxMenuBtn" aria-expanded="false">
+                                        <span id="nav-robux-icon" class="nav-robux-icon rbx-menu-item">
+                                            <span class="icon-robux-28x28 roblox-popover-close" id="nav-robux"></span>
+                                            <span class="rbx-text-navbar-right text-header" id="nav-robux-amount" data-app-balance>22</span>
+                                            <span class="notification-red robux-badge"></span>
+                                        </span>
+                                    </button>
+                                    <div class="robux-dropdown" id="robuxDropdown" role="menu" aria-labelledby="robuxMenuBtn" hidden>
+                                        <div class="robux-dropdown-header">
+                                            <span class="robux-hex"></span>
+                                            <span class="robux-dropdown-balance" data-app-balance>0</span>
+                                        </div>
+                                        <ul class="robux-dropdown-list" role="none">
+                                            <li role="none">
+                                                <button class="robux-dropdown-item tab" role="menuitem" data-tab="robux">Comprar Robux</button>
+                                            </li>
+                                            <li role="none">
+                                                <button class="robux-dropdown-item tab" role="menuitem" data-tab="transacciones">Mis transacciones</button>
+                                            </li>
+                                            <li role="none">
+                                                <button class="robux-dropdown-item" role="menuitem">Canjear códigos de Roblox</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li id="navbar-settings" class="navbar-icon-item relative">
+                                    <button type="button" class="btn-navigation-nav-settings-md" aria-label="Configuración" aria-haspopup="true" id="settingsMenuBtn" aria-expanded="false">
+                                        <span id="settings-icon" class="nav-settings-icon rbx-menu-item" aria-hidden="true">
+                                            <span class="icon-nav-settings roblox-popover-close" id="nav-settings"></span>
+                                            <span class="notification-red notification nav-setting-highlight hidden">0</span>
+                                        </span>
+                                    </button>
+                                    <div class="settings-dropdown" id="settingsDropdown" role="menu" aria-labelledby="settingsMenuBtn" hidden>
+                                        <button class="settings-item" type="button" role="menuitem" data-action="config">Configuración</button>
+                                        <button class="settings-item" type="button" role="menuitem" data-action="quick-login">Inicio de sesión rápido</button>
+                                        <button class="settings-item" type="button" role="menuitem" data-action="help">Ayuda y seguridad</button>
+                                        <button class="settings-item" type="button" role="menuitem" data-action="switch">Cambiar cuentas</button>
+                                        <button class="settings-item" type="button" role="menuitem" data-action="signout">Cerrar sesión</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="settings-dropdown-wrap">
-                <button class="icon-btn" aria-label="Ajustes" id="settingsMenuBtn" aria-haspopup="true" aria-expanded="false">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3" />
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                    </svg>
-                </button>
-                <div class="settings-dropdown" id="settingsDropdown" role="menu" aria-labelledby="settingsMenuBtn" hidden>
-                    <button class="settings-item" type="button" role="menuitem" data-action="config">Configuración</button>
-                    <button class="settings-item" type="button" role="menuitem" data-action="quick-login">Inicio de sesión rápido</button>
-                    <button class="settings-item" type="button" role="menuitem" data-action="help">Ayuda y seguridad</button>
-                    <button class="settings-item" type="button" role="menuitem" data-action="switch">Cambiar cuentas</button>
-                    <button class="settings-item" type="button" role="menuitem" data-action="signout">Cerrar sesión</button>
+            
+            <div id="left-navigation-container">
+                <div class="left-nav fixed left-[0] [z-index:1001] bg-surface-0 motion-safe:[transition-property:transform,visibility] ease-standard-out duration-100 large:visible large:[transform:unset] invisible [transform:translateX(-100%)]">
+                    <div class="flex width-[289px] height-full scroll-y">
+                        <div class="width-[288px]">
+                            <div class="padding-x-large padding-y-medium flex flex-col gap-large">
+                                <nav>
+                                    <ul class="flex flex-col gap-small">
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span class="radius-circle clip size-600">
+                                                        <span class="thumbnail-2d-container">
+                                                            <img class="user-avatar-img" src="recursos/iconos/1.webp" alt="Harryyt302">
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex flex-col gap-xsmall min-width-0 large:flex-row large:align-items-center">
+                                                    <span class="flex gap-xsmall min-width-0 align-items-center">
+                                                        <span class="text-truncate-end text-no-wrap user-username-text">Harryyt302</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-house size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Inicio</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-person size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Perfil</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="robux">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Roblox Plus</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-speech-bubble-align-center size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Mensajes</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-two-people size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Amigos</span>
+                                                <span class="fill basis-auto padding-x-small flex justify-end items-center">
+                                                    <div class="foundation-web-badge flex items-center select-none gap-[var(--size-150)] radius-circle height-600 width-[fit-content] padding-x-small bg-system-contrast content-inverse-emphasis stroke-none">
+                                                        <span class="text-no-wrap text-truncate-split text-label-small padding-y-xsmall padding-x-xxsmall content-inverse-emphasis">6</span>
+                                                    </div>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-person-standing size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Avatar</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-backpack size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Inventario</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="transacciones">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-hand-two-arrows-horizontal size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Intercambiar</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-three-people size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Comunidades</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-fountain-pen-nib size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Blog</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="tab bg-none width-full stroke-none content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="destacadas">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-building-store size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span>Tienda oficial</span>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tab content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none" data-tab="robux">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-gift-card size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Comprar tarjetas regalo</span>
+                                            </a>
+                                        </li>
+                                        <li class="tab tab-admin" data-tab="admin" hidden>
+                                            <a href="#" class="content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none">
+                                                <div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                                <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
+                                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-settings size-[var(--icon-size-large)]"></span>
+                                                </span>
+                                                <span class="min-width-0 text-truncate-end text-no-wrap">Admin</span>
+                                            </a>
+                                        </li>
+                                        <li class="padding-top-xsmall">
+                                            <a href="#" class="tab gap-y-medium flex flex-col padding-medium bg-shift-100 stroke-default stroke-thick radius-medium text-body-medium" data-tab="robux">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span>Más diversión por menos Robux. Suscríbete a Roblox&nbsp;Plus.</span>
+                                                <span class="content-default [text-decoration:underline] [text-decoration-skip-ink:none] [text-underline-offset:3px]">Suscribirse</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div role="separator" data-orientation="vertical" aria-orientation="vertical" class="stroke-default self-stretch" style="border-right-width: 0px; border-bottom-width: 0px; box-sizing: border-box; border-style: solid; height: 100%; width: 0px; border-left-width: var(--stroke-standard); border-top-width: 0px;"></div>
+                    </div>
                 </div>
             </div>
+            
+            <div id="verificationUpsell-container"><div></div></div>
+            <div id="phoneVerificationUpsell-container"><div phoneverificationupsell-container=""></div></div>
+            <div id="contactMethodPrompt-container"><div contactmethodprompt-container=""></div></div>
+            <div id="navigation-account-switcher-container"><div navigation-account-switcher-container=""></div></div>
         </div>
-    </header>
-
-    <!-- ============== TAB BAR ============== -->
-    <nav class="tab-bar" role="tablist">
-        <button class="tab active" role="tab" data-tab="destacadas">Destacadas</button>
-        <button class="tab" role="tab" data-tab="mercado">Mercado</button>
-        <button class="tab" role="tab" data-tab="crear">Crear</button>
-        <button class="tab" role="tab" data-tab="robux">Robux</button>
-        <button class="tab tab-admin" role="tab" data-tab="admin" hidden>Admin</button>
-    </nav>
-
-    <main class="app-main">
+        
+        <main class="container-main content-no-ads" id="container-main" tabindex="-1">
+            <script type="text/javascript">
+                if (top.location != self.location) {
+                    top.location = self.location.href;
+                }
+            </script>
+            <div class="alert-container">
+                <noscript>
+                    <div>
+                        <div class="alert-info" role="alert">Please enable Javascript to use all the features on this site.</div>
+                    </div>
+                </noscript>
+                <div id="account-security-prompt-container"></div>
+            </div>
+            <div id="prompts-orchestrator"></div>
+            <div class="content" id="content">
         <!-- ============== SECCIÓN: DESTACADAS ============== -->
         <section id="destacadas" class="section section-active" role="tabpanel">
             <h1 class="section-title">Destacadas</h1>
@@ -494,311 +762,464 @@
 
         <!-- ============== SECCIÓN: ROBUX ============== -->
         <section id="robux" class="section" role="tabpanel">
-            <div class="balance-row">
-                <div class="balance">
-                    <span class="robux-hex"></span>
-                    <span class="balance-amount" data-app-balance>0</span>
+            <div class="flex flex-col items-center">
+                <div class="buy-robux-background"></div>
+                
+                <!-- Balance Header -->
+                <div data-section-type="PAYMENTS_PRODUCT_SECTION_TYPE_TRANSFERS" class="flex flex-col self-stretch medium:self-end medium:margin-top-[16px] medium:margin-right-[16px]" style="z-index: 10;">
+                    <div class="flex flex-col gap-large bg-surface-100 padding-y-medium padding-x-large small:padding-x-xlarge self-stretch medium:radius-circle">
+                        <div class="flex flex-row items-center gap-large medium:padding-left-none justify-between medium:justify-end">
+                            <div class="flex flex-row justify-center items-center gap-xsmall medium:padding-left-none">
+                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                <span class="font-builder-extended content-action-standard text-title-large [font-size:var(--font-size-500)] medium:[font-size:var(--font-size-600)]" data-app-balance>0</span>
+                            </div>
+                            <div class="flex flex-row gap-small">
+                                <button type="button" id="openSendModal" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-small height-800 padding-x-small bg-action-standard content-action-standard text-label-medium content-action-standard shrink-0 [padding-right:12px]" style="text-decoration: none;">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-xsmall">
+                                        <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-arrow-up-from-line size-[var(--icon-size-small)]"></span>
+                                        <span class="padding-y-xsmall text-truncate-end text-no-wrap">Enviar</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button class="btn btn-light" id="openSendModal">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="19" x2="12" y2="5" />
-                        <polyline points="5 12 12 5 19 12" />
-                    </svg>
-                    Enviar
-                </button>
-            </div>
 
-            <div class="bonus-hero">
-                <svg class="hero-pattern" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <!-- Filtro SVG para ondulacion de cuadricula -->
+                <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
-                        <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                            <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(0,0,0,0.04)" stroke-width="1" />
-                        </pattern>
+                        <filter id="grid-wave" x="-20%" y="-20%" width="140%" height="140%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.013 0.009" numOctaves="3" seed="7"/>
+                            <feDisplacementMap in="SourceGraphic" scale="11" xChannelSelector="R" yChannelSelector="G"/>
+                        </filter>
                     </defs>
-                    <rect width="400" height="600" fill="url(#grid)" />
                 </svg>
-                <h2 class="bonus-headline">Disfruta de hasta un 25% más de Robux</h2>
-                <p class="bonus-subtitle">Objeto de bonificación que elegimos para ti</p>
-            </div>
 
-            <!-- Bonus card -->
-            <article class="bonus-card">
-                <div class="bonus-card-content">
-                    <div class="bonus-badge" aria-hidden="true">
-                        <img src="recursos/Moneda.png" alt="" />
+                <div class="buy-robux-content padding-x-large small:padding-x-xlarge">
+                  <div class="robux-grid-zone">
+                    <div id="robux-hero-section" class="flex flex-col justify-center items-center self-stretch padding-bottom-medium large:padding-y-xxlarge large:gap-large gap-small padding-top-xlarge">
+                        <h1 class="self-stretch text-align-x-left text-section-title content-emphasis large:text-align-x-center padding-y-none">Disfruta de hasta un 25% más de Robux</h1>
                     </div>
-                    <div class="bonus-info">
-                        <div class="bonus-text">
-                            <p class="bonus-title">🚨 ¡LA FUGA DE LA PRISIÓN DE BARRY! (OBBY)</p>
-                            <p class="bonus-subline">¡DUPLICADOR DE MONEDAS!</p>
-                        </div>
-                        <button class="info-btn" aria-label="Más información">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="12" y1="16" x2="12" y2="12" />
-                                <line x1="12" y1="8" x2="12.01" y2="8" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </article>
 
-            <!-- Packages -->
-            <ul class="robux-packages">
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">24,000</span>
-                        <span class="amount-old">22,500</span>
-                    </div>
-                    <button class="btn btn-light btn-price" data-pkg-amount="24000" data-pkg-old="22500" data-pkg-price="239.99" data-pkg-bonus="1500" data-go-to="pago">EUR 239.99</button>
-                </li>
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">11,000</span>
-                        <span class="amount-old">10,000</span>
-                    </div>
-                    <button class="btn btn-light btn-price" data-pkg-amount="11000" data-pkg-old="10000" data-pkg-price="119.99" data-pkg-bonus="1000" data-go-to="pago">EUR 119.99</button>
-                </li>
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">5,250</span>
-                        <span class="amount-old">4,500</span>
-                    </div>
-                    <button class="btn btn-light btn-price" data-pkg-amount="5250" data-pkg-old="4500" data-pkg-price="59.99" data-pkg-bonus="750" data-go-to="pago">EUR 59.99</button>
-                </li>
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">3,625</span>
-                        <span class="amount-old">3,150</span>
-                    </div>
-                    <button class="btn btn-light btn-price" data-pkg-amount="3625" data-pkg-old="3150" data-pkg-price="39.99" data-pkg-bonus="475" data-go-to="pago">EUR 39.99</button>
-                </li>
-                <li class="package-row popular">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">2,000</span>
-                        <span class="amount-old">1,700</span>
-                        <span class="popular-badge">
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
-                            Popular
-                        </span>
-                    </div>
-                    <button class="btn btn-primary btn-price" data-pkg-amount="2000" data-pkg-old="1700" data-pkg-price="23.99" data-pkg-bonus="300" data-go-to="pago">EUR 23.99</button>
-                </li>
-            </ul>
-
-            <h2 class="packages-heading">Paquetes de Robux</h2>
-            <p class="terms-text">Al comprar Robux, aceptas nuestros Términos de uso, incluida la cláusula de arbitraje y la política de revocación.</p>
-
-            <ul class="robux-packages small">
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">1,500</span>
-                        <span class="amount-old">1,200</span>
-                    </div>
-                    <button class="btn btn-light btn-price">EUR 17.99</button>
-                </li>
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">1,000</span>
-                        <span class="amount-old">800</span>
-                    </div>
-                    <button class="btn btn-light btn-price">EUR 11.99</button>
-                </li>
-                <li class="package-row">
-                    <div class="package-amount">
-                        <span class="robux-hex"></span>
-                        <span class="amount">500</span>
-                        <span class="amount-old">400</span>
-                    </div>
-                    <button class="btn btn-light btn-price">EUR 5.99</button>
-                </li>
-            </ul>
-
-            <!-- ============== NUEVO EN ROBLOX: PLANES ============== -->
-            <div class="plans-section">
-                <div class="plans-head">
-                    <div class="plans-title-wrap">
-                        <span class="robux-hex robux-hex-blue"></span>
-                        <h2 class="plans-title">Nuevo en Roblox</h2>
-                    </div>
-                    <a href="#" class="learn-more">Aprende más</a>
-                </div>
-                <div class="plans-grid">
-                    <!-- Plan 1: Roblox Plus -->
-                    <article class="plan-card">
-                        <div class="plan-head">
-                            <h3 class="plan-name">Roblox Plus</h3>
-                            <span class="plan-price">EUR 6.99</span>
-                        </div>
-                        <div class="plan-highlight">
-                            <span class="plan-highlight-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                                    <line x1="7" y1="7" x2="7.01" y2="7" />
-                                </svg>
-                            </span>
-                            <span>10 % de descuento en objetos dentro del juego, avatares y más</span>
-                        </div>
-                        <ul class="plan-features">
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="6" y1="11" x2="6" y2="11" />
-                                        <line x1="8" y1="9" x2="8" y2="15" />
-                                        <line x1="15" y1="12" x2="15.01" y2="12" />
-                                        <line x1="18" y1="10" x2="18.01" y2="10" />
-                                        <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258A4 4 0 0 0 17.32 5z" />
-                                    </svg>
-                                </span>
-                                Servidores privados gratis
-                            </li>
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="12" y1="19" x2="12" y2="5" />
-                                        <polyline points="5 12 12 5 19 12" />
-                                    </svg>
-                                </span>
-                                Enviar Robux gratis
-                            </li>
-                        </ul>
-                        <button class="plan-btn">EUR 6.99/month</button>
-                    </article>
-
-                    <!-- Plan 2: Plus 500 -->
-                    <article class="plan-card">
-                        <div class="plan-head">
-                            <h3 class="plan-name">Plus 500</h3>
-                            <div class="plan-prices">
-                                <span class="plan-price-old">EUR 13.99</span>
-                                <span class="plan-price">EUR 11.99</span>
+                    <!-- Limited Time Bonus (Ozymandias) -->
+                    <div data-slot="card" class="self-stretch flex flex-col items-start gap-medium" data-section-type="PAYMENTS_PRODUCT_SECTION_TYPE_LIMITED_TIME_BONUS">
+                        <div>
+                            <div class="self-stretch flex flex-row items-center justify-between gap-medium medium:justify-start medium:gap-xxlarge" data-testid="ltb-section-header-row">
+                                <div class="buy-robux-section-header self-stretch flex flex-row items-start text-heading-small medium:text-heading-large self-auto min-width-0 flex-1 medium:self-stretch medium:flex-none">Objetos de avatar por tiempo limitado</div>
+                                <div class="foundation-web-badge flex items-center select-none gap-[var(--size-150)] radius-circle height-600 width-[fit-content] padding-x-small bg-system-contrast content-inverse-emphasis stroke-none shrink-0">
+                                    <span class="text-no-wrap text-truncate-split text-label-small padding-y-xsmall padding-x-xxsmall content-inverse-emphasis">Quedan 8 días</span>
+                                </div>
                             </div>
                         </div>
-                        <ul class="plan-features">
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <span class="robux-hex-small"></span>
-                                </span>
-                                Todo en Plus
-                            </li>
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <span class="robux-hex-small"></span>
-                                </span>
-                                500 Robux o más al mes
-                            </li>
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                        <polyline points="14 2 14 8 20 8" />
-                                        <line x1="16" y1="13" x2="8" y2="13" />
-                                        <line x1="16" y1="17" x2="8" y2="17" />
-                                    </svg>
-                                </span>
-                                Valor total: EUR 13.99
-                            </li>
-                        </ul>
-                        <button class="plan-btn">EUR 11.99/month</button>
-                    </article>
-
-                    <!-- Plan 3: Plus 1000 -->
-                    <article class="plan-card">
-                        <div class="plan-head">
-                            <h3 class="plan-name">Plus 1000</h3>
-                            <div class="plan-prices">
-                                <span class="plan-price-old">EUR 19.99</span>
-                                <span class="plan-price">EUR 16.99</span>
+                        <div class="self-stretch flex flex-col gap-xlarge medium:gap-xxlarge">
+                            <div class="self-stretch radius-large flex flex-col" style="overflow: hidden;">
+                                <div class="relative bg-shift-200 min-height-[186px] medium:min-height-[204px]">
+                                    <div class="relative z-10 padding-xlarge flex height-full flex-col items-center justify-end gap-medium">
+                                        <img src="https://images.rbxcdn.com/192a7bd92c19b511.gif" alt="Corona de oro de Ozymandias" class="radius-medium object-contain shrink-0 height-[150px] width-auto max-width-full">
+                                        <div class="flex flex-col gap-xsmall medium:gap-small self-start">
+                                            <span class="text-title-large medium:text-heading-medium content-emphasis" style="color: #000000 !important;">Corona de oro de Ozymandias</span>
+                                            <span class="text-body-medium content-emphasis flex items-center gap-xsmall">Roblox<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEyIDEyIj48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGZpbGw9IiMwNmYiIGQ9Im0yLjUyMyAwIDkuNDc2IDIuNTM5LTIuNTQgOS40NzYtOS40NzUtMi41NHoiLz48cGF0aCBmaWxsPSIjZjdmN2Y4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Im04LjgwNCAzLjc1LjAwMy4wMDNhLjY2LjY2IDAgMCAxIDAgLjkzMkw1LjA2NCA4LjA2OCAzLjE5MyA2LjU1NmEuNjYuNjYgMCAwIDEgMC0uOTMybC4wMDMtLjAwM2EuNjYuNjYgMCAwIDEgLjkzMiAwbC45MzYuOTcyTDcuODcyIDMuNzVhLjY2LjY2IDAgMCAxIC45MzIgMCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgxMnYxMkgweiIvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==" alt="blue check icon" style="width: 16px; height: 16px;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="self-stretch flex flex-col gap-xlarge padding-medium medium:padding-xlarge bg-shift-400" data-testid="ltb-robux-packages">
+                                    <div class="self-stretch flex flex-row justify-between items-center gap-small" data-product-id="3247">
+                                        <div class="min-width-0 flex-1">
+                                            <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                                <div class="flex gap-small items-center">
+                                                    <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                                        <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                            <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                            <span class="text-heading-medium" style="line-height: var(--line-height-100);">24.000</span>
+                                                        </div>
+                                                        <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                            <div class="robux-amount-strike-through"></div>
+                                                            <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                            <span class="text-title-large">22.500</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="24000" data-pkg-old="22500" data-pkg-price="COP 1,149,900" data-pkg-bonus="1500" data-pkg-item-name="Corona de oro de Ozymandias" data-pkg-item-img="https://images.rbxcdn.com/192a7bd92c19b511.gif" data-go-to="pago">
+                                            <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                            <span class="flex items-center min-width-0 gap-small">
+                                                <span class="padding-y-xsmall text-truncate-end text-no-wrap">
+                                                    <div class="d-flex-inline gap-1 justify-content-start align-items-center">
+                                                        <span class="price-tag robux-price-tag">1,1499&nbsp;M&nbsp;COP</span>
+                                                    </div>
+                                                </span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <ul class="plan-features">
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <span class="robux-hex-small"></span>
-                                </span>
-                                Todo en Plus
-                            </li>
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <span class="robux-hex-small"></span>
-                                </span>
-                                1000 Robux o más al mes
-                            </li>
-                            <li>
-                                <span class="plan-feature-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                        <polyline points="14 2 14 8 20 8" />
-                                        <line x1="16" y1="13" x2="8" y2="13" />
-                                        <line x1="16" y1="17" x2="8" y2="17" />
+                    </div>
+                  </div><!-- /.robux-grid-zone -->
+
+                    <!-- Subscription Tiers (Roblox Plus) -->
+                    <div data-slot="card" class="self-stretch flex flex-col items-start gap-medium" data-testid="section-subscription-v2" data-section-type="PAYMENTS_PRODUCT_SECTION_TYPE_SUBSCRIPTION_V2">
+                        <div class="buy-robux-section-header self-stretch flex flex-row items-start text-heading-small medium:text-heading-large">
+                            <div class="flex flex-row width-full justify-between items-center">
+                                <div class="flex flex-row items-center gap-x-small medium:gap-x-medium">
+                                    <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-xlarge)]"></span>
+                                    Nuevo en Roblox
+                                </div>
+                                <a class="text-label-medium text-default [text-decoration:underline] [text-underline-position:from-font]" data-testid="header-learn-more-link" href="/plus">Aprende más</a>
+                            </div>
+                        </div>
+                        <div aria-label="Roblox Plus subscription tiers" class="relative min-width-0 clip-x self-stretch bleed-section-padding" data-testid="carousel-root" role="region">
+                            <div class="dark-theme"></div>
+                            <div class="flex flex-row gap-medium min-width-0 width-full scroll-x bleed-section-padding-track bundle-carousel-track-cap" data-testid="carousel-track" style="scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none;">
+                                
+                                <!-- Plan 1: Roblox Plus -->
+                                <div class="carousel-item shrink-0 flex flex-col width-[313px] medium:width-[242px]" style="scroll-snap-align: start;">
+                                    <div class="bg-surface-100 stroke-default stroke-standard radius-large padding-medium flex flex-col items-stretch justify-between gap-small height-full" data-testid="subscription-tile-8043080260230709445" data-subscription-product-id="8043080260230709445" data-subscription-product-type="PRODUCT_TYPE_ROBLOX_PLUS">
+                                        <div class="flex flex-row items-center justify-between gap-large">
+                                            <h3 class="text-label-large content-emphasis text-truncate-end">Roblox Plus</h3>
+                                            <div class="flex flex-row items-center justify-end gap-small">
+                                                <span class="text-title-medium content-emphasis text-no-wrap">29.900&nbsp;COP</span>
+                                            </div>
+                                        </div>
+                                        <ul class="flex flex-col gap-medium padding-y-small" style="list-style: none; padding-inline-start: 0px; margin-block: 0px;">
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-tag size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">10&nbsp;% de descuento en objetos dentro del juego, avatares y más</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-controller size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Servidores privados gratis</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Enviar Robux gratis</span>
+                                            </li>
+                                        </ul>
+                                        <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard width-full" style="text-decoration: none;" data-pkg-amount="0" data-pkg-old="0" data-pkg-price="COP 29,900" data-pkg-bonus="0" data-pkg-type="subscription" data-pkg-name="Roblox Plus" data-go-to="pago">
+                                            <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                            <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap">29.900&nbsp;COP/month</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Plan 2: Plus 500 -->
+                                <div class="carousel-item shrink-0 flex flex-col width-[313px] medium:width-[242px]" style="scroll-snap-align: start;">
+                                    <div class="bg-surface-100 stroke-default stroke-standard radius-large padding-medium flex flex-col items-stretch justify-between gap-small height-full" data-testid="subscription-tile-5393860095836815561" data-subscription-product-id="5393860095836815561" data-subscription-product-type="PRODUCT_TYPE_ROBLOX_PLUS">
+                                        <div class="flex flex-row items-center justify-between gap-large">
+                                            <h3 class="text-label-large content-emphasis text-truncate-end">Plus 500</h3>
+                                            <div class="flex flex-row items-center justify-end gap-small">
+                                                <span class="text-title-medium text-no-wrap content-muted strike-through">59.800&nbsp;COP</span>
+                                                <span class="text-title-medium content-emphasis text-no-wrap">52.400&nbsp;COP</span>
+                                            </div>
+                                        </div>
+                                        <ul class="flex flex-col gap-medium padding-y-small" style="list-style: none; padding-inline-start: 0px; margin-block: 0px;">
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Todo en Plus</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">500 Robux o más al mes</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-pig size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Valor total: 59.800&nbsp;COP</span>
+                                            </li>
+                                        </ul>
+                                        <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard width-full" style="text-decoration: none;" data-pkg-amount="500" data-pkg-old="0" data-pkg-price="COP 52,400" data-pkg-bonus="0" data-pkg-type="subscription" data-pkg-name="Plus 500" data-go-to="pago">
+                                            <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                            <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap">52.400&nbsp;COP/month</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Plan 3: Plus 1000 -->
+                                <div class="carousel-item shrink-0 flex flex-col width-[313px] medium:width-[242px]" style="scroll-snap-align: start;">
+                                    <div class="bg-surface-100 stroke-default stroke-standard radius-large padding-medium flex flex-col items-stretch justify-between gap-small height-full" data-testid="subscription-tile-7014010777380192425" data-subscription-product-id="7014010777380192425" data-subscription-product-type="PRODUCT_TYPE_ROBLOX_PLUS">
+                                        <div class="flex flex-row items-center justify-between gap-large">
+                                            <h3 class="text-label-large content-emphasis text-truncate-end">Plus 1000</h3>
+                                            <div class="flex flex-row items-center justify-end gap-small">
+                                                <span class="text-title-medium text-no-wrap content-muted strike-through">89.800&nbsp;COP</span>
+                                                <span class="text-title-medium content-emphasis text-no-wrap">74.900&nbsp;COP</span>
+                                            </div>
+                                        </div>
+                                        <ul class="flex flex-col gap-medium padding-y-small" style="list-style: none; padding-inline-start: 0px; margin-block: 0px;">
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Todo en Plus</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">1000 Robux o más al mes</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-pig size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Valor total: 89.800&nbsp;COP</span>
+                                            </li>
+                                        </ul>
+                                        <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard width-full" style="text-decoration: none;" data-pkg-amount="1000" data-pkg-old="0" data-pkg-price="COP 74,900" data-pkg-bonus="0" data-pkg-type="subscription" data-pkg-name="Plus 1000" data-go-to="pago">
+                                            <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                            <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap">74.900&nbsp;COP/month</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Plan 4: Plus 2000 -->
+                                <div class="carousel-item shrink-0 flex flex-col width-[313px] medium:width-[242px]" style="scroll-snap-align: start;">
+                                    <div class="bg-surface-100 stroke-default stroke-standard radius-large padding-medium flex flex-col items-stretch justify-between gap-small height-full" data-testid="subscription-tile-1687502288043770027" data-subscription-product-id="1687502288043770027" data-subscription-product-type="PRODUCT_TYPE_ROBLOX_PLUS">
+                                        <div class="flex flex-row items-center justify-between gap-large">
+                                            <h3 class="text-label-large content-emphasis text-truncate-end">Plus 2000</h3>
+                                            <div class="flex flex-row items-center justify-end gap-small">
+                                                <span class="text-title-medium text-no-wrap content-muted strike-through">144.800&nbsp;COP</span>
+                                                <span class="text-title-medium content-emphasis text-no-wrap">124.900&nbsp;COP</span>
+                                            </div>
+                                        </div>
+                                        <ul class="flex flex-col gap-medium padding-y-small" style="list-style: none; padding-inline-start: 0px; margin-block: 0px;">
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Todo en Plus</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">2000 Robux o más al mes</span>
+                                            </li>
+                                            <li class="flex flex-row items-center gap-medium medium:gap-large">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-pig size-[var(--icon-size-medium)] size-[20px]"></span>
+                                                <span class="text-body-medium content-default">Valor total: 144.800&nbsp;COP</span>
+                                            </li>
+                                        </ul>
+                                        <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard width-full" style="text-decoration: none;" data-pkg-amount="2000" data-pkg-old="0" data-pkg-price="COP 124,900" data-pkg-bonus="0" data-pkg-type="subscription" data-pkg-name="Plus 2000" data-go-to="pago">
+                                            <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                            <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap">124.900&nbsp;COP/month</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Robux Packages Grid -->
+                    <div data-slot="card" class="self-stretch flex flex-col items-start gap-medium" data-section-type="PAYMENTS_PRODUCT_SECTION_TYPE_PRODUCTS_LIST">
+                        <div class="buy-robux-section-header self-stretch flex flex-row items-start text-heading-small medium:text-heading-large">Paquetes de Robux</div>
+                        <div class="radius-large stroke-standard stroke-default flex flex-col items-start self-stretch gap-xlarge padding-medium medium:padding-xlarge">
+                            
+                            <!-- 11.000 Robux -->
+                            <div data-product-id="3246" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">11.000</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">10.000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="11000" data-pkg-old="10000" data-pkg-price="COP 599,900" data-pkg-bonus="1000" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">599,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                            <!-- 5250 Robux -->
+                            <div data-product-id="3245" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">5250</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">4500</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="5250" data-pkg-old="4500" data-pkg-price="COP 299,900" data-pkg-bonus="750" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">299,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                            <!-- 3625 Robux -->
+                            <div data-product-id="4747" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">3625</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">3150</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="3625" data-pkg-old="3150" data-pkg-price="COP 149,900" data-pkg-bonus="475" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">149,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                            <!-- 2000 Robux -->
+                            <div data-product-id="3244" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">2000</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">1700</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="2000" data-pkg-old="1700" data-pkg-price="COP 114,900" data-pkg-bonus="300" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">114,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                            <!-- 1500 Robux -->
+                            <div data-product-id="4745" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">1500</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">1200</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="1500" data-pkg-old="1200" data-pkg-price="COP 69,900" data-pkg-bonus="300" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">69,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                            <!-- 1000 Robux -->
+                            <div data-product-id="3243" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">1000</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">800</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="1000" data-pkg-old="800" data-pkg-price="COP 59,900" data-pkg-bonus="200" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">59,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                            <!-- 500 Robux -->
+                            <div data-product-id="3242" class="self-stretch flex flex-row justify-between items-center gap-small">
+                                <div class="flex flex-col medium:flex-row justify-start medium:items-center gap-small medium:gap-large wrap">
+                                    <div class="flex gap-small items-center">
+                                        <div class="flex flex-row justify-start items-center gap-small margin-right-xsmall large:width-[230px] wrap">
+                                            <div class="flex flex-row justify-start items-center gap-xsmall content-emphasis">
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-large)]"></span>
+                                                <span class="text-heading-medium" style="line-height: var(--line-height-100);">500</span>
+                                            </div>
+                                            <div class="flex flex-row justify-start items-center gap-xsmall relative text-overflow content-muted">
+                                                <div class="robux-amount-strike-through"></div>
+                                                <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
+                                                <span class="text-title-large">400</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-standard content-action-standard min-width-[90px] small:min-width-[120px] medium:min-width-[200px] text-label-medium shrink-0" style="text-decoration: none;" data-pkg-amount="500" data-pkg-old="400" data-pkg-price="COP 29,900" data-pkg-bonus="100" data-go-to="pago">
+                                    <div aria-hidden="true" data-testid="foundation-web-state-layer" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div>
+                                    <span class="flex items-center min-width-0 gap-small"><span class="padding-y-xsmall text-truncate-end text-no-wrap"><div class="d-flex-inline gap-1 justify-content-start align-items-center"><span class="price-tag robux-price-tag">29,9&nbsp;mil&nbsp;COP</span></div></span></span>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Preguntas frecuentes -->
+                    <div data-slot="card" class="self-stretch flex flex-col items-start gap-medium">
+                        <div class="buy-robux-section-header self-stretch flex flex-row items-start text-heading-small medium:text-heading-large">Preguntas frecuentes</div>
+                        <div class="self-stretch flex flex-col items-stretch gap-medium large:gap-large">
+                            <details class="faq-item" style="border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; padding: 12px 16px;">
+                                <summary class="faq-question" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; outline: none; font-weight: 700;">
+                                    <span>¿Qué son los Robux?</span>
+                                    <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9" />
                                     </svg>
-                                </span>
-                                Valor total: EUR 19.99
-                            </li>
-                        </ul>
-                        <button class="plan-btn">EUR 16.99/month</button>
-                    </article>
-                </div>
-            </div>
-
-            <!-- ============== PREGUNTAS FRECUENTES ============== -->
-            <div class="faq-section">
-                <h2 class="faq-title">Preguntas frecuentes</h2>
-                <div class="faq-list">
-                    <details class="faq-item">
-                        <summary class="faq-question">
-                            <span>¿Qué son los Robux?</span>
-                            <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9" />
-                            </svg>
-                        </summary>
-                        <div class="faq-answer">
-                            Los Robux son la moneda virtual oficial de Roblox. Con ellos puedes comprar artículos para tu avatar, accesorios dentro de juegos, juegos privados y mucho más dentro de toda la plataforma.
+                                </summary>
+                                <div class="faq-answer" style="padding-top: 12px; color: var(--text-muted);">
+                                    Los Robux son la moneda virtual oficial de Roblox. Con ellos puedes comprar artículos para tu avatar, accesorios dentro de juegos, juegos privados y mucho más dentro de toda la plataforma.
+                                </div>
+                            </details>
+                            <details class="faq-item" style="border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; padding: 12px 16px;">
+                                <summary class="faq-question" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; outline: none; font-weight: 700;">
+                                    <span>¿Dónde están mis Robux?</span>
+                                    <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </summary>
+                                <div class="faq-answer" style="padding-top: 12px; color: var(--text-muted);">
+                                    Tus Robux aparecen automáticamente en tu cuenta después de completar la compra. Puedes ver tu balance en la parte superior de cualquier sección, junto al ícono hexagonal.
+                                </div>
+                            </details>
+                            <details class="faq-item" style="border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; padding: 12px 16px;">
+                                <summary class="faq-question" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; outline: none; font-weight: 700;">
+                                    <span>¿Los Robux caducan?</span>
+                                    <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </summary>
+                                <div class="faq-answer" style="padding-top: 12px; color: var(--text-muted);">
+                                    No, los Robux no tienen fecha de caducidad. Puedes gastarlos cuando quieras. Si tienes una suscripción Plus, cada mes recibirás Robux adicionales que se suman a tu balance.
+                                </div>
+                            </details>
+                            <details class="faq-item" style="border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; padding: 12px 16px;">
+                                <summary class="faq-question" style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; outline: none; font-weight: 700;">
+                                    <span>¿Cómo canjear tu tarjeta de regalo?</span>
+                                    <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9" />
+                                    </svg>
+                                </summary>
+                                <div class="faq-answer" style="padding-top: 12px; color: var(--text-muted);">
+                                    Puedes canjear tus tarjetas de regalo ingresando el PIN en la sección de canje en el sitio web de Roblox. El saldo o ítem correspondiente se acreditará de forma inmediata.
+                                </div>
+                            </details>
                         </div>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary class="faq-question">
-                            <span>¿Dónde están mis Robux?</span>
-                            <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9" />
-                            </svg>
-                        </summary>
-                        <div class="faq-answer">
-                            Tus Robux aparecen automáticamente en tu cuenta después de completar la compra. Puedes ver tu balance en la parte superior de cualquier sección, junto al ícono hexagonal.
-                        </div>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary class="faq-question">
-                            <span>¿Los Robux caducan?</span>
-                            <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9" />
-                            </svg>
-                        </summary>
-                        <div class="faq-answer">
-                            No, los Robux no tienen fecha de caducidad. Puedes gastarlos cuando quieras. Si tienes una suscripción Plus, cada mes recibirás Robux adicionales que se suman a tu balance.
-                        </div>
-                    </details>
-
-                    <details class="faq-item">
-                        <summary class="faq-question">
-                            <span>¿Puedo enviar Robux a un amigo?</span>
-                            <svg class="faq-chevron" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9" />
-                            </svg>
-                        </summary>
-                        <div class="faq-answer">
-                            Sí. En la sección Robux, toca el botón "Enviar", busca el usuario por nombre y elige la cantidad. El envío es instantáneo una vez confirmada la operación.
-                        </div>
-                    </details>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1122,7 +1543,85 @@
                 <button class="btn btn-light admin-refresh-btn" id="adminRefreshBtn" type="button">Refrescar lista</button>
             </article>
         </section>
-    </main>
+    </div> <!-- Cierre de #content -->
+</main> <!-- Cierre de #container-main -->
+
+<!-- ============== FOOTER OFICIAL DE ROBLOX ============== -->
+<footer class="container-footer" id="footer-container" data-is-giftcards-footer-enabled="True">
+    <div class="footer">
+        <ul class="row footer-links flex flex-wrap justify-center padding-bottom-xxsmall">
+            <li class="footer-link"><a href="#" class="text-footer-nav">Quiénes somos</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Empleo</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Sala de prensa</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Padres</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav giftcards tab" data-tab="robux">Comprar tarjetas regalo</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Ayuda</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Términos</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Accesibilidad</a></li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Privacidad</a></li>
+            <li class="footer-link">
+                <button class="text-footer-nav footer-button-link" type="button">
+                    Tus opciones de privacidad
+                    <img src="data:image/webp;base64,UklGRrADAABXRUJQVlA4WAoAAAAQAAAAOwAAHAAAQUxQSOsAAAABgGNt2zHnHdaetLadLtmNsQDbdlLbtsqkHpSxbX/zj/U9G4iICSCX4uiiGdPdq8/vTNOFUWLyNGXwlFk4ZSf9ye6pKm4tXN+UK90IXLBwPxfgImDPArjr70Q5b4GcUTiUWjCFYiJKvAaxXMaTqMcC2yUKP8I5DM39x/nPmrAAjxqQ9LdIdy9Ir3dI9yYk4zTSZBHDYfnRpzgnkZIhnAExpd+j3KYSiepQqkVEpF3HWNWQY/gBwn4YOY/Y5m8znFz7tT7z9dTsR+5KMkdvBF6Em+EMMXkoTyvfPv/6Z+6aBc/N/1/n22WpcnIJAFZQOCCeAgAAsA4AnQEqPAAdAD6ROJhIJaMiITAb+ACwEglsAJ0yhHXno/mCVb+y7BwXfr7x7eqjbAeYD9bPVz9BvlAdYb6AHlp/uB8G3+A/4Pphu/TXQhi//S809EB69BEZldQNIV/eNVlDmUDW33lPn0iGBlkHEoP7xzvxv4W7IPVKwg+gAO9wOYzsI8BSlu/ljXZqxJsDV2tD+qayuJoxUFkUptaQf93n7fV4hUgJ+Uf/kpj4AqJAtsX5hJKtHHJlA0l7tylf+1SOJ1un0rrDm2Up4a6mCFRb/+W/vzfxAH3D9myHP/NfjX7ifoc/H7vgudmvtLqz+hb9lyHGakbAh+at5OqNY8Lo7/c/Rd1YFFWBSYBdcwPiQzjecF1Xv8R2dj9vKtM9tG+6SEBuPEV31LvRnBpXZ2XjpXFA9v38V7MMCzD2xxa06JeC+cVPiHvpVzfH8c63KCGOBFLltx9UIWiwO/c0fNzieqYIEsY2OIkx/wrhbV4GMtEp1U/7N3a7/Qq9r/h+LEI8sYOrGm1MU2P/BL4fYeBDZFMdJZ519a6U9S4K0wTMro82cnTukNfm7VyZ5hONbhEmAOc3OOYiFKgqzFC716CnyAatzIyDr0CosyN1Uh1epW+K2w7UmZ36T6i2+3vzCUz+pCLHl5zfc3yHC5sTR9yT368/W2zLQGXLxDmulSMj6HAO2VABHUwOJFjwIZT/+SB3RcruT4FqGiItnt6evy0vY4eSL9ALvRwkehZMB6Xj/2dzV507O+xEyOf7DL0zpSV3B/Oxz2jju+fUOFvOLM2J+VLuONA8wTfqy78vrhQfIVlpkdzQ+ZzJ3vL/FVZIgcqzYBBbKgUTEjq/+jSvW3vcOy7IA539GoeB3ydM4gyDy0h9FTsf9CO0fQAAAA==" alt="" class="footer-postfixIcon">
+                </button>
+            </li>
+            <li class="footer-link"><a href="#" class="text-footer-nav">Mapa del sitio</a></li>
+        </ul>
+        <div class="row copyright-container flex items-center justify-between padding-top-xlarge gutter-x-small">
+            <div class="col-sm-6 col-md-3">
+                <div class="language-selector-wrapper">
+                    <div class="flex flex-col gap-small form-group">
+                        <button type="button" role="combobox" aria-expanded="false" class="relative clip group/interactable outline-none foundation-web-input flex items-center justify-between width-full cursor-pointer bg-none stroke-standard radius-medium height-1000 padding-x-medium text-body-medium stroke-contrast-alpha content-default">
+                            <div class="grow-1 text-truncate-split text-align-x-left">
+                                <span><span class="foundation-web-menu-item-title text-no-wrap text-truncate-split content-emphasis">Español (España)</span></span>
+                            </div>
+                            <span aria-hidden="true" class="size-500 icon icon-regular-chevron-large-down content-default">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-9">
+                <p class="text-footer footer-note">©2026 Roblox Corporation. Roblox, el logotipo de Roblox y Powering Imagination son algunas de nuestras marcas registradas y no registradas en los Estados Unidos y otros países.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</div> <!-- Cierre de #wrap -->
+
+<!-- ============== CHAT CONTAINER ============== -->
+<div id="chat-container" class="chat chat-container collapsed">
+    <div id="chat-body" class="chat-body">
+        <div class="border-bottom chat-search">
+            <span>
+                <input type="text" placeholder="Buscar amigos" class="input-field chat-search-input font-caption-body" />
+            </span>
+            <span class="icon-chat-search"></span>
+        </div>
+        <div class="chat-friend-list">
+            <ul class="chat-friends">
+                <li class="chat-friend">
+                    <div class="chat-friend-container">
+                        <div class="avatar avatar-headshot-sm card-plain chat-friend-avatar">
+                            <span class="chat-avatar-headshot">
+                                <span class="thumbnail-2d-container">
+                                    <img class="avatar-card-image chat-avatar" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-C9ECABE8016FDB161B696402345F816A-Png/48/48/AvatarHeadshot/Webp/noFilter" alt="Rexx" title="Rexx" />
+                                </span>
+                            </span>
+                            <div class="avatar-status chat-friend-status online"></div>
+                        </div>
+                        <div class="chat-friend-info">
+                            <div class="chat-friend-info-top">
+                                <span class="small text-title text-overflow font-caption-header chat-friend-name">Rexx</span>
+                            </div>
+                            <span class="xsmall text-info chat-brief-timestamp">Jul 30</span>
+                            <span class="xsmall text-overflow text-info font-caption-body chat-friend-message">el man grabando</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
     <!-- ============== MODAL: ENVIAR ROBUX ============== -->
     <div class="modal-overlay" id="sendModal" aria-hidden="true">
@@ -1172,6 +1671,78 @@
                         <line x1="12" y1="16" x2="12.01" y2="16" />
                     </svg>
                     <span>Modo demo · proxy no disponible, mostrando usuarios de ejemplo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============== OVERLAY: PAGO RAPIDO ============== -->
+    <div class="quick-pay-overlay" id="quickPayOverlay" aria-hidden="true">
+        <div class="quick-pay-dialog" role="dialog" aria-modal="true" aria-labelledby="quickPayTitle">
+            <header class="quick-pay-header">
+                <h2 id="quickPayTitle">Pago rápido</h2>
+                <button class="quick-pay-close" id="quickPayClose" type="button" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                        <line x1="5" y1="5" x2="19" y2="19" />
+                        <line x1="19" y1="5" x2="5" y2="19" />
+                    </svg>
+                </button>
+            </header>
+
+            <div class="quick-pay-body">
+                <div class="quick-pay-product">
+                    <img class="quick-pay-robux-icon" src="logo pago.png" alt="" aria-hidden="true" />
+                    <div>
+                        <div class="quick-pay-product-title" data-quick-pay-title>11000 Robux</div>
+                        <div class="quick-pay-product-price" data-quick-pay-price>599,9 mil COP</div>
+                    </div>
+                </div>
+
+                <div class="quick-pay-summary">
+                    <div class="quick-pay-summary-row">
+                        <span>Subtotal</span>
+                        <span data-quick-pay-subtotal>599,9 mil COP</span>
+                    </div>
+                    <div class="quick-pay-tax-row">
+                        <span class="quick-pay-help" aria-hidden="true">?</span>
+                        <span data-quick-pay-tax>95,78235 mil COP</span>
+                    </div>
+                </div>
+
+                <div class="quick-pay-total-row">
+                    <strong>Total a pagar</strong>
+                    <strong data-quick-pay-total>599,9 mil COP</strong>
+                </div>
+
+                <p class="quick-pay-charge-label">La cantidad se cargará a:</p>
+
+                <button class="quick-pay-card" type="button">
+                    <span class="quick-pay-mastercard" aria-hidden="true">
+                        <span class="mc-circle mc-red"></span>
+                        <span class="mc-circle mc-yellow"></span>
+                    </span>
+                    <span class="quick-pay-card-number">****6450</span>
+                    <span class="quick-pay-card-exp-label">Vence</span>
+                    <span class="quick-pay-card-exp">12/33</span>
+                    <svg class="quick-pay-chevron" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+
+                <button class="quick-pay-alt" type="button">Usa un método de pago diferente</button>
+
+                <div class="quick-pay-divider"></div>
+
+                <p class="quick-pay-legal">
+                    Acepto que estoy adquiriendo una licencia limitada para acceder al producto regida por los <strong>Términos de la Licencia</strong>.
+                    Al comprar Robux, aceptas nuestros Términos de uso, incluida la cláusula de arbitraje y la política de revocación, y nuestra Política de privacidad.
+                    Puedes eliminar tu información de pago guardada en cualquier momento desde la página Configuración de facturación. Tu información de pago será almacenada por Stripe, Inc.
+                    Al enviar la información de pago, aceptas los Términos de uso y la Política de privacidad.
+                </p>
+
+                <div class="quick-pay-actions">
+                    <button class="quick-pay-primary" id="quickPaySubmit" type="button">Pagar ahora</button>
+                    <button class="quick-pay-secondary" id="quickPayCancel" type="button">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -1260,3 +1831,4 @@
     <script src="app.js"></script>
 </body>
 </html>
+
