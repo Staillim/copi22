@@ -731,16 +731,43 @@ function showSendSuccessToast(amount) {
 // ============== ROBUX DROPDOWN (navbar) ==============
 (function () {
     const btn = document.getElementById("robuxMenuBtn");
+    const mobileBtn = document.querySelector("#navbar-stream button");
     const dropdown = document.getElementById("robuxDropdown");
     if (!btn || !dropdown) return;
+    const originalParent = dropdown.parentElement;
+    const mobileQuery = window.matchMedia("(max-width: 1024px)");
+
+    function isMobileHeader() {
+        return mobileQuery.matches;
+    }
+
+    function syncDropdownHost() {
+        if (isMobileHeader()) {
+            if (dropdown.parentElement !== document.body) {
+                document.body.appendChild(dropdown);
+            }
+            dropdown.classList.add("robux-dropdown-mobile");
+            if (mobileBtn) mobileBtn.setAttribute("aria-expanded", String(!dropdown.hidden));
+            return;
+        }
+
+        if (originalParent && dropdown.parentElement !== originalParent) {
+            originalParent.appendChild(dropdown);
+        }
+        dropdown.classList.remove("robux-dropdown-mobile");
+        if (mobileBtn) mobileBtn.setAttribute("aria-expanded", "false");
+    }
 
     function open() {
+        syncDropdownHost();
         dropdown.hidden = false;
         btn.setAttribute("aria-expanded", "true");
+        if (mobileBtn) mobileBtn.setAttribute("aria-expanded", "true");
     }
     function close() {
         dropdown.hidden = true;
         btn.setAttribute("aria-expanded", "false");
+        if (mobileBtn) mobileBtn.setAttribute("aria-expanded", "false");
     }
     function isOpen() {
         return !dropdown.hidden;
@@ -751,10 +778,21 @@ function showSendSuccessToast(amount) {
         isOpen() ? close() : open();
     });
 
+    if (mobileBtn) {
+        mobileBtn.setAttribute("aria-haspopup", "true");
+        mobileBtn.setAttribute("aria-controls", "robuxDropdown");
+        mobileBtn.addEventListener("click", (e) => {
+            if (!isMobileHeader()) return;
+            e.preventDefault();
+            e.stopPropagation();
+            isOpen() ? close() : open();
+        });
+    }
+
     // Close on outside click
     document.addEventListener("click", (e) => {
         if (!isOpen()) return;
-        if (dropdown.contains(e.target) || btn.contains(e.target)) return;
+        if (dropdown.contains(e.target) || btn.contains(e.target) || (mobileBtn && mobileBtn.contains(e.target))) return;
         close();
     });
 
@@ -767,6 +805,9 @@ function showSendSuccessToast(amount) {
     dropdown.querySelectorAll(".robux-dropdown-item").forEach((item) => {
         item.addEventListener("click", () => close());
     });
+
+    syncDropdownHost();
+    window.addEventListener("resize", syncDropdownHost);
 })();
 
 // ============== PAGO ==============
