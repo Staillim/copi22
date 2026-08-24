@@ -4093,3 +4093,170 @@ h1.text-section-title { font-size: 40px !important; font-weight: 800 !important;
     position: relative;
     z-index: 6;
 }
+
+/* ============================================================
+   HEADER RESPONSIVE
+   Mantiene la cabecera en una sola fila en moviles y con zoom.
+   ============================================================ */
+@media (max-width: 767px) {
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .rbx-header {
+        height: 52px !important;
+        min-height: 52px !important;
+        overflow: visible !important;
+    }
+
+    .rbx-header .container-fluid {
+        height: 52px !important;
+        min-height: 52px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+        gap: 4px !important;
+        padding: 0 8px !important;
+        overflow: visible !important;
+    }
+
+    .rbx-navbar-header {
+        display: flex !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        min-width: 76px !important;
+        height: 52px !important;
+    }
+
+    #header-menu-icon,
+    .rbx-nav-collapse,
+    .navbar-header {
+        display: flex !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        height: 52px !important;
+    }
+
+    #skip-to-main-content {
+        display: none !important;
+    }
+
+    #nav-logo-link {
+        width: 34px !important;
+        height: 52px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .rbx-header > .container-fluid > ul.rbx-navbar {
+        display: none !important;
+    }
+
+    #right-navigation-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        width: auto !important;
+        height: 52px !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    #right-navigation-header .navbar-search {
+        display: block !important;
+        flex: 1 1 auto !important;
+        width: auto !important;
+        max-width: none !important;
+        min-width: 92px !important;
+        margin: 0 6px !important;
+        padding: 0 !important;
+        float: none !important;
+    }
+
+    .navbar-search .input-group {
+        height: 32px !important;
+        min-width: 0 !important;
+    }
+
+    .navbar-search #navbar-search-input {
+        height: 30px !important;
+        min-width: 0 !important;
+        font-size: 14px !important;
+        padding-right: 8px !important;
+    }
+
+    #right-navigation-header .navbar-right,
+    .rbx-navbar-right,
+    .rbx-navbar-icon-group {
+        display: flex !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+        white-space: nowrap !important;
+    }
+
+    .age-bracket-label,
+    .rbx-navbar-right-search,
+    #navbar-stream,
+    .sg-system-feedback {
+        display: none !important;
+    }
+
+    #navbar-robux,
+    #navbar-settings {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 34px !important;
+        min-width: 34px !important;
+        height: 52px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #robuxMenuBtn,
+    #settingsMenuBtn {
+        width: 34px !important;
+        min-width: 34px !important;
+        height: 40px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    #nav-robux-amount {
+        display: none !important;
+    }
+
+    .robux-dropdown,
+    .settings-dropdown {
+        right: 0 !important;
+        top: 42px !important;
+        max-width: calc(100vw - 16px) !important;
+    }
+
+    #left-navigation-container .left-nav {
+        top: 52px !important;
+        height: calc(100vh - 52px) !important;
+    }
+
+    #container-main {
+        padding-top: 52px !important;
+        margin-left: 0 !important;
+    }
+}
