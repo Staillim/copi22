@@ -4393,6 +4393,15 @@ h1.text-section-title { font-size: 40px !important; font-weight: 800 !important;
         width: 100% !important;
         max-width: 100% !important;
         overflow-x: hidden !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+        display: none !important;
     }
 
     .rbx-header {
