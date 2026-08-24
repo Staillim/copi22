@@ -796,6 +796,12 @@ function showSendSuccessToast(amount) {
         close();
     });
 
+    document.addEventListener("pointerdown", (e) => {
+        if (!isOpen()) return;
+        if (dropdown.contains(e.target) || btn.contains(e.target) || (mobileBtn && mobileBtn.contains(e.target))) return;
+        close();
+    }, true);
+
     // Close on Escape
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && isOpen()) close();
@@ -2039,6 +2045,12 @@ function showSendSuccessToast(amount) {
         if (dropdown.contains(e.target) || btn.contains(e.target)) return;
         close();
     });
+
+    document.addEventListener("pointerdown", (e) => {
+        if (!isOpen()) return;
+        if (dropdown.contains(e.target) || btn.contains(e.target)) return;
+        close();
+    }, true);
 
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && isOpen()) close();
