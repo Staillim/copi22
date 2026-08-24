@@ -163,6 +163,18 @@ function showSendSuccessToast(amount) {
     const tabs = document.querySelectorAll(".tab");
     const sections = document.querySelectorAll(".section");
 
+    function loadMercadoImages() {
+        document.querySelectorAll("#mercado .item-thumb img").forEach((img) => {
+            const src = img.getAttribute("src");
+            if (!src) return;
+            img.loading = "eager";
+            img.decoding = "async";
+            if (!img.complete || img.naturalWidth === 0) {
+                img.src = src;
+            }
+        });
+    }
+
     function activateTab(tabName) {
         if (!tabName) return;
         tabs.forEach((t) => {
@@ -171,6 +183,7 @@ function showSendSuccessToast(amount) {
         sections.forEach((s) => {
             s.classList.toggle("section-active", s.id === tabName);
         });
+        if (tabName === "mercado") loadMercadoImages();
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -193,7 +206,8 @@ function showSendSuccessToast(amount) {
     });
 
     document.addEventListener("click", (e) => {
-        const tab = e.target.closest(".tab[data-tab], [data-go-to]");
+        const target = e.target instanceof Element ? e.target : e.target?.parentElement;
+        const tab = target?.closest(".tab[data-tab], [data-go-to]");
         if (!tab) return;
         const tabName = tab.dataset.tab || tab.dataset.goTo;
         if (!tabName || tabName === "pago") return;
