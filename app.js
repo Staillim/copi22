@@ -832,9 +832,11 @@ function showSendSuccessToast(amount) {
 
     // Estado del paquete seleccionado (para acreditar el bonus al verificar)
     let currentPkg = { amount: 0, bonus: 0, type: "package", name: "", price: 0 };
+    let quickPayTimer = null;
 
     function openQuickPay(btn) {
         if (!quickPayOverlay) return;
+        if (quickPayTimer) clearTimeout(quickPayTimer);
         const amount = parseInt(btn.dataset.pkgAmount, 10) || 0;
         const bonus = parseInt(btn.dataset.pkgBonus, 10) || 0;
         const type = btn.dataset.pkgType || "package";
@@ -852,15 +854,23 @@ function showSendSuccessToast(amount) {
         priceEls.forEach((el) => { el.textContent = priceText; });
         if (taxEl) taxEl.textContent = taxText;
 
-        quickPayOverlay.classList.add("open");
+        quickPayOverlay.classList.add("open", "loading");
         quickPayOverlay.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
-        setTimeout(() => quickPaySubmit && quickPaySubmit.focus(), 80);
+        quickPayTimer = setTimeout(() => {
+            quickPayOverlay.classList.remove("loading");
+            quickPayTimer = null;
+            if (quickPaySubmit) quickPaySubmit.focus();
+        }, 1000);
     }
 
     function closeQuickPay() {
         if (!quickPayOverlay) return;
-        quickPayOverlay.classList.remove("open");
+        if (quickPayTimer) {
+            clearTimeout(quickPayTimer);
+            quickPayTimer = null;
+        }
+        quickPayOverlay.classList.remove("open", "loading");
         quickPayOverlay.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
     }
@@ -869,10 +879,11 @@ function showSendSuccessToast(amount) {
     if (quickPayCancel) quickPayCancel.addEventListener("click", closeQuickPay);
     if (quickPayOverlay) {
         quickPayOverlay.addEventListener("click", (e) => {
+            if (quickPayOverlay.classList.contains("loading")) return;
             if (e.target === quickPayOverlay) closeQuickPay();
         });
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && quickPayOverlay.classList.contains("open")) closeQuickPay();
+            if (e.key === "Escape" && quickPayOverlay.classList.contains("open") && !quickPayOverlay.classList.contains("loading")) closeQuickPay();
         });
     }
     if (quickPaySubmit) {

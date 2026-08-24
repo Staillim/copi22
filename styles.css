@@ -2365,6 +2365,24 @@ svg { display: block; }
 .quick-pay-overlay.open {
     display: flex;
 }
+.quick-pay-overlay.loading {
+    cursor: wait;
+}
+.quick-pay-overlay.loading::before {
+    content: "";
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.28);
+    border-top-color: #4f5257;
+    animation: quickPaySpin 0.8s linear infinite;
+}
+.quick-pay-overlay.loading .quick-pay-dialog {
+    display: none;
+}
+@keyframes quickPaySpin {
+    to { transform: rotate(360deg); }
+}
 .quick-pay-dialog {
     width: min(430px, calc(100vw - 28px));
     max-height: calc(100vh - 40px);
