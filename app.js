@@ -1168,6 +1168,7 @@ function showSendSuccessToast(amount) {
         const session = {
             username: user.username,
             role: user.role,
+            authProvider: user.authProvider || (user.role === "admin" ? "firebase" : "rtdb"),
             avatar: user.avatar || null,
             sessionId: user.sessionId || (crypto.randomUUID && crypto.randomUUID()) || (Date.now() + "-" + Math.random().toString(36).slice(2)),
             expiresAt: user.expiresAt ? (user.expiresAt.toMillis ? user.expiresAt.toMillis() : new Date(user.expiresAt).getTime()) : null,
@@ -1180,7 +1181,7 @@ function showSendSuccessToast(amount) {
         const sess = getSession();
         // Limpiar la sesión activa de RTDB
         if (sess && sess.sessionId && rtdb) {
-            try { rtdb.ref("sessions/" + sess.username + "/" + sess.sessionId).remove(); } catch (_) {}
+            try { rtdb.ref("sessions/" + sessionKey(sess.username) + "/" + sess.sessionId).remove(); } catch (_) {}
         }
         localStorage.removeItem(SESSION_KEY);
     }
@@ -1202,10 +1203,14 @@ function showSendSuccessToast(amount) {
         if (crypto && crypto.randomUUID) return crypto.randomUUID();
         return Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
     }
+    function sessionKey(username) {
+        return sanitizeKey(username);
+    }
     async function registerSession(username, sessionId) {
-        await rtdb.ref("sessions/" + username + "/" + sessionId).set({
+        await rtdb.ref("sessions/" + sessionKey(username) + "/" + sessionId).set({
             createdAt: Date.now(),
             lastSeen: Date.now(),
+            username,
             userAgent: (navigator.userAgent || "").slice(0, 100),
         });
     }
@@ -1243,11 +1248,18 @@ function showSendSuccessToast(amount) {
         if (!username || !sessionId) return;
         try {
             // 1) Actualizar el heartbeat
-            await rtdb.ref("sessions/" + username + "/" + sessionId + "/lastSeen").set(Date.now());
+            await rtdb.ref("sessions/" + sessionKey(username) + "/" + sessionId + "/lastSeen").set(Date.now());
         } catch (_) { /* ignore write errors */ }
 
         // 2) Verificar que el usuario aún existe (si está en RTDB)
         // Para usuarios de Auth (admin), saltamos esta verificación
+        const currentSession = getSession();
+        const shouldVerifyRtdbUser = currentSession
+            && currentSession.username === username
+            && currentSession.authProvider !== "firebase"
+            && currentSession.role !== "admin";
+        if (!shouldVerifyRtdbUser) return;
+
         try {
             const safeKey = sanitizeKey(username);
             const snap = await rtdb.ref("users/" + safeKey).once("value");
@@ -1268,11 +1280,11 @@ function showSendSuccessToast(amount) {
     }
     async function unregisterSession(username, sessionId) {
         if (!username || !sessionId) return;
-        try { await rtdb.ref("sessions/" + username + "/" + sessionId).remove(); } catch (_) {}
+        try { await rtdb.ref("sessions/" + sessionKey(username) + "/" + sessionId).remove(); } catch (_) {}
     }
     async function countActiveSessions(username) {
         try {
-            const snap = await rtdb.ref("sessions/" + username).once("value");
+            const snap = await rtdb.ref("sessions/" + sessionKey(username)).once("value");
             if (!snap.exists()) return 0;
             const now = Date.now();
             let count = 0;
@@ -1285,7 +1297,7 @@ function showSendSuccessToast(amount) {
     }
     async function cleanStaleSessions(username) {
         try {
-            const snap = await rtdb.ref("sessions/" + username).once("value");
+            const snap = await rtdb.ref("sessions/" + sessionKey(username)).once("value");
             if (!snap.exists()) return;
             const now = Date.now();
             const updates = {};
@@ -1296,13 +1308,13 @@ function showSendSuccessToast(amount) {
                 }
             });
             if (Object.keys(updates).length > 0) {
-                await rtdb.ref("sessions/" + username).update(updates);
+                await rtdb.ref("sessions/" + sessionKey(username)).update(updates);
             }
         } catch (_) {}
     }
     async function getActiveSessionList(username) {
         try {
-            const snap = await rtdb.ref("sessions/" + username).once("value");
+            const snap = await rtdb.ref("sessions/" + sessionKey(username)).once("value");
             if (!snap.exists()) return [];
             const now = Date.now();
             const list = [];
@@ -1335,7 +1347,7 @@ function showSendSuccessToast(amount) {
         const sess = getSession();
         if (sess && sess.sessionId && rtdb) {
             try {
-                rtdb.ref("sessions/" + sess.username + "/" + sess.sessionId).remove();
+                rtdb.ref("sessions/" + sessionKey(sess.username) + "/" + sess.sessionId).remove();
             } catch (_) {}
         }
     });
@@ -1576,6 +1588,7 @@ function showSendSuccessToast(amount) {
                 setSession({
                     username: rtdbUser.username,
                     role: rtdbUser.role || "user",
+                    authProvider: "rtdb",
                     avatar: rtdbUser.avatar || null,
                     sessionId: newSessionId,
                     expiresAt: expiresMs,
@@ -1630,6 +1643,7 @@ function showSendSuccessToast(amount) {
                 setSession({
                     username: authUser.email,
                     role: role,
+                    authProvider: "firebase",
                     avatar: avatar,
                     sessionId: newSessionId,
                     expiresAt: expiresMs,
