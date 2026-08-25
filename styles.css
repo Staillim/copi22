@@ -2402,6 +2402,324 @@ svg { display: block; }
     text-decoration: underline;
 }
 
+/* ============== PAGO DE PLANES ROBLOX PLUS ============== */
+#pago.plan-pay-active {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding-top: 0;
+}
+
+.plan-pay-page {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: #050505;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.plan-pay-page[hidden] {
+    display: none !important;
+}
+
+.plan-pay-shell {
+    width: min(646px, calc(100vw - 32px));
+    margin: 0 auto;
+    padding: 42px 0 72px;
+}
+
+.plan-pay-title {
+    margin: 0 0 30px 31px;
+    font-size: 29px;
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.plan-pay-product {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 12px;
+    align-items: start;
+    margin-bottom: 6px;
+}
+
+.plan-pay-logo {
+    width: 66px;
+    height: 72px;
+    object-fit: contain;
+    margin-top: 1px;
+}
+
+.plan-pay-copy h2 {
+    margin: 16px 0 30px;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.plan-pay-copy p {
+    margin: 0 0 16px 10px;
+    font-size: 21px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.plan-pay-copy strong {
+    font-weight: 800;
+}
+
+.plan-pay-label {
+    margin: 2px 0 16px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.plan-pay-methods {
+    display: grid;
+    gap: 16px;
+}
+
+.plan-pay-method {
+    width: 100%;
+    min-height: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 0 20px 0 15px;
+    background: #f4f4f5;
+    border: 0;
+    border-radius: 4px;
+    color: #050505;
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.2;
+    text-align: right;
+    cursor: pointer;
+}
+
+.plan-pay-method:hover,
+.plan-pay-method.selected {
+    background: #f0f0f1;
+}
+
+.plan-pay-card-logos {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.plan-card-logo {
+    width: 49px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #d1d1d3;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.6px;
+}
+
+.plan-card-visa {
+    color: #102a84;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.plan-card-mc {
+    position: relative;
+}
+
+.plan-card-mc span {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.plan-card-mc span:first-child {
+    background: #eb001b;
+    margin-right: -7px;
+    z-index: 1;
+}
+
+.plan-card-mc span:last-child {
+    background: #f79e1b;
+}
+
+.plan-card-discover {
+    color: #111;
+    font-size: 8px;
+    position: relative;
+}
+
+.plan-card-discover::after {
+    content: "";
+    position: absolute;
+    right: -5px;
+    bottom: -8px;
+    width: 34px;
+    height: 22px;
+    background: #f26b21;
+    transform: rotate(-20deg);
+}
+
+.plan-card-amex {
+    background: #1f6fcf;
+    border-color: #185caf;
+    color: #fff;
+    font-size: 12px;
+}
+
+.plan-pay-paypal {
+    width: 49px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #d1d1d3;
+    border-radius: 3px;
+    color: #003087;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.plan-pay-footer {
+    width: min(656px, calc(100vw - 30px));
+    margin: auto auto 0;
+    padding: 12px 0 12px;
+    color: #0b1220;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.plan-pay-links {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+    gap: 16px 72px;
+    padding-bottom: 52px;
+}
+
+.plan-pay-links a {
+    color: #101827;
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+.plan-pay-links a:hover {
+    text-decoration: underline;
+}
+
+.plan-pay-footer-bottom {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    align-items: end;
+    gap: 22px;
+    border-top: 1px solid #c9ccd2;
+    padding-top: 30px;
+}
+
+.plan-pay-language {
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 15px;
+    background: #fff;
+    border: 1px solid #e2e5ec;
+    border-radius: 8px;
+    color: #0b1220;
+    font: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.plan-pay-language span {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+}
+
+.plan-pay-footer-bottom p {
+    margin: 0;
+    color: #0b1220;
+    font-size: 9.5px;
+    line-height: 1.25;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .plan-pay-page {
+        min-height: calc(100vh - 128px);
+    }
+
+    .plan-pay-shell {
+        width: calc(100vw - 28px);
+        padding: 28px 0 48px;
+    }
+
+    .plan-pay-title {
+        margin-left: 0;
+        font-size: 26px;
+    }
+
+    .plan-pay-product {
+        grid-template-columns: 68px 1fr;
+    }
+
+    .plan-pay-logo {
+        width: 58px;
+        height: 64px;
+    }
+
+    .plan-pay-copy h2 {
+        font-size: 27px;
+        margin-bottom: 24px;
+    }
+
+    .plan-pay-copy p {
+        margin-left: 0;
+        font-size: 19px;
+    }
+
+    .plan-pay-method {
+        min-height: 66px;
+        padding-inline: 14px;
+        font-size: 15px;
+    }
+
+    .plan-pay-links {
+        grid-template-columns: repeat(2, max-content);
+        gap: 15px 34px;
+        padding-bottom: 34px;
+    }
+
+    .plan-pay-footer-bottom {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        gap: 14px;
+        padding-top: 24px;
+    }
+
+    .plan-pay-footer-bottom p {
+        text-align: left;
+    }
+}
+
 /* ============== PREGUNTAS FRECUENTES ============== */
 .faq-section {
     margin-top: 36px;

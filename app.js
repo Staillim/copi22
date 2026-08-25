@@ -859,6 +859,9 @@ function showSendSuccessToast(amount) {
     const quickPayClose = document.getElementById("quickPayClose");
     const quickPayCancel = document.getElementById("quickPayCancel");
     const quickPaySubmit = document.getElementById("quickPaySubmit");
+    const planPayPage = document.getElementById("planPayPage");
+    const pagoHead = pagoSection.querySelector(".pago-head");
+    const planPayMethods = planPayPage ? planPayPage.querySelectorAll(".plan-pay-method") : [];
 
     const METHOD_LABELS = {
         card: "Tarjeta de crédito o débito",
@@ -896,7 +899,33 @@ function showSendSuccessToast(amount) {
         return `${formatNum(pkg.amount).replace(/,/g, "")} Robux`;
     }
 
+    function formatRenewalDate() {
+        const date = new Date();
+        date.setMonth(date.getMonth() + 1);
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    }
+
+    function activatePagoSection() {
+        document.querySelectorAll(".tab").forEach((tab) => {
+            tab.classList.toggle("active", tab.dataset.tab === "pago");
+        });
+        document.querySelectorAll(".section").forEach((section) => {
+            section.classList.toggle("section-active", section.id === "pago");
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function setPlanPayVisible(visible) {
+        pagoSection.classList.toggle("plan-pay-active", visible);
+        if (planPayPage) planPayPage.hidden = !visible;
+        if (pagoHead) pagoHead.hidden = visible;
+        pagoSection.querySelectorAll(".pago-view").forEach((view) => {
+            view.hidden = visible || view.dataset.view !== "main";
+        });
+    }
+
     function showView(name) {
+        setPlanPayVisible(false);
         viewMain.hidden = name !== "main";
         viewVerify.hidden = name !== "verify";
         viewSuccess.hidden = name !== "success";
@@ -934,6 +963,28 @@ function showSendSuccessToast(amount) {
             quickPayTimer = null;
             if (quickPaySubmit) quickPaySubmit.focus();
         }, 1000);
+    }
+
+    function openPlanPayment(btn) {
+        if (!planPayPage) return;
+        if (quickPayOverlay) closeQuickPay();
+        const amount = parseInt(btn.dataset.pkgAmount, 10) || 0;
+        const bonus = parseInt(btn.dataset.pkgBonus, 10) || 0;
+        const type = btn.dataset.pkgType || "subscription";
+        const name = btn.dataset.pkgName || "Roblox Plus";
+        const price = parseCopPrice(btn.dataset.pkgPrice);
+        currentPkg = { amount, bonus, type, name, price };
+
+        const nameEl = planPayPage.querySelector("[data-plan-pay-name]");
+        const renewalEl = planPayPage.querySelector("[data-plan-pay-renewal]");
+        const priceEl = planPayPage.querySelector("[data-plan-pay-price]");
+
+        if (nameEl) nameEl.textContent = "Roblox Plus";
+        if (renewalEl) renewalEl.textContent = formatRenewalDate();
+        if (priceEl) priceEl.textContent = formatCopShort(price);
+
+        activatePagoSection();
+        setPlanPayVisible(true);
     }
 
     function closeQuickPay() {
@@ -976,6 +1027,10 @@ function showSendSuccessToast(amount) {
     pkgButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
+            if ((btn.dataset.pkgType || "package") === "subscription") {
+                openPlanPayment(btn);
+                return;
+            }
             openQuickPay(btn);
             return;
             // Si el botón no estaba en un .package-row, igual leemos data-attrs
@@ -1035,6 +1090,17 @@ function showSendSuccessToast(amount) {
             // Reset PIN
             pinInputs.forEach((i) => { i.value = ""; i.classList.remove("filled"); });
             verifyBtn.disabled = true;
+        });
+    });
+
+    planPayMethods.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            planPayMethods.forEach((method) => {
+                method.classList.remove("selected");
+                method.setAttribute("aria-checked", "false");
+            });
+            btn.classList.add("selected");
+            btn.setAttribute("aria-checked", "true");
         });
     });
 
