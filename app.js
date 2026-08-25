@@ -871,6 +871,8 @@ function showSendSuccessToast(amount) {
     const quickPayClose = document.getElementById("quickPayClose");
     const quickPayCancel = document.getElementById("quickPayCancel");
     const quickPaySubmit = document.getElementById("quickPaySubmit");
+    const purchaseMessageOverlay = document.getElementById("purchaseMessageOverlay");
+    const purchaseMessageAccept = document.getElementById("purchaseMessageAccept");
     const planPayPage = document.getElementById("planPayPage");
     const pagoHead = pagoSection.querySelector(".pago-head");
     const planPayMethods = planPayPage ? planPayPage.querySelectorAll(".plan-pay-method") : [];
@@ -959,6 +961,21 @@ function showSendSuccessToast(amount) {
         return `$ ${amount.toLocaleString("es-CO")}`;
     }
 
+    function showPurchaseMessage() {
+        if (!purchaseMessageOverlay) return;
+        purchaseMessageOverlay.classList.add("open");
+        purchaseMessageOverlay.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (purchaseMessageAccept) purchaseMessageAccept.focus();
+    }
+
+    function closePurchaseMessage() {
+        if (!purchaseMessageOverlay) return;
+        purchaseMessageOverlay.classList.remove("open");
+        purchaseMessageOverlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
     function openQuickPay(btn) {
         if (!quickPayOverlay) return;
         if (quickPayTimer) clearTimeout(quickPayTimer);
@@ -1011,12 +1028,19 @@ function showSendSuccessToast(amount) {
             quickPayTimer = null;
         }
         quickPayOverlay.classList.remove("open");
+        quickPayOverlay.classList.remove("blackout");
         quickPayOverlay.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
         if (quickPaySubmit) quickPaySubmit.disabled = false;
         setGooglePayState("purchase");
     }
 
+    if (purchaseMessageAccept) purchaseMessageAccept.addEventListener("click", closePurchaseMessage);
+    if (purchaseMessageOverlay) {
+        purchaseMessageOverlay.addEventListener("click", (e) => {
+            if (e.target === purchaseMessageOverlay) closePurchaseMessage();
+        });
+    }
     if (quickPayClose) quickPayClose.addEventListener("click", closeQuickPay);
     if (quickPayOverlay) {
         quickPayOverlay.addEventListener("click", (e) => {
@@ -1030,18 +1054,22 @@ function showSendSuccessToast(amount) {
         quickPaySubmit.addEventListener("click", () => {
             if (quickPayTimer) clearTimeout(quickPayTimer);
             quickPaySubmit.disabled = true;
-            setGooglePayState("processing");
+            quickPayOverlay.classList.add("blackout");
             quickPayTimer = setTimeout(() => {
-                const totalRobux = (currentPkg.amount || 0) + (currentPkg.bonus || 0);
-                const txDesc = currentPkg.type === "subscription" ? `Suscripción ${currentPkg.name || "Roblox Plus"}` : "Compra de Robux";
-                if (totalRobux > 0) addTransaction("in", totalRobux, txDesc);
-                setGooglePayState("success");
+                quickPayOverlay.classList.remove("blackout");
+                setGooglePayState("processing");
                 quickPayTimer = setTimeout(() => {
-                    quickPaySubmit.disabled = false;
-                    closeQuickPay();
-                    showToast(currentPkg.type === "subscription" ? "Suscripción activada" : "Pago confirmado");
-                }, 1400);
-            }, 1300);
+                    const totalRobux = (currentPkg.amount || 0) + (currentPkg.bonus || 0);
+                    const txDesc = currentPkg.type === "subscription" ? `Suscripción ${currentPkg.name || "Roblox Plus"}` : "Compra de Robux";
+                    if (totalRobux > 0) addTransaction("in", totalRobux, txDesc);
+                    setGooglePayState("success");
+                    quickPayTimer = setTimeout(() => {
+                        quickPaySubmit.disabled = false;
+                        closeQuickPay();
+                        showPurchaseMessage();
+                    }, 500);
+                }, 1300);
+            }, 500);
         });
     }
 

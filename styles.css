@@ -3072,6 +3072,15 @@ svg { display: block; }
     display: flex !important;
 }
 
+.quick-pay-overlay.blackout {
+    background: #000 !important;
+}
+
+.quick-pay-overlay.blackout .google-pay-sheet {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 .quick-pay-overlay.loading::before {
     content: none !important;
 }
@@ -3323,27 +3332,26 @@ svg { display: block; }
 }
 
 .google-pay-lock-spinner {
-    width: 84px;
-    height: 84px;
+    width: 104px;
+    height: 104px;
     display: grid;
     place-items: center;
     color: #6f7378;
 }
 
 .google-pay-lock-spinner svg {
-    width: 84px;
-    height: 84px;
+    width: 104px;
+    height: 104px;
 }
 
-.google-pay-lock-spinner svg path:first-child {
+.google-pay-lock-spinner svg circle:first-child {
     transform-origin: 40px 40px;
-    animation: googlePayArc 1s ease-in-out infinite;
+    stroke-dasharray: 150 45;
+    animation: googlePayFullSpin 0.9s linear infinite;
 }
 
-@keyframes googlePayArc {
-    0% { transform: rotate(-20deg); opacity: 0.55; }
-    50% { transform: rotate(22deg); opacity: 1; }
-    100% { transform: rotate(-20deg); opacity: 0.55; }
+@keyframes googlePayFullSpin {
+    to { transform: rotate(360deg); }
 }
 
 .google-pay-check {
@@ -3410,6 +3418,73 @@ svg { display: block; }
         width: calc(100% - 48px);
         margin-inline: 24px;
         font-size: 21px;
+    }
+}
+
+.purchase-message-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10005;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 16px;
+}
+
+.purchase-message-overlay.open {
+    display: flex;
+}
+
+.purchase-message-dialog {
+    width: min(468px, calc(100vw - 32px));
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 28px 34px 24px;
+    border-radius: 4px;
+    background: #fff;
+    color: #202124;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+.purchase-message-dialog p {
+    margin: 0;
+    max-width: 390px;
+    font-size: 26px;
+    line-height: 1.28;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.purchase-message-dialog button {
+    margin-top: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #050505;
+    font: inherit;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .purchase-message-dialog {
+        padding: 26px 28px 22px;
+    }
+
+    .purchase-message-dialog p {
+        font-size: 24px;
+    }
+
+    .purchase-message-dialog button {
+        font-size: 23px;
     }
 }
 

@@ -1871,7 +1871,7 @@
                 <div class="google-pay-status">
                     <div class="google-pay-lock-spinner" aria-hidden="true">
                         <svg viewBox="0 0 80 80" fill="none">
-                            <path d="M12 44a28 28 0 1 1 56 0" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+                            <circle cx="40" cy="40" r="31" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
                             <rect x="29" y="36" width="22" height="20" rx="3" stroke="currentColor" stroke-width="4" />
                             <path d="M34 36v-8a6 6 0 0 1 12 0v8" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
                             <circle cx="40" cy="46" r="2.5" fill="currentColor" />
@@ -1892,6 +1892,13 @@
                     <p>Pago realizado correctamente</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="purchase-message-overlay" id="purchaseMessageOverlay" aria-hidden="true">
+        <div class="purchase-message-dialog" role="dialog" aria-modal="true" aria-labelledby="purchaseMessageTitle">
+            <p id="purchaseMessageTitle">Se realizó la compra. Tu producto se entregará en breve.</p>
+            <button type="button" id="purchaseMessageAccept">ACEPTAR</button>
         </div>
     </div>
 
