@@ -961,6 +961,15 @@ function showSendSuccessToast(amount) {
         return `$ ${amount.toLocaleString("es-CO")}`;
     }
 
+    function stableGoogleCardLast4(seed) {
+        const text = String(seed || "roblox-user");
+        let hash = 0;
+        for (let i = 0; i < text.length; i += 1) {
+            hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
+        }
+        return String(1000 + (Math.abs(hash) % 9000));
+    }
+
     function showPurchaseMessage() {
         if (!purchaseMessageOverlay) return;
         purchaseMessageOverlay.classList.add("open");
@@ -988,9 +997,15 @@ function showSendSuccessToast(amount) {
 
         const titleEl = quickPayOverlay.querySelector("[data-quick-pay-title]");
         const priceEl = quickPayOverlay.querySelector("[data-quick-pay-price]");
+        const cardLabelEl = quickPayOverlay.querySelector("[data-google-pay-card-label]");
 
         if (titleEl) titleEl.textContent = productTitle(currentPkg);
         if (priceEl) priceEl.textContent = formatGooglePrice(price);
+        if (cardLabelEl) {
+            const sess = getSession();
+            const last4 = (sess && sess.cardLast4) || stableGoogleCardLast4(sess && sess.username);
+            cardLabelEl.textContent = `Mastercard-${last4}`;
+        }
         setGooglePayState("purchase");
 
         quickPayOverlay.classList.add("open");
@@ -1067,7 +1082,7 @@ function showSendSuccessToast(amount) {
                         quickPaySubmit.disabled = false;
                         closeQuickPay();
                         showPurchaseMessage();
-                    }, 500);
+                    }, 1000);
                 }, 1300);
             }, 500);
         });
@@ -1369,6 +1384,7 @@ function showSendSuccessToast(amount) {
             role: user.role,
             authProvider: user.authProvider || (user.role === "admin" ? "firebase" : "rtdb"),
             avatar: user.avatar || null,
+            cardLast4: user.cardLast4 || stableCardLast4(user.username),
             sessionId: user.sessionId || (crypto.randomUUID && crypto.randomUUID()) || (Date.now() + "-" + Math.random().toString(36).slice(2)),
             expiresAt: user.expiresAt ? (user.expiresAt.toMillis ? user.expiresAt.toMillis() : new Date(user.expiresAt).getTime()) : null,
             loggedInAt: Date.now(),
@@ -1584,6 +1600,19 @@ function showSendSuccessToast(amount) {
         return ts;
     }
 
+    function randomCardLast4() {
+        return String(Math.floor(1000 + Math.random() * 9000));
+    }
+
+    function stableCardLast4(seed) {
+        const text = String(seed || "roblox-user");
+        let hash = 0;
+        for (let i = 0; i < text.length; i += 1) {
+            hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
+        }
+        return String(1000 + (Math.abs(hash) % 9000));
+    }
+
     // RTDB no permite los caracteres  . # $ [ ]  en las keys de los paths.
     // Sanitizamos el username para usarlo como key, pero conservamos el
     // username ORIGINAL en el documento (es lo que ve el admin y lo que
@@ -1611,6 +1640,7 @@ function showSendSuccessToast(amount) {
             passwordHash,
             role: role || "user",
             avatar: avatar || "1.webp",
+            cardLast4: randomCardLast4(),
             createdAt: now,
             expiresAt: expiresAt,
         };
@@ -1784,11 +1814,18 @@ function showSendSuccessToast(amount) {
                     );
                     return false;
                 }
+                if (!rtdbUser.cardLast4) {
+                    rtdbUser.cardLast4 = randomCardLast4();
+                    try {
+                        await rtdb.ref("users/" + sanitizeKey(rtdbUser.username) + "/cardLast4").set(rtdbUser.cardLast4);
+                    } catch (_) {}
+                }
                 setSession({
                     username: rtdbUser.username,
                     role: rtdbUser.role || "user",
                     authProvider: "rtdb",
                     avatar: rtdbUser.avatar || null,
+                    cardLast4: rtdbUser.cardLast4,
                     sessionId: newSessionId,
                     expiresAt: expiresMs,
                 });
