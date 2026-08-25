@@ -947,6 +947,18 @@ function showSendSuccessToast(amount) {
     let currentPkg = { amount: 0, bonus: 0, type: "package", name: "", price: 0 };
     let quickPayTimer = null;
 
+    function setGooglePayState(state) {
+        if (!quickPayOverlay) return;
+        quickPayOverlay.querySelectorAll("[data-google-pay-state]").forEach((el) => {
+            el.hidden = el.dataset.googlePayState !== state;
+        });
+    }
+
+    function formatGooglePrice(value) {
+        const amount = Math.round(Number(value || 0));
+        return `$ ${amount.toLocaleString("es-CO")}`;
+    }
+
     function openQuickPay(btn) {
         if (!quickPayOverlay) return;
         if (quickPayTimer) clearTimeout(quickPayTimer);
@@ -957,24 +969,17 @@ function showSendSuccessToast(amount) {
         const price = parseCopPrice(btn.dataset.pkgPrice);
         currentPkg = { amount, bonus, type, name, price };
 
-        const priceText = formatCopShort(price);
-        const taxText = formatCopShort(price - (price / 1.19), { milDigits: 5 });
         const titleEl = quickPayOverlay.querySelector("[data-quick-pay-title]");
-        const priceEls = quickPayOverlay.querySelectorAll("[data-quick-pay-price], [data-quick-pay-subtotal], [data-quick-pay-total]");
-        const taxEl = quickPayOverlay.querySelector("[data-quick-pay-tax]");
+        const priceEl = quickPayOverlay.querySelector("[data-quick-pay-price]");
 
         if (titleEl) titleEl.textContent = productTitle(currentPkg);
-        priceEls.forEach((el) => { el.textContent = priceText; });
-        if (taxEl) taxEl.textContent = taxText;
+        if (priceEl) priceEl.textContent = formatGooglePrice(price);
+        setGooglePayState("purchase");
 
-        quickPayOverlay.classList.add("open", "loading");
+        quickPayOverlay.classList.add("open");
         quickPayOverlay.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
-        quickPayTimer = setTimeout(() => {
-            quickPayOverlay.classList.remove("loading");
-            quickPayTimer = null;
-            if (quickPaySubmit) quickPaySubmit.focus();
-        }, 1000);
+        if (quickPaySubmit) quickPaySubmit.focus();
     }
 
     function openPlanPayment(btn) {
@@ -1005,33 +1010,38 @@ function showSendSuccessToast(amount) {
             clearTimeout(quickPayTimer);
             quickPayTimer = null;
         }
-        quickPayOverlay.classList.remove("open", "loading");
+        quickPayOverlay.classList.remove("open");
         quickPayOverlay.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
+        if (quickPaySubmit) quickPaySubmit.disabled = false;
+        setGooglePayState("purchase");
     }
 
     if (quickPayClose) quickPayClose.addEventListener("click", closeQuickPay);
-    if (quickPayCancel) quickPayCancel.addEventListener("click", closeQuickPay);
     if (quickPayOverlay) {
         quickPayOverlay.addEventListener("click", (e) => {
-            if (quickPayOverlay.classList.contains("loading")) return;
             if (e.target === quickPayOverlay) closeQuickPay();
         });
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && quickPayOverlay.classList.contains("open") && !quickPayOverlay.classList.contains("loading")) closeQuickPay();
+            if (e.key === "Escape" && quickPayOverlay.classList.contains("open")) closeQuickPay();
         });
     }
     if (quickPaySubmit) {
         quickPaySubmit.addEventListener("click", () => {
-            setButtonLoading(quickPaySubmit, true, "Procesando...");
-            setTimeout(() => {
-                setButtonLoading(quickPaySubmit, false);
+            if (quickPayTimer) clearTimeout(quickPayTimer);
+            quickPaySubmit.disabled = true;
+            setGooglePayState("processing");
+            quickPayTimer = setTimeout(() => {
                 const totalRobux = (currentPkg.amount || 0) + (currentPkg.bonus || 0);
                 const txDesc = currentPkg.type === "subscription" ? `Suscripción ${currentPkg.name || "Roblox Plus"}` : "Compra de Robux";
                 if (totalRobux > 0) addTransaction("in", totalRobux, txDesc);
-                closeQuickPay();
-                showToast(currentPkg.type === "subscription" ? "Suscripción activada" : "Pago confirmado");
-            }, 900);
+                setGooglePayState("success");
+                quickPayTimer = setTimeout(() => {
+                    quickPaySubmit.disabled = false;
+                    closeQuickPay();
+                    showToast(currentPkg.type === "subscription" ? "Suscripción activada" : "Pago confirmado");
+                }, 1400);
+            }, 1300);
         });
     }
 

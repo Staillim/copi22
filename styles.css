@@ -3059,6 +3059,360 @@ svg { display: block; }
     }
 }
 
+/* Google Play bottom sheet replacement for Robux package checkout */
+.quick-pay-overlay {
+    align-items: flex-end !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.34) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.quick-pay-overlay.open {
+    display: flex !important;
+}
+
+.quick-pay-overlay.loading::before {
+    content: none !important;
+}
+
+.google-pay-sheet {
+    width: min(100vw, 540px) !important;
+    max-height: min(86vh, 620px) !important;
+    min-height: 510px;
+    border: 0 !important;
+    border-radius: 24px 24px 0 0 !important;
+    box-shadow: 0 -16px 38px rgba(0, 0, 0, 0.26) !important;
+    background: #fff !important;
+    color: #303134 !important;
+    overflow: hidden !important;
+    font-family: "Google Sans", "Roboto", "Helvetica Neue", Arial, sans-serif !important;
+    animation: googlePaySlideUp 0.2s ease-out !important;
+}
+
+@keyframes googlePaySlideUp {
+    from { transform: translateY(28px); opacity: 0.88; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.google-pay-header {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 34px;
+    border-bottom: 1px solid #dadce0;
+}
+
+.google-pay-header h2 {
+    margin: 0;
+    color: #3c4043;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.google-pay-close {
+    display: none !important;
+}
+
+.google-pay-state {
+    background: #fff;
+}
+
+.google-pay-state[hidden] {
+    display: none !important;
+}
+
+.google-pay-product {
+    min-height: 178px;
+    display: grid;
+    grid-template-columns: 78px 1fr auto;
+    align-items: start;
+    gap: 16px;
+    padding: 38px 34px 28px;
+    border-bottom: 1px solid #dadce0;
+}
+
+.google-pay-app-icon {
+    width: 52px;
+    height: 52px;
+    display: inline-grid;
+    place-items: center;
+    margin-top: 2px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #5278ff, #1f63df);
+    box-shadow: 0 5px 12px rgba(32, 99, 223, 0.28);
+}
+
+.google-pay-app-icon span {
+    width: 31px;
+    height: 31px;
+    display: block;
+    background: #fff;
+    transform: rotate(13deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 34% 34%, 34% 66%, 66% 66%, 66% 34%, 34% 34%);
+}
+
+.google-pay-product-copy h3 {
+    margin: 0 0 14px;
+    color: #202124;
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.google-pay-product-copy p {
+    margin: 0 0 14px;
+    color: #5f6368;
+    font-size: 21px;
+    line-height: 1.1;
+    font-weight: 400;
+}
+
+.google-pay-product-copy span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: 6px;
+    background: #d2edff;
+    color: #185abc;
+    font-size: 21px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.google-pay-product > strong {
+    margin-top: 5px;
+    color: #202124;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.google-pay-method {
+    width: 100%;
+    min-height: 92px;
+    display: grid;
+    grid-template-columns: 78px 1fr 46px;
+    align-items: center;
+    gap: 16px;
+    padding: 0 34px;
+    border: 0;
+    border-bottom: 1px solid #dadce0;
+    background: #fff;
+    color: #3c4043;
+    font: inherit;
+    font-size: 22px;
+    line-height: 1;
+    text-align: left;
+    cursor: pointer;
+}
+
+.google-pay-method svg {
+    justify-self: end;
+    color: #5f6368;
+    background: #f1f3f4;
+    border-radius: 50%;
+    padding: 6px;
+    box-sizing: content-box;
+}
+
+.google-pay-card-art {
+    width: 56px;
+    height: 34px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1px;
+    background: #40b735;
+}
+
+.google-pay-card-art span {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.google-pay-card-art i {
+    position: absolute;
+    right: 7px;
+    bottom: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f79e1b;
+    box-shadow: -6px 0 0 #eb001b;
+}
+
+.google-pay-help {
+    padding: 24px 34px 28px;
+    color: #5f6368;
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+.google-pay-help p {
+    margin: 0;
+}
+
+.google-pay-help button {
+    display: block;
+    margin: 4px 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #1967d2;
+    font: inherit;
+    cursor: pointer;
+}
+
+.google-pay-buy {
+    width: calc(100% - 68px);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 34px 26px;
+    border: 0;
+    border-radius: 999px;
+    background: #1a73e8;
+    color: #fff;
+    font: inherit;
+    font-size: 23px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+}
+
+.google-pay-buy:disabled {
+    opacity: 0.72;
+    cursor: wait;
+}
+
+.google-pay-processing,
+.google-pay-success {
+    min-height: 452px;
+}
+
+.google-pay-status {
+    min-height: 452px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 68px;
+    text-align: center;
+}
+
+.google-pay-status p {
+    margin: 20px 24px 0;
+    color: #5f6368;
+    font-size: 25px;
+    line-height: 1.25;
+    font-weight: 400;
+}
+
+.google-pay-lock-spinner {
+    width: 84px;
+    height: 84px;
+    display: grid;
+    place-items: center;
+    color: #6f7378;
+}
+
+.google-pay-lock-spinner svg {
+    width: 84px;
+    height: 84px;
+}
+
+.google-pay-lock-spinner svg path:first-child {
+    transform-origin: 40px 40px;
+    animation: googlePayArc 1s ease-in-out infinite;
+}
+
+@keyframes googlePayArc {
+    0% { transform: rotate(-20deg); opacity: 0.55; }
+    50% { transform: rotate(22deg); opacity: 1; }
+    100% { transform: rotate(-20deg); opacity: 0.55; }
+}
+
+.google-pay-check {
+    width: 80px;
+    height: 80px;
+}
+
+.google-pay-check svg {
+    width: 80px;
+    height: 80px;
+}
+
+.google-pay-success .google-pay-status p {
+    margin-top: 30px;
+    color: #303134;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+@media (max-width: 560px) {
+    .google-pay-sheet {
+        width: 100vw !important;
+        min-height: 500px;
+        max-height: 86vh !important;
+    }
+
+    .google-pay-header {
+        padding-inline: 24px;
+    }
+
+    .google-pay-product {
+        grid-template-columns: 66px 1fr auto;
+        gap: 12px;
+        padding: 34px 24px 26px;
+    }
+
+    .google-pay-app-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .google-pay-product-copy h3,
+    .google-pay-product > strong {
+        font-size: 26px;
+    }
+
+    .google-pay-product-copy p,
+    .google-pay-product-copy span,
+    .google-pay-method,
+    .google-pay-help {
+        font-size: 20px;
+    }
+
+    .google-pay-method {
+        grid-template-columns: 66px 1fr 44px;
+        padding-inline: 24px;
+    }
+
+    .google-pay-help {
+        padding-inline: 24px;
+    }
+
+    .google-pay-buy {
+        width: calc(100% - 48px);
+        margin-inline: 24px;
+        font-size: 21px;
+    }
+}
+
 /* ============== MODAL ============== */
 .modal-overlay {
     position: fixed !important;
