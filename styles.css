@@ -825,6 +825,69 @@ svg { display: block; }
     }
 }
 
+/* Final desktop header fix: keep the PC logo in the top logo slot only. */
+@media (min-width: 1025px) {
+    .rbx-navbar-header {
+        width: 148px !important;
+        min-width: 148px !important;
+        flex: 0 0 148px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+
+    .rbx-navbar-header .navbar-header {
+        width: 128px !important;
+        min-width: 128px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        float: none !important;
+    }
+
+    #nav-logo-link.navbar-brand {
+        flex: 0 0 118px !important;
+        width: 118px !important;
+        min-width: 118px !important;
+        max-width: 118px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+        inset: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: none !important;
+        overflow: hidden !important;
+    }
+
+    #nav-logo-link.navbar-brand::before {
+        content: "" !important;
+        display: block !important;
+        width: 112px !important;
+        height: 24px !important;
+        background: url("logo pc.svg") center / contain no-repeat !important;
+    }
+
+    #nav-logo-link.navbar-brand::after,
+    #nav-logo-link.navbar-brand .icon-logo,
+    #nav-logo-link.navbar-brand .icon-logo-r {
+        content: none !important;
+        display: none !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    #nav-logo-link.navbar-brand::before {
+        content: none !important;
+        display: none !important;
+    }
+}
+
 /* Desktop/mobile polish: header icons, logo, nav indicators, and footer flow. */
 .tab.active::after {
     content: none !important;
