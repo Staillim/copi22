@@ -2601,26 +2601,6 @@ svg { display: block; }
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-.plan-pay-links {
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
-    justify-content: center;
-    gap: 16px 72px;
-    padding-bottom: 52px;
-}
-
-.plan-pay-links a {
-    color: #101827;
-    text-decoration: none;
-    font-size: 17px;
-    line-height: 1.15;
-    white-space: nowrap;
-}
-
-.plan-pay-links a:hover {
-    text-decoration: underline;
-}
-
 .plan-pay-footer-bottom {
     display: grid;
     grid-template-columns: 190px 1fr;
@@ -2700,12 +2680,6 @@ svg { display: block; }
         min-height: 66px;
         padding-inline: 14px;
         font-size: 15px;
-    }
-
-    .plan-pay-links {
-        grid-template-columns: repeat(2, max-content);
-        gap: 15px 34px;
-        padding-bottom: 34px;
     }
 
     .plan-pay-footer-bottom {
