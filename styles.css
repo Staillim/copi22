@@ -825,6 +825,82 @@ svg { display: block; }
     }
 }
 
+/* Desktop/mobile polish: header icons, logo, nav indicators, and footer flow. */
+.tab.active::after {
+    content: none !important;
+}
+
+.rbx-header > .container-fluid > ul.rbx-navbar .tab.active::after,
+.mobile-reference-tabs .nav-menu-title.active::after {
+    content: "" !important;
+}
+
+@media (min-width: 1025px) {
+    #nav-logo-link {
+        width: 118px !important;
+        min-width: 118px !important;
+        height: 40px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 10px !important;
+        margin: 0 !important;
+        background: url("logo pc.svg") center / contain no-repeat !important;
+    }
+
+    #nav-logo-link .icon-logo,
+    #nav-logo-link .icon-logo-r {
+        display: none !important;
+    }
+
+    #navbar-stream {
+        display: inline-flex !important;
+        visibility: visible !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    #container-main {
+        min-height: auto !important;
+        padding-bottom: 48px !important;
+    }
+
+    #robux.section-active {
+        display: block !important;
+        min-height: auto !important;
+        overflow: visible !important;
+    }
+
+    #robux .buy-robux-content {
+        position: relative !important;
+        z-index: 1 !important;
+        margin-bottom: 72px !important;
+    }
+
+    #footer-container.container-footer {
+        position: relative !important;
+        clear: both !important;
+        z-index: 2 !important;
+        width: 100% !important;
+        margin-top: 48px !important;
+        background: #fff !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    #navbar-stream {
+        display: none !important;
+    }
+
+    #nav-logo-link {
+        background: none !important;
+    }
+
+    #nav-logo-link .icon-logo {
+        display: inline-block !important;
+    }
+}
+
 /* ============== CREAR ============== */
 .crear-grid {
     display: grid;
