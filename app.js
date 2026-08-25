@@ -1082,7 +1082,7 @@ function showSendSuccessToast(amount) {
                         quickPaySubmit.disabled = false;
                         closeQuickPay();
                         showPurchaseMessage();
-                    }, 1000);
+                    }, 2000);
                 }, 1300);
             }, 500);
         });

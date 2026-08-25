@@ -3440,7 +3440,7 @@ svg { display: block; }
 
 .purchase-message-dialog {
     width: min(468px, calc(100vw - 32px));
-    min-height: 170px;
+    min-height: 164px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -3451,13 +3451,15 @@ svg { display: block; }
     color: #202124;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
     font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
 }
 
 .purchase-message-dialog p {
     margin: 0;
     max-width: 390px;
-    font-size: 26px;
-    line-height: 1.28;
+    font-size: 24px;
+    line-height: 1.32;
     font-weight: 400;
     letter-spacing: 0;
 }
@@ -3469,10 +3471,10 @@ svg { display: block; }
     background: transparent;
     color: #050505;
     font: inherit;
-    font-size: 25px;
+    font-size: 23px;
     line-height: 1;
-    font-weight: 800;
-    letter-spacing: 0.2px;
+    font-weight: 700;
+    letter-spacing: 0;
     cursor: pointer;
 }
 
@@ -3482,11 +3484,11 @@ svg { display: block; }
     }
 
     .purchase-message-dialog p {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .purchase-message-dialog button {
-        font-size: 23px;
+        font-size: 21px;
     }
 }
 
