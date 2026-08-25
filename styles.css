@@ -684,6 +684,13 @@ svg { display: block; }
     color: var(--text-muted);
     font-weight: 500;
 }
+.verified-check {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    flex: 0 0 16px;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEyIDEyIj48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGZpbGw9IiMwNmYiIGQ9Im0yLjUyMyAwIDkuNDc2IDIuNTM5LTIuNTQgOS40NzYtOS40NzUtMi41NHoiLz48cGF0aCBmaWxsPSIjZjdmN2Y4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Im04LjgwNCAzLjc1LjAwMy4wMDNhLjY2LjY2IDAgMCAxIDAgLjkzMkw1LjA2NCA4LjA2OCAzLjE5MyA2LjU1NmEuNjYuNjYgMCAwIDEgMC0uOTMybC4wMDMtLjAwM2EuNjYuNjYgMCAwIDEgLjkzMiAwbC45MzYuOTcyTDcuODcyIDMuNzVhLjY2LjY2IDAgMCAxIC45MzIgMCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgxMnYxMkgweiIvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==") center / contain no-repeat;
+}
 .verified { color: var(--primary); flex-shrink: 0; }
 .item-price {
     font-size: 13px;
