@@ -163,7 +163,19 @@ function showSendSuccessToast(amount) {
     const tabs = document.querySelectorAll(".tab");
     const sections = document.querySelectorAll(".section");
 
+    function shuffleMercadoCards() {
+        const grid = document.querySelector("#mercado .mercado-grid");
+        if (!grid) return;
+        const cards = Array.from(grid.querySelectorAll(".item-card"));
+        for (let i = cards.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cards[i], cards[j]] = [cards[j], cards[i]];
+        }
+        cards.forEach((card) => grid.appendChild(card));
+    }
+
     function loadMercadoImages() {
+        shuffleMercadoCards();
         document.querySelectorAll("#mercado .item-thumb img").forEach((img) => {
             const src = img.getAttribute("src");
             if (!src) return;
