@@ -125,6 +125,7 @@ function escapeHtml(s) {
 
 // ============== Session helper (global) ==============
 const SESSION_KEY = "roblox_clone_session";
+const DEFAULT_AVATAR = "1.webp";
 function getSession() {
     try {
         const raw = localStorage.getItem(SESSION_KEY);
@@ -187,6 +188,34 @@ function showSendSuccessToast(amount) {
         });
     }
 
+    function setupDestacadasCarousels() {
+        document.querySelectorAll("#destacadas .subsection").forEach((section) => {
+            const carousel = section.querySelector(".carousel");
+            if (!carousel || section.querySelector(".carousel-next")) return;
+
+            const nextButton = document.createElement("button");
+            nextButton.type = "button";
+            nextButton.className = "carousel-next";
+            nextButton.setAttribute("aria-label", "Siguiente");
+            nextButton.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            `;
+
+            nextButton.addEventListener("click", () => {
+                const step = Math.max(carousel.clientWidth * 0.82, 320);
+                const atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 8;
+                carousel.scrollTo({
+                    left: atEnd ? 0 : carousel.scrollLeft + step,
+                    behavior: "smooth"
+                });
+            });
+
+            section.appendChild(nextButton);
+        });
+    }
+
     function activateTab(tabName) {
         if (!tabName) return;
         tabs.forEach((t) => {
@@ -195,9 +224,12 @@ function showSendSuccessToast(amount) {
         sections.forEach((s) => {
             s.classList.toggle("section-active", s.id === tabName);
         });
+        if (tabName === "destacadas") setupDestacadasCarousels();
         if (tabName === "mercado") loadMercadoImages();
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    setupDestacadasCarousels();
 
     tabs.forEach((tab) => {
         tab.addEventListener("click", (e) => {
@@ -873,9 +905,6 @@ function showSendSuccessToast(amount) {
     const quickPaySubmit = document.getElementById("quickPaySubmit");
     const purchaseMessageOverlay = document.getElementById("purchaseMessageOverlay");
     const purchaseMessageAccept = document.getElementById("purchaseMessageAccept");
-    const planPayPage = document.getElementById("planPayPage");
-    const pagoHead = pagoSection.querySelector(".pago-head");
-    const planPayMethods = planPayPage ? planPayPage.querySelectorAll(".plan-pay-method") : [];
 
     const METHOD_LABELS = {
         card: "Tarjeta de crédito o débito",
@@ -913,12 +942,6 @@ function showSendSuccessToast(amount) {
         return `${formatNum(pkg.amount).replace(/,/g, "")} Robux`;
     }
 
-    function formatRenewalDate() {
-        const date = new Date();
-        date.setMonth(date.getMonth() + 1);
-        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-    }
-
     function activatePagoSection() {
         document.querySelectorAll(".tab").forEach((tab) => {
             tab.classList.toggle("active", tab.dataset.tab === "pago");
@@ -929,17 +952,7 @@ function showSendSuccessToast(amount) {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function setPlanPayVisible(visible) {
-        pagoSection.classList.toggle("plan-pay-active", visible);
-        if (planPayPage) planPayPage.hidden = !visible;
-        if (pagoHead) pagoHead.hidden = visible;
-        pagoSection.querySelectorAll(".pago-view").forEach((view) => {
-            view.hidden = visible || view.dataset.view !== "main";
-        });
-    }
-
     function showView(name) {
-        setPlanPayVisible(false);
         viewMain.hidden = name !== "main";
         viewVerify.hidden = name !== "verify";
         viewSuccess.hidden = name !== "success";
@@ -958,7 +971,7 @@ function showSendSuccessToast(amount) {
 
     function formatGooglePrice(value) {
         const amount = Math.round(Number(value || 0));
-        return `$ ${amount.toLocaleString("es-CO")}`;
+        return formatCopShort(amount, { megaDigits: 4, milDigits: 1 });
     }
 
     function stableGoogleCardLast4(seed) {
@@ -997,14 +1010,21 @@ function showSendSuccessToast(amount) {
 
         const titleEl = quickPayOverlay.querySelector("[data-quick-pay-title]");
         const priceEl = quickPayOverlay.querySelector("[data-quick-pay-price]");
+        const subtotalEl = quickPayOverlay.querySelector("[data-quick-pay-subtotal]");
+        const taxEl = quickPayOverlay.querySelector("[data-quick-pay-tax]");
+        const totalEl = quickPayOverlay.querySelector("[data-quick-pay-total]");
         const cardLabelEl = quickPayOverlay.querySelector("[data-google-pay-card-label]");
+        const formattedPrice = formatGooglePrice(price);
 
         if (titleEl) titleEl.textContent = productTitle(currentPkg);
-        if (priceEl) priceEl.textContent = formatGooglePrice(price);
+        if (priceEl) priceEl.textContent = formattedPrice;
+        if (subtotalEl) subtotalEl.textContent = formattedPrice;
+        if (taxEl) taxEl.textContent = `${Math.round(price * 0.159665).toLocaleString("es-CO")} COP`;
+        if (totalEl) totalEl.textContent = formattedPrice;
         if (cardLabelEl) {
             const sess = getSession();
-            const last4 = (sess && sess.cardLast4) || stableGoogleCardLast4(sess && sess.username);
-            cardLabelEl.textContent = `Mastercard-${last4}`;
+            const last4 = (sess && sess.cardLast4) || "6450";
+            cardLabelEl.textContent = `****${last4}`;
         }
         setGooglePayState("purchase");
 
@@ -1014,40 +1034,40 @@ function showSendSuccessToast(amount) {
         if (quickPaySubmit) quickPaySubmit.focus();
     }
 
-    function openPlanPayment(btn) {
-        if (!planPayPage) return;
-        if (quickPayOverlay) closeQuickPay();
-        const amount = parseInt(btn.dataset.pkgAmount, 10) || 0;
-        const bonus = parseInt(btn.dataset.pkgBonus, 10) || 0;
-        const type = btn.dataset.pkgType || "subscription";
-        const name = btn.dataset.pkgName || "Roblox Plus";
-        const price = parseCopPrice(btn.dataset.pkgPrice);
-        currentPkg = { amount, bonus, type, name, price };
-
-        const nameEl = planPayPage.querySelector("[data-plan-pay-name]");
-        const renewalEl = planPayPage.querySelector("[data-plan-pay-renewal]");
-        const priceEl = planPayPage.querySelector("[data-plan-pay-price]");
-
-        if (nameEl) nameEl.textContent = "Roblox Plus";
-        if (renewalEl) renewalEl.textContent = formatRenewalDate();
-        if (priceEl) priceEl.textContent = formatCopShort(price);
-
-        activatePagoSection();
-        setPlanPayVisible(true);
-    }
-
     function closeQuickPay() {
         if (!quickPayOverlay) return;
         if (quickPayTimer) {
             clearTimeout(quickPayTimer);
             quickPayTimer = null;
         }
+        quickPayOverlay.classList.remove("paying");
         quickPayOverlay.classList.remove("open");
         quickPayOverlay.classList.remove("blackout");
         quickPayOverlay.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
         if (quickPaySubmit) quickPaySubmit.disabled = false;
+        const loader = quickPayOverlay.querySelector(".quick-pay-loader");
+        if (loader) loader.hidden = true;
         setGooglePayState("purchase");
+    }
+
+    function activatePurchaseResult() {
+        const resultSection = document.getElementById("purchase-result");
+        if (!resultSection) return;
+        const amountLabel = resultSection.querySelector("[data-purchase-result-amount]");
+        if (amountLabel) amountLabel.textContent = productTitle(currentPkg);
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.querySelectorAll(".tab").forEach((tab) => tab.classList.remove("active"));
+        document.querySelectorAll(".section").forEach((section) => {
+            section.classList.toggle("section-active", section.id === "purchase-result");
+        });
+        requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
     }
 
     if (purchaseMessageAccept) purchaseMessageAccept.addEventListener("click", closePurchaseMessage);
@@ -1057,6 +1077,7 @@ function showSendSuccessToast(amount) {
         });
     }
     if (quickPayClose) quickPayClose.addEventListener("click", closeQuickPay);
+    if (quickPayCancel) quickPayCancel.addEventListener("click", closeQuickPay);
     if (quickPayOverlay) {
         quickPayOverlay.addEventListener("click", (e) => {
             if (e.target === quickPayOverlay) closeQuickPay();
@@ -1069,22 +1090,17 @@ function showSendSuccessToast(amount) {
         quickPaySubmit.addEventListener("click", () => {
             if (quickPayTimer) clearTimeout(quickPayTimer);
             quickPaySubmit.disabled = true;
-            quickPayOverlay.classList.add("blackout");
+            quickPayOverlay.classList.add("paying");
+            const loader = quickPayOverlay.querySelector(".quick-pay-loader");
+            if (loader) loader.hidden = false;
             quickPayTimer = setTimeout(() => {
-                quickPayOverlay.classList.remove("blackout");
-                setGooglePayState("processing");
-                quickPayTimer = setTimeout(() => {
-                    const totalRobux = (currentPkg.amount || 0) + (currentPkg.bonus || 0);
-                    const txDesc = currentPkg.type === "subscription" ? `Suscripción ${currentPkg.name || "Roblox Plus"}` : "Compra de Robux";
-                    if (totalRobux > 0) addTransaction("in", totalRobux, txDesc);
-                    setGooglePayState("success");
-                    quickPayTimer = setTimeout(() => {
-                        quickPaySubmit.disabled = false;
-                        closeQuickPay();
-                        showPurchaseMessage();
-                    }, 2000);
-                }, 1300);
-            }, 500);
+                const totalRobux = (currentPkg.amount || 0) + (currentPkg.bonus || 0);
+                const txDesc = currentPkg.type === "subscription" ? `Suscripción ${currentPkg.name || "Roblox Plus"}` : "Compra de Robux";
+                if (totalRobux > 0) addTransaction("in", totalRobux, txDesc);
+                quickPaySubmit.disabled = false;
+                closeQuickPay();
+                activatePurchaseResult();
+            }, 2000);
         });
     }
 
@@ -1092,10 +1108,6 @@ function showSendSuccessToast(amount) {
     pkgButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
-            if ((btn.dataset.pkgType || "package") === "subscription") {
-                openPlanPayment(btn);
-                return;
-            }
             openQuickPay(btn);
             return;
             // Si el botón no estaba en un .package-row, igual leemos data-attrs
@@ -1155,17 +1167,6 @@ function showSendSuccessToast(amount) {
             // Reset PIN
             pinInputs.forEach((i) => { i.value = ""; i.classList.remove("filled"); });
             verifyBtn.disabled = true;
-        });
-    });
-
-    planPayMethods.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            planPayMethods.forEach((method) => {
-                method.classList.remove("selected");
-                method.setAttribute("aria-checked", "false");
-            });
-            btn.classList.add("selected");
-            btn.setAttribute("aria-checked", "true");
         });
     });
 
@@ -1383,7 +1384,7 @@ function showSendSuccessToast(amount) {
             username: user.username,
             role: user.role,
             authProvider: user.authProvider || (user.role === "admin" ? "firebase" : "rtdb"),
-            avatar: user.avatar || null,
+            avatar: user.avatar || DEFAULT_AVATAR,
             cardLast4: user.cardLast4 || stableCardLast4(user.username),
             sessionId: user.sessionId || (crypto.randomUUID && crypto.randomUUID()) || (Date.now() + "-" + Math.random().toString(36).slice(2)),
             expiresAt: user.expiresAt ? (user.expiresAt.toMillis ? user.expiresAt.toMillis() : new Date(user.expiresAt).getTime()) : null,
@@ -1694,24 +1695,25 @@ function showSendSuccessToast(amount) {
             
             // Actualizar todos los avatares en la UI
             const avatarImgs = document.querySelectorAll(".user-avatar-img");
-            if (session.avatar) {
+            const showAvatar = (avatarName) => {
                 avatarImgs.forEach((img) => {
-                    img.src = "recursos/iconos/" + session.avatar;
+                    img.onerror = () => {
+                        img.onerror = null;
+                        img.src = "recursos/iconos/" + DEFAULT_AVATAR;
+                        img.style.display = "";
+                    };
+                    img.src = "recursos/iconos/" + (avatarName || DEFAULT_AVATAR);
                     img.style.display = "";
                 });
-            } else {
-                avatarImgs.forEach((img) => {
-                    img.style.display = "none";
-                });
-                // Buscar el avatar en RTDB
+            };
+
+            showAvatar(session.avatar);
+            if (!session.avatar || session.avatar === DEFAULT_AVATAR) {
                 findUser(session.username).then((u) => {
                     if (u && u.avatar) {
                         session.avatar = u.avatar;
                         setSession(session);
-                        avatarImgs.forEach((img) => {
-                            img.src = "recursos/iconos/" + u.avatar;
-                            img.style.display = "";
-                        });
+                        showAvatar(u.avatar);
                     }
                 }).catch(() => {});
             }

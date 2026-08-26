@@ -129,10 +129,10 @@
                                     <a class="text-link dynamic-overflow-container tab" href="#" data-tab="destacadas">
                                         <span class="avatar avatar-headshot-xs">
                                             <span class="thumbnail-2d-container avatar-card-image">
-                                                <img class="user-avatar-img" src="recursos/iconos/1.webp" alt="Harryyt302">
+                                                <img class="user-avatar-img" src="recursos/iconos/1.webp" alt="1csc">
                                             </span>
                                         </span>
-                                        <span class="text-overflow age-bracket-label-username font-caption-header user-username-text">Harryyt302</span>
+                                        <span class="text-overflow age-bracket-label-username font-caption-header user-username-text">1csc</span>
                                     </a>
                                 </div>
                                 <li class="rbx-navbar-right-search">
@@ -215,13 +215,13 @@
                                                 <span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center">
                                                     <span class="radius-circle clip size-600">
                                                         <span class="thumbnail-2d-container">
-                                                            <img class="user-avatar-img" src="recursos/iconos/1.webp" alt="Harryyt302">
+                                                            <img class="user-avatar-img" src="recursos/iconos/1.webp" alt="1csc">
                                                         </span>
                                                     </span>
                                                 </span>
                                                 <span class="flex flex-col gap-xsmall min-width-0 large:flex-row large:align-items-center">
                                                     <span class="flex gap-xsmall min-width-0 align-items-center">
-                                                        <span class="text-truncate-end text-no-wrap user-username-text">Harryyt302</span>
+                                                        <span class="text-truncate-end text-no-wrap user-username-text">1csc</span>
                                                     </span>
                                                 </span>
                                             </a>
@@ -351,7 +351,8 @@
                                         <li class="padding-top-xsmall">
                                             <a href="#" class="tab gap-y-medium flex flex-col padding-medium bg-shift-100 stroke-default stroke-thick radius-medium text-body-medium" data-tab="robux">
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-regular-roblox-plus size-[var(--icon-size-medium)] size-[20px]"></span>
-                                                <span>Más diversión por menos Robux. Suscríbete a Roblox&nbsp;Plus.</span>
+                                                <span>Más diversión por menos Robux.</span>
+                                                <span>Suscríbete a Roblox&nbsp;Plus.</span>
                                                 <span class="content-default [text-decoration:underline] [text-decoration-skip-ink:none] [text-underline-offset:3px]">Suscribirse</span>
                                             </a>
                                         </li>
@@ -813,36 +814,155 @@
 
         <!-- ============== SECCIÓN: MERCADO ============== -->
         <section id="mercado" class="section" role="tabpanel">
-            <div class="mercado-head">
-                <h1 class="section-title">Mercado</h1>
-                <button class="btn btn-primary" data-go-to="robux">Comprar Robux</button>
-            </div>
-
-            <div class="mercado-search">
-                <button class="filter-icon-btn" aria-label="Filtros">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="7" y1="12" x2="21" y2="12" />
-                        <line x1="11" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="search-box">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                        <circle cx="11" cy="11" r="7" />
-                        <line x1="16.5" y1="16.5" x2="21" y2="21" />
-                    </svg>
-                    <input type="text" placeholder="Search" />
+            <div class="catalog-header" style="display: flex; flex-direction: column; --heading-container-mobile-height: -5px; top: 40px; position: sticky;">
+                <div class="search-bars search-bar-placement-right">
+                    <div class="heading-container catalog-top-row">
+                        <h1 class="heading"><a target="_self" href="#">Mercado</a></h1>
+                        <div class="search-container" id="search-bar">
+                            <div class="input-group">
+                                <div id="search-bar-container"><span class="icon-search catalog-search-icon" aria-hidden="true"></span><input id="avatar-shop-keyword-input" class="form-control input-field search-input input-rounded" placeholder="Buscar" maxlength="50" autocomplete="off" autocorrect="off" spellcheck="false" name="searchField" type="text" value=""></div>
+                            </div>
+                        </div>
+                        <div class="top-category-filter">
+                            <button type="button" class="input-dropdown-btn category-options" aria-haspopup="true" aria-expanded="false"><span class="text-overflow rbx-selection-label">Todos</span><span class="icon-down-16x16"></span></button>
+                            <ul class="dropdown-menu" role="menu" style="display: none;">
+                                <li><button type="button">Todos</button></li>
+                                <li><button type="button">Cuerpo</button></li>
+                                <li><button type="button">Ropa</button></li>
+                                <li><button type="button">Accesorios</button></li>
+                                <li><button type="button">Fondos</button></li>
+                                <li><button type="button">Animaciones</button></li>
+                                <li><button type="button">Maquillaje</button></li>
+                            </ul>
+                        </div>
+                        <a class="btn-growth-md buy-robux" href="#" target="_self" data-go-to="robux">Comprar Robux</a>
+                        <div class="shopping-cart-btn-container"><button class="shopping-cart-btn" type="button"><div class="shopping-cart-icon-container"><div class="shopping-cart-icon"></div><span class="cart-number-container"><span class="cart-number">0</span></span></div></button></div>
+                    </div>
+                    <div class="mobile-search-container">
+                            <div class="search-bar">
+                                <button id="search-options-button" type="button" class="btn-generic-menu-black-md mobile-menu-button"><span class="icon-filter-menu-black"></span></button>
+                                <form name="forms.keywordForm" class="form-horizontal search-form">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control input-field search-input" placeholder="Search" type="text" maxlength="50" value="">
+                                            <div class="input-group-btn"><button class="input-addon-btn" type="submit"><span class="icon-search"></span></button></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="topic-container">
+                                <span class="topic-carousel" id="topic-carousel-mobile">
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>ninja</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>martial arts</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>farm</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>melee</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>character</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>brown</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>weapon</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>wood</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>ranged</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>metal</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>dreads</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>steven</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>emotes</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>face</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>monkey</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>beard</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>fedora</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>scarf</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>beanie</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>sunglasses</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>aura</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>shades</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>mouthless</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>cheeks</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>mustache</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>ushanka</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>balaclava</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>animatronic</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>necklace</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>eyepatch</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>blindfold</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>eyeless</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>keffiyeh</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>afro</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>fang</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>cross</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>initial</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>gift</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>mullet</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>pose</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>axolotl</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>halo</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>penguin</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>crusader</span></button>
+                                    <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>berserk</span></button>
+                                </span>
+                            </div>
+                        </div>
                 </div>
-            </div>
-
-            <div class="category-pills">
-                <button class="pill pill-light">casual</button>
-                <button class="pill pill-light">jacket</button>
-                <button class="pill pill-light">winter</button>
-                <button class="pill pill-light">black</button>
-                <button class="pill pill-light">brown</button>
-                <button class="pill pill-light">dream</button>
-                <button class="pill pill-light">cute</button>
+                <div class="catalog-heading-container">
+                    <div class="catalog-heading-actions">
+                        <div class="catalog-search-options-top-bar">
+                            <div><button type="button" class="filter-select btn-secondary-md btn-min-width"><span class="filter-display-text">Todos</span><span class="icon-expand-arrow"></span></button></div>
+                            <div><button type="button" class="filter-select btn-secondary-md btn-min-width"><span class="filter-display-text">Todos los creadores</span><span class="icon-expand-arrow"></span></button></div>
+                            <div><button type="button" class="filter-select btn-secondary-md btn-min-width"><span class="filter-display-text">Cualquier precio</span><span class="icon-expand-arrow"></span></button></div>
+                            <div><button type="button" class="filter-select btn-secondary-md btn-min-width"><span class="filter-display-text">Ordenar por Relevancia</span><span class="icon-expand-arrow"></span></button></div>
+                            <div><button type="button" class="filter-select btn-secondary-md btn-min-width"><span class="filter-display-text">Tipo de venta</span><span class="icon-expand-arrow"></span></button></div>
+                            <div><button type="button" class="filter-select btn-secondary-md btn-min-width"><span class="filter-display-text">Objetos no disponibles</span><span class="icon-expand-arrow"></span></button></div>
+                        </div>
+                    </div>
+                    <div class="topic-container">
+                        <span class="topic-carousel" id="topic-carousel">
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>ninja</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>martial arts</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>farm</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>melee</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>character</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>brown</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>weapon</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>wood</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>ranged</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>metal</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>dreads</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>steven</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>emotes</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>face</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>monkey</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>beard</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>fedora</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>scarf</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>beanie</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>sunglasses</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>aura</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>shades</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>mouthless</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>cheeks</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>mustache</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>ushanka</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>balaclava</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>animatronic</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>necklace</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>eyepatch</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>blindfold</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>eyeless</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>keffiyeh</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>afro</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>fang</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>cross</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>initial</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>gift</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>mullet</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>pose</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>axolotl</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>halo</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>penguin</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>crusader</span></button>
+                            <button type="button" class="topic unselected-topic btn-secondary-sm btn-min-width"><span>berserk</span></button>
+                        </span>
+                        <span class="topic-navigation-right topic-navigation-blur-right"><button type="button" class="topic-navigation-button"><span class="icon-right-gray"></span></button></span>
+                    </div>
+                </div>
             </div>
 
             <div class="mercado-grid">
@@ -1234,7 +1354,7 @@
                             <div class="self-stretch flex flex-row items-center justify-between gap-medium medium:justify-start medium:gap-xxlarge" data-testid="ltb-section-header-row">
                                 <div class="buy-robux-section-header self-stretch flex flex-row items-start text-heading-small medium:text-heading-large self-auto min-width-0 flex-1 medium:self-stretch medium:flex-none">Objetos de avatar por tiempo limitado</div>
                                 <div class="foundation-web-badge flex items-center select-none gap-[var(--size-150)] radius-circle height-600 width-[fit-content] padding-x-small bg-system-contrast content-inverse-emphasis stroke-none shrink-0">
-                                    <span class="text-no-wrap text-truncate-split text-label-small padding-y-xsmall padding-x-xxsmall content-inverse-emphasis">Quedan 8 días</span>
+                                    <span class="text-no-wrap text-truncate-split text-label-small padding-y-xsmall padding-x-xxsmall content-inverse-emphasis">Quedan 6 días</span>
                                 </div>
                             </div>
                         </div>
@@ -1264,6 +1384,7 @@
                                                             <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                             <span class="text-title-large">22.500</span>
                                                         </div>
+                                                        <span class="robux-bonus-pill">1500 más</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1446,6 +1567,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">10.000</span>
                                             </div>
+                                            <span class="robux-bonus-pill">1000 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1469,6 +1591,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">4500</span>
                                             </div>
+                                            <span class="robux-bonus-pill">750 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1492,6 +1615,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">3150</span>
                                             </div>
+                                            <span class="robux-bonus-pill">475 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1515,6 +1639,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">1700</span>
                                             </div>
+                                            <span class="robux-bonus-pill">300 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1538,6 +1663,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">1200</span>
                                             </div>
+                                            <span class="robux-bonus-pill">300 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1561,6 +1687,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">800</span>
                                             </div>
+                                            <span class="robux-bonus-pill">200 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1584,6 +1711,7 @@
                                                 <span aria-hidden="true" data-testid="foundation-web-icon" class="grow-0 shrink-0 basis-auto icon icon-filled-robux size-[var(--icon-size-medium)]"></span>
                                                 <span class="text-title-large">400</span>
                                             </div>
+                                            <span class="robux-bonus-pill">100 más</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1647,6 +1775,83 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============== SECCIÓN: COMPRA COMPLETADA ============== -->
+        <section id="purchase-result" class="section purchase-result-section" role="tabpanel">
+            <div class="purchase-result-shell">
+                <div class="purchase-result-hero">
+                    <span class="purchase-result-robux icon-filled-robux" aria-hidden="true"></span>
+                    <h1>Compraste <span data-purchase-result-amount>500 Robux</span></h1>
+                </div>
+
+                <section class="purchase-experience-section" aria-labelledby="purchaseExperienceTitle">
+                    <h2 id="purchaseExperienceTitle">Objetos destacados de experiencias recientes</h2>
+                    <div class="purchase-experience-grid">
+                        <article class="purchase-experience-card">
+                            <header>
+                                <img src="recursos/Destacadas/Murder Mystery 2.png" alt="Alma de hierro: Mazmorra" loading="lazy" />
+                                <div>
+                                    <h3>Alma de hierro: Mazmorra</h3>
+                                    <p>98% · 12.3K</p>
+                                </div>
+                                <button type="button" aria-label="Más opciones">...</button>
+                            </header>
+                            <div class="purchase-pass-list">
+                                <div><img src="recursos/Mercado/Estrella ninja plateada de la luz refulgente.webp" alt="" /><span><strong>Saltar el pase de forja</strong><small>Pase</small><em><span class="robux-hex-small"></span>279</em></span><button>Comprar</button></div>
+                                <div><img src="recursos/Mercado/Cabezas de Dragón Rojo Relámpago.webp" alt="" /><span><strong>Pase VIP</strong><small>Pase</small><em><span class="robux-hex-small"></span>225</em></span><button>Comprar</button></div>
+                                <div><img src="recursos/Mercado/Dragón de Mochi.webp" alt="" /><span><strong>Inventario de minerales +200</strong><small>Pase</small><em><span class="robux-hex-small"></span>115</em></span><button>Comprar</button></div>
+                            </div>
+                        </article>
+
+                        <article class="purchase-experience-card">
+                            <header>
+                                <img src="recursos/Destacadas/⚔️ Blox Fruits.png" alt="Blox Fruits" loading="lazy" />
+                                <div>
+                                    <h3>Blox Fruits</h3>
+                                    <p>92% · 301K</p>
+                                </div>
+                                <button type="button" aria-label="Más opciones">...</button>
+                            </header>
+                            <div class="purchase-pass-list">
+                                <div><img src="recursos/Mercado/Rob Lucci Aura de Haki.webp" alt="" /><span><strong>2x Maestría</strong><small>Pase</small><em><span class="robux-hex-small"></span>450</em></span><button>Comprar</button></div>
+                                <div><img src="recursos/Mercado/Sung Jin Woo GLOWING.webp" alt="" /><span><strong>2x Dinero</strong><small>Pase</small><em><span class="robux-hex-small"></span>450</em></span><button>Comprar</button></div>
+                                <div><img src="recursos/Mercado/Aura de Okarun  Dandadan.webp" alt="" /><span><strong>2x Dropeos de Jefes</strong><small>Pase</small><em><span class="robux-hex-small"></span>350</em></span><button>Comprar</button></div>
+                            </div>
+                        </article>
+
+                        <article class="purchase-experience-card">
+                            <header>
+                                <img src="recursos/Destacadas/[X5] +1 Teclado de escape de velocidad - Caramelos y chocolate.png" alt="[X5] +1 Teclado de escape de velocidad" loading="lazy" />
+                                <div>
+                                    <h3>[X5] +1 Teclado de escape de velocidad</h3>
+                                    <p>97% · 150K</p>
+                                </div>
+                                <button type="button" aria-label="Más opciones">...</button>
+                            </header>
+                            <div class="purchase-pass-list">
+                                <div><img src="recursos/Mercado/FF Hip Hop.webp" alt="" /><span><strong>Estela Verde</strong><small>Pase</small><em><span class="robux-hex-small"></span>8</em></span><button>Comprar</button></div>
+                                <div><img src="recursos/Mercado/FF Angelicasles Azules.webp" alt="" /><span><strong>Sendero Azul</strong><small>Pase</small><em><span class="robux-hex-small"></span>12</em></span><button>Comprar</button></div>
+                                <div><img src="recursos/Mercado/Destellos de ojos de relámpago blanco.webp" alt="" /><span><strong>Aura de brillo</strong><small>Pase</small><em><span class="robux-hex-small"></span>30</em></span><button>Comprar</button></div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="purchase-avatar-section" aria-labelledby="purchaseAvatarTitle">
+                    <h2 id="purchaseAvatarTitle">Objetos de avatar recomendados</h2>
+                    <div class="purchase-avatar-row">
+                        <article><img src="recursos/Mercado/Chico Emo Desordenado y Lindo (NegroBlanco).webp" alt="Chico Emo Desordenado" /><h3>Chico Emo Desor...</h3><p>Resident Evil</p><span><span class="robux-hex-small"></span>41</span></article>
+                        <article><img src="recursos/Mercado/YN NY Black Bape Shiesty Mask con Rhinstones.webp" alt="YN NY Black Bape" /><h3>YN NY Black Bape...</h3><p>SaintSinner</p><span><span class="robux-hex-small"></span>61</span></article>
+                        <article><img src="recursos/Mercado/Casco táctico de fantasma negro de.webp" alt="Casco táctico" /><h3>Casco táctico...</h3><p>Coast UGC</p><span><span class="robux-hex-small"></span>61</span></article>
+                        <article><img src="recursos/Mercado/Anime Warrior Body V3 (recolorizable).webp" alt="Anime Warrior Body" /><h3>Paquete de anim...</h3><p>adidas</p><span><span class="robux-hex-small"></span>300</span></article>
+                        <article><img src="recursos/Mercado/Pantalones de carga Hitam y Putih de RAZOR.webp" alt="Pantalones de carga" /><h3>Jean de boxeado...</h3><p>CSTARI</p><span><span class="robux-hex-small"></span>48</span></article>
+                        <article><img src="recursos/Mercado/Ultra Musculoso Stevie.webp" alt="Ultra Musculoso Stevie" /><h3>Surco de Jamal B...</h3><p>Esoteric Emote</p><span><span class="robux-hex-small"></span>34</span></article>
+                        <article><img src="recursos/Mercado/Gojo Satoru - Shinjuku Showdown.webp" alt="Gojo Satoru" /><h3>Mini peluche de a...</h3><p>Frenchrxses</p><span><span class="robux-hex-small"></span>111</span></article>
+                        <article><img src="recursos/Mercado/Aura de Okarun  Dandadan.webp" alt="Aura de Okarun" /><h3>Godly Aura fly po...</h3><p>UGClcs</p><span><span class="robux-hex-small"></span>34</span></article>
+                    </div>
+                </section>
             </div>
         </section>
 
@@ -1752,48 +1957,6 @@
                     </svg>
                 </span>
                 <h1 class="pago-title">Pago seguro</h1>
-            </div>
-
-            <div class="plan-pay-page" id="planPayPage" hidden>
-                <main class="plan-pay-shell" aria-labelledby="planPayTitle">
-                    <h1 class="plan-pay-title" id="planPayTitle">Pago seguro con Roblox</h1>
-
-                    <section class="plan-pay-product" aria-label="Resumen del plan">
-                        <img class="plan-pay-logo" src="logo pago.png" alt="" aria-hidden="true" />
-                        <div class="plan-pay-copy">
-                            <h2 data-plan-pay-name>Roblox Plus</h2>
-                            <p>Mensual</p>
-                            <p><strong>Renovación:</strong> <span data-plan-pay-renewal>25/9/2026</span></p>
-                            <p><strong>Saldo pendiente:</strong> <span data-plan-pay-price>29,9 mil COP</span></p>
-                        </div>
-                    </section>
-
-                    <p class="plan-pay-label">Seleccionar el tipo de pago:</p>
-
-                    <div class="plan-pay-methods" role="radiogroup" aria-label="Tipo de pago">
-                        <button class="plan-pay-method selected" type="button" role="radio" aria-checked="true">
-                            <span class="plan-pay-card-logos" aria-hidden="true">
-                                <span class="plan-card-logo plan-card-visa">VISA</span>
-                                <span class="plan-card-logo plan-card-mc"><span></span><span></span></span>
-                                <span class="plan-card-logo plan-card-discover">DISCOVER</span>
-                                <span class="plan-card-logo plan-card-amex">AMEX</span>
-                            </span>
-                            <span>Tarjeta de crédito o débito</span>
-                        </button>
-
-                        <button class="plan-pay-method" type="button" role="radio" aria-checked="false">
-                            <span class="plan-pay-paypal" aria-hidden="true">PayPal</span>
-                            <span>Paypal</span>
-                        </button>
-                    </div>
-                </main>
-
-                <footer class="plan-pay-footer">
-                    <div class="plan-pay-footer-bottom">
-                        <button class="plan-pay-language" type="button">Español (España)<span aria-hidden="true"></span></button>
-                        <p>©2026 Roblox Corporation. Roblox, el logotipo de Roblox y Powering Imagination son algunas de nuestras marcas registradas y no registradas en los Estados Unidos y otros países.</p>
-                    </div>
-                </footer>
             </div>
 
             <!-- Vista principal de pago -->
@@ -2144,42 +2307,68 @@
         </div>
     </div>
 
-    <!-- ============== OVERLAY: GOOGLE PLAY PAYMENT ============== -->
+    <!-- ============== OVERLAY: PAGO RAPIDO ============== -->
     <div class="quick-pay-overlay" id="quickPayOverlay" aria-hidden="true">
         <div class="quick-pay-dialog google-pay-sheet" role="dialog" aria-modal="true" aria-labelledby="quickPayTitle">
             <header class="google-pay-header">
-                <h2 id="quickPayTitle">Google Play</h2>
-                <button class="quick-pay-close google-pay-close" id="quickPayClose" type="button" aria-label="Cerrar"></button>
+                <h2 id="quickPayTitle">Pago rápido</h2>
+                <button class="quick-pay-close google-pay-close" id="quickPayClose" type="button" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" width="31" height="31" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="4" y1="4" x2="20" y2="20" />
+                        <line x1="20" y1="4" x2="4" y2="20" />
+                    </svg>
+                </button>
             </header>
 
             <div class="google-pay-state google-pay-purchase" data-google-pay-state="purchase">
                 <section class="google-pay-product">
-                    <span class="google-pay-app-icon" aria-hidden="true"><span></span></span>
+                    <span class="google-pay-app-icon icon-filled-robux" aria-hidden="true"></span>
                     <div class="google-pay-product-copy">
                         <h3 data-quick-pay-title>80 Robux</h3>
-                        <p>Roblox</p>
-                        <span>Top ventas</span>
+                        <p data-quick-pay-price>29,9 mil COP</p>
                     </div>
-                    <strong data-quick-pay-price>$ 5.900</strong>
                 </section>
 
-                <button class="google-pay-method" id="quickPayCancel" type="button">
-                    <span class="google-pay-card-art" aria-hidden="true">
-                        <span>CMR</span>
-                        <i></i>
-                    </span>
-                    <span data-google-pay-card-label>Mastercard-2150</span>
-                    <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="m9 18 6-6-6-6" />
+                <div class="quick-pay-summary">
+                    <div class="quick-pay-summary-row">
+                        <span>Subtotal</span>
+                        <span data-quick-pay-subtotal>29,9 mil COP</span>
+                    </div>
+                    <div class="quick-pay-tax-row">
+                        <span class="quick-pay-help-icon" aria-hidden="true">?</span>
+                        <span data-quick-pay-tax>4774 COP</span>
+                    </div>
+                    <div class="quick-pay-total-row">
+                        <strong>Total a pagar</strong>
+                        <strong data-quick-pay-total>29,9 mil COP</strong>
+                    </div>
+                </div>
+
+                <p class="quick-pay-charge-label">La cantidad se cargará a:</p>
+
+                <button class="google-pay-method" type="button">
+                    <span class="google-pay-card-art" aria-hidden="true"><i></i></span>
+                    <span data-google-pay-card-label>****6450</span>
+                    <span class="quick-pay-card-exp-label">Vence</span>
+                    <span class="quick-pay-card-exp">12/33</span>
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6" />
                     </svg>
                 </button>
 
-                <div class="google-pay-help">
-                    <p>Toca Comprar con 1 toque para completar tu compra.</p>
-                    <button type="button">Más</button>
-                </div>
+                <button class="quick-pay-alt" type="button">Usa un método de pago diferente</button>
 
-                <button class="google-pay-buy" id="quickPaySubmit" type="button">Comprar con 1 toque</button>
+                <p class="quick-pay-legal">Acepto que estoy adquiriendo una licencia limitada para acceder al producto regida por los Términos de la Licencia. Al comprar Robux, aceptas nuestros Términos de uso, incluida la cláusula de arbitraje y la política de revocación, y nuestra Política de privacidad. Puedes eliminar tu información de pago guardada en cualquier momento desde la página Configuración de facturación. Tu información de pago será almacenada por Stripe, Inc. Al enviar la información de pago, aceptas los Términos de uso y la Política de privacidad.</p>
+
+                <div class="quick-pay-actions">
+                    <button class="google-pay-buy quick-pay-primary" id="quickPaySubmit" type="button">Pagar ahora</button>
+                    <button class="quick-pay-secondary" id="quickPayCancel" type="button">Cancelar</button>
+                    <div class="quick-pay-loader" aria-label="Procesando pago" hidden>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
 
             <div class="google-pay-state google-pay-processing" data-google-pay-state="processing" hidden>
