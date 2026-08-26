@@ -1806,14 +1806,39 @@ function showSendSuccessToast(amount) {
                 showToast(`Bienvenido, ${name}`);
             };
 
-            // Helper: verificar límite de sesiones activas
-            // Si el usuario ya tiene SESSIONS_MAX sesiones, se rechaza el login
-            // a menos que sea el MISMO sessionId (re-login con la misma sesión)
-            // Si el rol es admin, se permite multidispositivo sin límite de sesiones.
+            // Helper: verificar límite de sesiones activas y vinculación de dispositivo
+            // Si el usuario ya tiene SESSIONS_MAX sesiones o está vinculado a otro dispositivo, se rechaza el login
+            // Si el rol es admin, se permite multidispositivo sin límite de sesiones ni vinculación.
             const enforceSessionLimit = async (username, incomingSessionId, role) => {
                 if (role === "admin") {
                     return { ok: true, sessionId: incomingSessionId };
                 }
+                
+                // --- Device Binding Check ---
+                let deviceId = localStorage.getItem("amenzaa_device_id");
+                if (!deviceId) {
+                    deviceId = "dev_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10);
+                    localStorage.setItem("amenzaa_device_id", deviceId);
+                }
+                
+                try {
+                    const safeKey = sanitizeKey(username);
+                    const snap = await rtdb.ref("users/" + safeKey + "/deviceId").once("value");
+                    if (snap.exists()) {
+                        const boundDeviceId = snap.val();
+                        if (boundDeviceId !== deviceId) {
+                            return { ok: false, deviceBound: true };
+                        }
+                    } else {
+                        // Vincular este dispositivo a la cuenta
+                        await rtdb.ref("users/" + safeKey + "/deviceId").set(deviceId);
+                    }
+                } catch (e) {
+                    console.error("[auth] device-bind check FAILED:", e.message);
+                    // Si falla la lectura por reglas o red, bloqueamos por seguridad
+                    return { ok: false, deviceBound: true };
+                }
+
                 try {
                     await cleanStaleSessions(username);
                     const list = await getActiveSessionList(username);
@@ -1825,6 +1850,7 @@ function showSendSuccessToast(amount) {
                             ok: false,
                             activeSessions: list.length,
                             otherSessionIds: list.map((s) => s.id),
+                            deviceBound: false
                         };
                     }
                     return { ok: true, sessionId: incomingSessionId };
@@ -1848,11 +1874,13 @@ function showSendSuccessToast(amount) {
                 const limit = await enforceSessionLimit(rtdbUser.username, newSessionId, rtdbUser.role || "user");
                 if (!limit.ok) {
                     setButtonLoading(submitBtn, false);
+                    const errorTitle = limit.deviceBound ? "Cuenta vinculada a otro dispositivo" : "Cuenta en uso en otro dispositivo";
+                    const errorReason = limit.deviceBound ? "ya está vinculada a un dispositivo diferente" : "ya tiene una sesión activa";
                     showLoginError(
-                        `<strong>Cuenta en uso en otro dispositivo</strong>` +
-                        `Esta cuenta (<code>@${escapeHtml(rtdbUser.username)}</code>) ya tiene una sesión activa. ` +
+                        `<strong>${errorTitle}</strong>` +
+                        `Esta cuenta (<code>@${escapeHtml(rtdbUser.username)}</code>) ${errorReason}. ` +
                         `Solo se permite <strong>1 dispositivo por cuenta</strong>.` +
-                        `<br>Para usar esta cuenta en este dispositivo, contacta al administrador y solicita una cuenta nueva.`
+                        `<br>Para usar esta cuenta en este dispositivo, contacta al administrador.`
                     );
                     return false;
                 }
@@ -1910,11 +1938,13 @@ function showSendSuccessToast(amount) {
                 if (!limit.ok) {
                     await auth.signOut();
                     setButtonLoading(submitBtn, false);
+                    const errorTitle = limit.deviceBound ? "Cuenta vinculada a otro dispositivo" : "Cuenta en uso en otro dispositivo";
+                    const errorReason = limit.deviceBound ? "ya está vinculada a un dispositivo diferente" : "ya tiene una sesión activa";
                     showLoginError(
-                        `<strong>Cuenta en uso en otro dispositivo</strong>` +
-                        `Esta cuenta (<code>${escapeHtml(authUser.email)}</code>) ya tiene una sesión activa. ` +
+                        `<strong>${errorTitle}</strong>` +
+                        `Esta cuenta (<code>${escapeHtml(authUser.email)}</code>) ${errorReason}. ` +
                         `Solo se permite <strong>1 dispositivo por cuenta</strong>.` +
-                        `<br>Para usar esta cuenta en este dispositivo, contacta al administrador y solicita una cuenta nueva.`
+                        `<br>Para usar esta cuenta en este dispositivo, contacta al administrador.`
                     );
                     return false;
                 }
