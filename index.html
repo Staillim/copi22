@@ -392,18 +392,145 @@
             <h1 class="section-title">Destacadas</h1>
 
             <div class="filter-row">
-                <button class="pill pill-dark">
-                    <span>Teléfono estándar</span>
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </button>
-                <button class="pill pill-dark">
-                    <span>Colombia</span>
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </button>
+                <!-- Botón Dispositivo -->
+                <div class="filter-pill-wrap" id="deviceWrap">
+                    <button class="pill pill-dark" id="btnFilterDevice" type="button" aria-haspopup="true" aria-expanded="false">
+                        <span id="filterDeviceLabel">Teléfono estándar</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="filter-dropdown" id="deviceDropdown" hidden>
+                        <div class="filter-dropdown-header">
+                            <span class="filter-dropdown-title">Dispositivo</span>
+                            <button class="filter-dropdown-close" id="deviceDropdownClose" aria-label="Cerrar">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                        </div>
+                        <div class="filter-dropdown-body">
+                            <label class="filter-option"><span class="filter-option-name">Todos los dispositivos</span><input type="radio" name="device" value="Todos los dispositivos"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Teléfono básico</span><input type="radio" name="device" value="Teléfono básico"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option filter-option-selected"><span class="filter-option-name">Teléfono estándar</span><input type="radio" name="device" value="Teléfono estándar" checked><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Tablet básica</span><input type="radio" name="device" value="Tablet básica"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Tablet estándar</span><input type="radio" name="device" value="Tablet estándar"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">PC <span class="filter-badge">Mi dispositivo</span></span><input type="radio" name="device" value="PC"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Consola</span><input type="radio" name="device" value="Consola"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">RV</span><input type="radio" name="device" value="RV"><span class="filter-radio-circle"></span></label>
+                        </div>
+                        <div class="filter-dropdown-footer">
+                            <button class="filter-apply-btn" id="deviceApplyBtn">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Ubicación -->
+                <div class="filter-pill-wrap" id="locationWrap">
+                    <button class="pill pill-dark" id="btnFilterLocation" type="button" aria-haspopup="true" aria-expanded="false">
+                        <span id="filterLocationLabel">Colombia</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="filter-dropdown" id="locationDropdown" hidden>
+                        <div class="filter-dropdown-header">
+                            <span class="filter-dropdown-title">Ubicación</span>
+                            <button class="filter-dropdown-close" id="locationDropdownClose" aria-label="Cerrar">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                        </div>
+                        <div class="filter-dropdown-body">
+                            <label class="filter-option"><span class="filter-option-name">Todas las ubicaciones</span><input type="radio" name="location" value="Todas las ubicaciones"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option filter-option-selected"><span class="filter-option-name">Colombia <span class="filter-badge">Mi ubicación</span></span><input type="radio" name="location" value="Colombia" checked><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Afganistán</span><input type="radio" name="location" value="Afganistán"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Islas Åland</span><input type="radio" name="location" value="Islas Åland"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Albania</span><input type="radio" name="location" value="Albania"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Argelia</span><input type="radio" name="location" value="Argelia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Samoa Americana</span><input type="radio" name="location" value="Samoa Americana"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Andorra</span><input type="radio" name="location" value="Andorra"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Angola</span><input type="radio" name="location" value="Angola"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Anguila</span><input type="radio" name="location" value="Anguila"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Antigua y Barbuda</span><input type="radio" name="location" value="Antigua y Barbuda"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Argentina</span><input type="radio" name="location" value="Argentina"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Armenia</span><input type="radio" name="location" value="Armenia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Aruba</span><input type="radio" name="location" value="Aruba"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Australia</span><input type="radio" name="location" value="Australia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Austria</span><input type="radio" name="location" value="Austria"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Azerbaiyán</span><input type="radio" name="location" value="Azerbaiyán"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Bahamas</span><input type="radio" name="location" value="Bahamas"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Baréin</span><input type="radio" name="location" value="Baréin"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Bangladesh</span><input type="radio" name="location" value="Bangladesh"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Bélgica</span><input type="radio" name="location" value="Bélgica"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Belice</span><input type="radio" name="location" value="Belice"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Bolivia</span><input type="radio" name="location" value="Bolivia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Brasil</span><input type="radio" name="location" value="Brasil"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Bulgaria</span><input type="radio" name="location" value="Bulgaria"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Canadá</span><input type="radio" name="location" value="Canadá"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Chile</span><input type="radio" name="location" value="Chile"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">China</span><input type="radio" name="location" value="China"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Colombia</span><input type="radio" name="location" value="Colombia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Costa Rica</span><input type="radio" name="location" value="Costa Rica"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Croacia</span><input type="radio" name="location" value="Croacia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Cuba</span><input type="radio" name="location" value="Cuba"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Dinamarca</span><input type="radio" name="location" value="Dinamarca"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Ecuador</span><input type="radio" name="location" value="Ecuador"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Egipto</span><input type="radio" name="location" value="Egipto"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">El Salvador</span><input type="radio" name="location" value="El Salvador"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">España</span><input type="radio" name="location" value="España"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Estados Unidos</span><input type="radio" name="location" value="Estados Unidos"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Filipinas</span><input type="radio" name="location" value="Filipinas"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Finlandia</span><input type="radio" name="location" value="Finlandia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Francia</span><input type="radio" name="location" value="Francia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Grecia</span><input type="radio" name="location" value="Grecia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Guatemala</span><input type="radio" name="location" value="Guatemala"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Honduras</span><input type="radio" name="location" value="Honduras"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Hungría</span><input type="radio" name="location" value="Hungría"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">India</span><input type="radio" name="location" value="India"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Indonesia</span><input type="radio" name="location" value="Indonesia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Irán</span><input type="radio" name="location" value="Irán"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Irlanda</span><input type="radio" name="location" value="Irlanda"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Israel</span><input type="radio" name="location" value="Israel"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Italia</span><input type="radio" name="location" value="Italia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Jamaica</span><input type="radio" name="location" value="Jamaica"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Japón</span><input type="radio" name="location" value="Japón"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Kenia</span><input type="radio" name="location" value="Kenia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Malasia</span><input type="radio" name="location" value="Malasia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Marruecos</span><input type="radio" name="location" value="Marruecos"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">México</span><input type="radio" name="location" value="México"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Nicaragua</span><input type="radio" name="location" value="Nicaragua"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Nigeria</span><input type="radio" name="location" value="Nigeria"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Noruega</span><input type="radio" name="location" value="Noruega"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Nueva Zelanda</span><input type="radio" name="location" value="Nueva Zelanda"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Países Bajos</span><input type="radio" name="location" value="Países Bajos"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Pakistán</span><input type="radio" name="location" value="Pakistán"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Panamá</span><input type="radio" name="location" value="Panamá"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Paraguay</span><input type="radio" name="location" value="Paraguay"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Perú</span><input type="radio" name="location" value="Perú"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Polonia</span><input type="radio" name="location" value="Polonia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Portugal</span><input type="radio" name="location" value="Portugal"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Puerto Rico</span><input type="radio" name="location" value="Puerto Rico"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Qatar</span><input type="radio" name="location" value="Qatar"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Reino Unido</span><input type="radio" name="location" value="Reino Unido"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">República Dominicana</span><input type="radio" name="location" value="República Dominicana"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Rumania</span><input type="radio" name="location" value="Rumania"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Rusia</span><input type="radio" name="location" value="Rusia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Arabia Saudita</span><input type="radio" name="location" value="Arabia Saudita"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Singapur</span><input type="radio" name="location" value="Singapur"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Sudáfrica</span><input type="radio" name="location" value="Sudáfrica"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Suecia</span><input type="radio" name="location" value="Suecia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Suiza</span><input type="radio" name="location" value="Suiza"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Tailandia</span><input type="radio" name="location" value="Tailandia"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Taiwán</span><input type="radio" name="location" value="Taiwán"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Turquía</span><input type="radio" name="location" value="Turquía"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Ucrania</span><input type="radio" name="location" value="Ucrania"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Uruguay</span><input type="radio" name="location" value="Uruguay"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Venezuela</span><input type="radio" name="location" value="Venezuela"><span class="filter-radio-circle"></span></label>
+                            <label class="filter-option"><span class="filter-option-name">Vietnam</span><input type="radio" name="location" value="Vietnam"><span class="filter-radio-circle"></span></label>
+                        </div>
+                        <div class="filter-dropdown-footer">
+                            <button class="filter-apply-btn" id="locationApplyBtn">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Que marcan tendencia -->
@@ -2491,6 +2618,162 @@
     <!-- Buy loading overlay -->
     <div class="buy-loading-overlay" id="buyLoadingOverlay" aria-hidden="true">
         <div class="buy-loading-spinner" role="status" aria-label="Cargando..."></div>
+    </div>
+
+    <!-- ===== MODAL: DISPOSITIVO ===== -->
+    <div class="filter-modal-overlay" id="deviceModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="deviceModalTitle">
+        <div class="filter-modal">
+            <div class="filter-modal-header">
+                <h2 class="filter-modal-title" id="deviceModalTitle">Dispositivo</h2>
+                <button class="filter-modal-close" id="deviceModalClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="filter-modal-body">
+                <label class="filter-option"><span class="filter-option-name">Todos los dispositivos</span><input type="radio" name="device" value="Todos los dispositivos"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Teléfono básico</span><input type="radio" name="device" value="Teléfono básico"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option filter-option-selected"><span class="filter-option-name">Teléfono estándar</span><input type="radio" name="device" value="Teléfono estándar" checked><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Tablet básica</span><input type="radio" name="device" value="Tablet básica"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Tablet estándar</span><input type="radio" name="device" value="Tablet estándar"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">PC <span class="filter-badge">Mi dispositivo</span></span><input type="radio" name="device" value="PC"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Consola</span><input type="radio" name="device" value="Consola"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">RV</span><input type="radio" name="device" value="RV"><span class="filter-radio-circle"></span></label>
+            </div>
+            <div class="filter-modal-footer">
+                <button class="filter-apply-btn" id="deviceApplyBtn">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: UBICACIÓN ===== -->
+    <div class="filter-modal-overlay" id="locationModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="locationModalTitle">
+        <div class="filter-modal">
+            <div class="filter-modal-header">
+                <h2 class="filter-modal-title" id="locationModalTitle">Ubicación</h2>
+                <button class="filter-modal-close" id="locationModalClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="filter-modal-body">
+                <label class="filter-option"><span class="filter-option-name">Todas las ubicaciones</span><input type="radio" name="location" value="Todas las ubicaciones"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option filter-option-selected"><span class="filter-option-name">Colombia <span class="filter-badge">Mi ubicación</span></span><input type="radio" name="location" value="Colombia" checked><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Afganistán</span><input type="radio" name="location" value="Afganistán"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Islas Åland</span><input type="radio" name="location" value="Islas Åland"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Albania</span><input type="radio" name="location" value="Albania"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Argelia</span><input type="radio" name="location" value="Argelia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Samoa Americana</span><input type="radio" name="location" value="Samoa Americana"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Andorra</span><input type="radio" name="location" value="Andorra"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Angola</span><input type="radio" name="location" value="Angola"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Anguila</span><input type="radio" name="location" value="Anguila"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Antártida</span><input type="radio" name="location" value="Antártida"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Antigua y Barbuda</span><input type="radio" name="location" value="Antigua y Barbuda"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Argentina</span><input type="radio" name="location" value="Argentina"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Armenia</span><input type="radio" name="location" value="Armenia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Aruba</span><input type="radio" name="location" value="Aruba"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Australia</span><input type="radio" name="location" value="Australia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Austria</span><input type="radio" name="location" value="Austria"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Azerbaiyán</span><input type="radio" name="location" value="Azerbaiyán"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bahamas</span><input type="radio" name="location" value="Bahamas"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Baréin</span><input type="radio" name="location" value="Baréin"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bangladesh</span><input type="radio" name="location" value="Bangladesh"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Barbados</span><input type="radio" name="location" value="Barbados"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bielorrusia</span><input type="radio" name="location" value="Bielorrusia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bélgica</span><input type="radio" name="location" value="Bélgica"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Belice</span><input type="radio" name="location" value="Belice"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Benín</span><input type="radio" name="location" value="Benín"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bolivia</span><input type="radio" name="location" value="Bolivia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bosnia y Herzegovina</span><input type="radio" name="location" value="Bosnia y Herzegovina"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Botsuana</span><input type="radio" name="location" value="Botsuana"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Brasil</span><input type="radio" name="location" value="Brasil"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Bulgaria</span><input type="radio" name="location" value="Bulgaria"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Burkina Faso</span><input type="radio" name="location" value="Burkina Faso"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Burundi</span><input type="radio" name="location" value="Burundi"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Camboya</span><input type="radio" name="location" value="Camboya"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Camerún</span><input type="radio" name="location" value="Camerún"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Canadá</span><input type="radio" name="location" value="Canadá"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Chile</span><input type="radio" name="location" value="Chile"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">China</span><input type="radio" name="location" value="China"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Costa Rica</span><input type="radio" name="location" value="Costa Rica"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Croacia</span><input type="radio" name="location" value="Croacia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Cuba</span><input type="radio" name="location" value="Cuba"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Dinamarca</span><input type="radio" name="location" value="Dinamarca"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Ecuador</span><input type="radio" name="location" value="Ecuador"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Egipto</span><input type="radio" name="location" value="Egipto"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">El Salvador</span><input type="radio" name="location" value="El Salvador"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">España</span><input type="radio" name="location" value="España"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Estados Unidos</span><input type="radio" name="location" value="Estados Unidos"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Etiopía</span><input type="radio" name="location" value="Etiopía"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Filipinas</span><input type="radio" name="location" value="Filipinas"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Finlandia</span><input type="radio" name="location" value="Finlandia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Francia</span><input type="radio" name="location" value="Francia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Ghana</span><input type="radio" name="location" value="Ghana"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Grecia</span><input type="radio" name="location" value="Grecia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Guatemala</span><input type="radio" name="location" value="Guatemala"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Honduras</span><input type="radio" name="location" value="Honduras"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Hong Kong</span><input type="radio" name="location" value="Hong Kong"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Hungría</span><input type="radio" name="location" value="Hungría"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">India</span><input type="radio" name="location" value="India"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Indonesia</span><input type="radio" name="location" value="Indonesia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Irak</span><input type="radio" name="location" value="Irak"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Irán</span><input type="radio" name="location" value="Irán"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Irlanda</span><input type="radio" name="location" value="Irlanda"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Israel</span><input type="radio" name="location" value="Israel"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Italia</span><input type="radio" name="location" value="Italia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Jamaica</span><input type="radio" name="location" value="Jamaica"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Japón</span><input type="radio" name="location" value="Japón"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Jordania</span><input type="radio" name="location" value="Jordania"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Kazajistán</span><input type="radio" name="location" value="Kazajistán"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Kenia</span><input type="radio" name="location" value="Kenia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Kuwait</span><input type="radio" name="location" value="Kuwait"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Líbano</span><input type="radio" name="location" value="Líbano"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Libia</span><input type="radio" name="location" value="Libia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Malasia</span><input type="radio" name="location" value="Malasia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Marruecos</span><input type="radio" name="location" value="Marruecos"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">México</span><input type="radio" name="location" value="México"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Nepal</span><input type="radio" name="location" value="Nepal"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Nicaragua</span><input type="radio" name="location" value="Nicaragua"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Nigeria</span><input type="radio" name="location" value="Nigeria"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Noruega</span><input type="radio" name="location" value="Noruega"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Nueva Zelanda</span><input type="radio" name="location" value="Nueva Zelanda"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Países Bajos</span><input type="radio" name="location" value="Países Bajos"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Pakistán</span><input type="radio" name="location" value="Pakistán"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Panamá</span><input type="radio" name="location" value="Panamá"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Paraguay</span><input type="radio" name="location" value="Paraguay"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Perú</span><input type="radio" name="location" value="Perú"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Polonia</span><input type="radio" name="location" value="Polonia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Portugal</span><input type="radio" name="location" value="Portugal"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Puerto Rico</span><input type="radio" name="location" value="Puerto Rico"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Qatar</span><input type="radio" name="location" value="Qatar"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Reino Unido</span><input type="radio" name="location" value="Reino Unido"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">República Checa</span><input type="radio" name="location" value="República Checa"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">República Dominicana</span><input type="radio" name="location" value="República Dominicana"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Rumania</span><input type="radio" name="location" value="Rumania"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Rusia</span><input type="radio" name="location" value="Rusia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Arabia Saudita</span><input type="radio" name="location" value="Arabia Saudita"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Senegal</span><input type="radio" name="location" value="Senegal"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Serbia</span><input type="radio" name="location" value="Serbia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Singapur</span><input type="radio" name="location" value="Singapur"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Sudáfrica</span><input type="radio" name="location" value="Sudáfrica"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Suecia</span><input type="radio" name="location" value="Suecia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Suiza</span><input type="radio" name="location" value="Suiza"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Tailandia</span><input type="radio" name="location" value="Tailandia"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Taiwán</span><input type="radio" name="location" value="Taiwán"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Tanzania</span><input type="radio" name="location" value="Tanzania"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Trinidad y Tobago</span><input type="radio" name="location" value="Trinidad y Tobago"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Túnez</span><input type="radio" name="location" value="Túnez"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Turquía</span><input type="radio" name="location" value="Turquía"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Ucrania</span><input type="radio" name="location" value="Ucrania"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Uganda</span><input type="radio" name="location" value="Uganda"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Uruguay</span><input type="radio" name="location" value="Uruguay"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Venezuela</span><input type="radio" name="location" value="Venezuela"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Vietnam</span><input type="radio" name="location" value="Vietnam"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Yemen</span><input type="radio" name="location" value="Yemen"><span class="filter-radio-circle"></span></label>
+                <label class="filter-option"><span class="filter-option-name">Zimbabue</span><input type="radio" name="location" value="Zimbabue"><span class="filter-radio-circle"></span></label>
+            </div>
+            <div class="filter-modal-footer">
+                <button class="filter-apply-btn" id="locationApplyBtn">Aplicar</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

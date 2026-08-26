@@ -2349,3 +2349,66 @@ document.querySelectorAll(".game-card, .item-card, .crear-tile").forEach((el) =>
         showBuyLoading();
     });
 })();
+
+// ============== FILTER DROPDOWNS (Dispositivo / Ubicación) ==============
+document.addEventListener("DOMContentLoaded", function () {
+    function setupDropdown(btnId, dropdownId, labelId, radioName, applyId, closeId) {
+        var btn      = document.getElementById(btnId);
+        var dropdown = document.getElementById(dropdownId);
+        var label    = document.getElementById(labelId);
+        var applyBtn = document.getElementById(applyId);
+        var closeBtn = document.getElementById(closeId);
+        if (!btn || !dropdown) return;
+
+        function open() {
+            dropdown.hidden = false;
+            btn.setAttribute("aria-expanded", "true");
+        }
+        function close() {
+            dropdown.hidden = true;
+            btn.setAttribute("aria-expanded", "false");
+        }
+
+        btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            dropdown.hidden ? open() : close();
+        });
+
+        if (closeBtn) closeBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            close();
+        });
+
+        if (applyBtn) applyBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var sel = dropdown.querySelector("input[name=" + radioName + "]:checked");
+            if (sel && label) label.textContent = sel.value;
+            close();
+        });
+
+        // Actualizar negrita al cambiar selección
+        dropdown.querySelectorAll("input[name=" + radioName + "]").forEach(function (radio) {
+            radio.addEventListener("change", function () {
+                dropdown.querySelectorAll(".filter-option").forEach(function (opt) {
+                    opt.classList.remove("filter-option-selected");
+                });
+                if (radio.checked) radio.closest(".filter-option").classList.add("filter-option-selected");
+            });
+        });
+
+        // Cerrar al click fuera
+        document.addEventListener("click", function (e) {
+            if (!dropdown.hidden && !dropdown.contains(e.target) && e.target !== btn) {
+                close();
+            }
+        });
+
+        // Cerrar con Escape
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") close();
+        });
+    }
+
+    setupDropdown("btnFilterDevice",   "deviceDropdown",   "filterDeviceLabel",   "device",   "deviceApplyBtn",   "deviceDropdownClose");
+    setupDropdown("btnFilterLocation", "locationDropdown", "filterLocationLabel", "location", "locationApplyBtn", "locationDropdownClose");
+});
