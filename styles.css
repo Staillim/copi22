@@ -8222,12 +8222,14 @@ h1.text-section-title { font-size: 40px !important; font-weight: 800 !important;
 
 /* ============== ROTACIÓN 3D MODELO EN PAGO RAPIDO ============== */
 @keyframes spin3D {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
+    0% { transform: perspective(800px) rotateY(-25deg); }
+    50% { transform: perspective(800px) rotateY(25deg); }
+    100% { transform: perspective(800px) rotateY(-25deg); }
 }
 
 .quick-pay-item-spinning {
-    animation: spin3D 6s linear infinite;
+    animation: spin3D 4s ease-in-out infinite;
     transform-style: preserve-3d;
+    -webkit-backface-visibility: visible;
     backface-visibility: visible;
 }
