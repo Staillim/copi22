@@ -1016,8 +1016,32 @@ function showSendSuccessToast(amount) {
         const cardLabelEl = quickPayOverlay.querySelector("[data-google-pay-card-label]");
         const formattedPrice = formatGooglePrice(price);
 
-        if (titleEl) titleEl.textContent = productTitle(currentPkg);
-        if (priceEl) priceEl.textContent = formattedPrice;
+        const normalView = document.getElementById("quickPayNormalView");
+        const splitView = document.getElementById("quickPaySplitView");
+        const splitRobuxTitle = document.getElementById("quickPaySplitRobuxTitle");
+        const splitRobuxPrice = document.getElementById("quickPaySplitRobuxPrice");
+        const quickPayItemImg = document.getElementById("quickPayItemImg");
+        const quickPayItemName = document.getElementById("quickPayItemName");
+
+        const itemName = btn.dataset.pkgItemName || "";
+        const itemImg = btn.dataset.pkgItemImg || "";
+
+        if (itemName && itemImg) {
+            // Mostrar vista dividida (Robux + Item)
+            if (normalView) normalView.style.display = "none";
+            if (splitView) splitView.style.display = "flex";
+            if (splitRobuxTitle) splitRobuxTitle.textContent = productTitle(currentPkg);
+            if (splitRobuxPrice) splitRobuxPrice.textContent = formattedPrice;
+            if (quickPayItemImg) quickPayItemImg.src = itemImg;
+            if (quickPayItemName) quickPayItemName.textContent = itemName;
+        } else {
+            // Mostrar vista normal (Solo Robux)
+            if (normalView) normalView.style.display = "contents";
+            if (splitView) splitView.style.display = "none";
+            if (titleEl) titleEl.textContent = productTitle(currentPkg);
+            if (priceEl) priceEl.textContent = formattedPrice;
+        }
+
         if (subtotalEl) subtotalEl.textContent = formattedPrice;
         if (taxEl) taxEl.textContent = `${Math.round(price * 0.159665).toLocaleString("es-CO")} COP`;
         if (totalEl) totalEl.textContent = formattedPrice;

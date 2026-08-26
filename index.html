@@ -2449,10 +2449,40 @@
 
             <div class="google-pay-state google-pay-purchase" data-google-pay-state="purchase">
                 <section class="google-pay-product">
-                    <span class="google-pay-app-icon icon-filled-robux" aria-hidden="true"></span>
-                    <div class="google-pay-product-copy">
-                        <h3 data-quick-pay-title>80 Robux</h3>
-                        <p data-quick-pay-price>29,9 mil COP</p>
+                    <!-- NORMAL VIEW: Solo Robux -->
+                    <div id="quickPayNormalView" style="display: contents;">
+                        <span class="google-pay-app-icon icon-filled-robux" aria-hidden="true"></span>
+                        <div class="google-pay-product-copy">
+                            <h3 data-quick-pay-title>80 Robux</h3>
+                            <p data-quick-pay-price>29,9 mil COP</p>
+                        </div>
+                    </div>
+                    
+                    <!-- SPLIT VIEW: Robux + Item 3D -->
+                    <div id="quickPaySplitView" style="display: none; grid-column: 1 / span 2; align-items: center; justify-content: flex-start; gap: 8px; width: 100%; flex-wrap: wrap;">
+                        <!-- Left: Robux Info -->
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="google-pay-app-icon icon-filled-robux" style="width: 48px !important; height: 48px !important;" aria-hidden="true"></span>
+                            <div class="google-pay-product-copy">
+                                <h3 id="quickPaySplitRobuxTitle" style="font-size: 20px; font-weight: 800; margin: 0; white-space: nowrap;">24.000 Robux</h3>
+                                <p id="quickPaySplitRobuxPrice" style="font-size: 14px; font-weight: 800; margin: 0; color: #555; white-space: nowrap;">1,1499 M COP</p>
+                            </div>
+                        </div>
+                        <!-- Plus Separator -->
+                        <div style="font-size: 28px; font-weight: 300; color: #999; padding: 0 4px; display: flex; align-items: center; justify-content: center;">+</div>
+                        <!-- Right: Item Info -->
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; position: relative;">
+                                <img id="quickPayItemImg" src="" alt="" style="width: 100%; height: 100%; object-fit: contain;" class="quick-pay-item-spinning">
+                            </div>
+                            <div class="google-pay-product-copy">
+                                <h3 id="quickPayItemName" style="font-size: 16px; font-weight: 800; margin: 0; line-height: 1.25; color: #030712;">Corona de oro de Ozymandias</h3>
+                                <p style="font-size: 13px; color: #0066ff; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 4px;">
+                                    Roblox
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEyIDEyIj48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGZpbGw9IiMwNmYiIGQ9Im0yLjUyMyAwIDkuNDc2IDIuNTM5LTIuNTQgOS40NzYtOS40NzUtMi41NHoiLz48cGF0aCBmaWxsPSIjZjdmN2Y4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Im04LjgwNCAzLjc1LjAwMy4wMDNhLjY2LjY2IDAgMCAxIDAgLjkzMkw1LjA2NCA4LjA2OCAzLjE5MyA2LjU1NmEuNjYuNjYgMCAwIDEgMC0uOTMybC4wMDMtLjAwM2EuNjYuNjYgMCAwIDEgLjkzMiAwbC45MzYuOTcyTDcuODcyIDMuNzVhLjY2LjY2IDAgMCAxIC45MzIgMCIgY2xpcC1ydWxlPSJldmVub2RkIi8+PC9nPjxkZWZzPjxjbGlwUGF0aCBpZD0iYSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgxMnYxMkgweiIvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==" alt="blue check icon" style="width: 14px; height: 14px;">
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
