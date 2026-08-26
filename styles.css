@@ -8233,3 +8233,12 @@ h1.text-section-title { font-size: 40px !important; font-weight: 800 !important;
     -webkit-backface-visibility: visible;
     backface-visibility: visible;
 }
+
+/* FIX ALIGNMENT OF ROBUX PACKAGES */
+div[data-product-id] .large\:width-\[230px\] {
+    display: grid !important;
+    grid-template-columns: 100px 75px 85px;
+    align-items: center;
+    gap: 8px;
+    width: auto !important;
+}
