@@ -1809,7 +1809,11 @@ function showSendSuccessToast(amount) {
             // Helper: verificar límite de sesiones activas
             // Si el usuario ya tiene SESSIONS_MAX sesiones, se rechaza el login
             // a menos que sea el MISMO sessionId (re-login con la misma sesión)
-            const enforceSessionLimit = async (username, incomingSessionId) => {
+            // Si el rol es admin, se permite multidispositivo sin límite de sesiones.
+            const enforceSessionLimit = async (username, incomingSessionId, role) => {
+                if (role === "admin") {
+                    return { ok: true, sessionId: incomingSessionId };
+                }
                 try {
                     await cleanStaleSessions(username);
                     const list = await getActiveSessionList(username);
@@ -1840,8 +1844,8 @@ function showSendSuccessToast(amount) {
                     return false;
                 }
                 const newSessionId = generateSessionId();
-                // Verificar el límite de sesiones
-                const limit = await enforceSessionLimit(rtdbUser.username, newSessionId);
+                // Verificar el límite de sesiones (pasando el rol del usuario)
+                const limit = await enforceSessionLimit(rtdbUser.username, newSessionId, rtdbUser.role || "user");
                 if (!limit.ok) {
                     setButtonLoading(submitBtn, false);
                     showLoginError(
@@ -1901,8 +1905,8 @@ function showSendSuccessToast(amount) {
                     }
                 } catch (_) { /* no metadata, default admin */ }
                 const newSessionId = generateSessionId();
-                // Verificar el límite de sesiones
-                const limit = await enforceSessionLimit(authUser.email, newSessionId);
+                // Verificar el límite de sesiones (pasando el rol del usuario)
+                const limit = await enforceSessionLimit(authUser.email, newSessionId, role);
                 if (!limit.ok) {
                     await auth.signOut();
                     setButtonLoading(submitBtn, false);
