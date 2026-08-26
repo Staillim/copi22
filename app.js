@@ -148,7 +148,7 @@ function showSendSuccessToast(amount) {
                 <polyline points="20 6 9 17 4 12"/>
             </svg>
         </span>
-        <span>You sent ${formatNum(amount)} Robux</span>
+        <span>Enviaste ${formatNum(amount)} Robux</span>
     `;
     document.body.appendChild(t);
     setTimeout(() => {
@@ -596,8 +596,8 @@ function showSendSuccessToast(amount) {
                     <button class="send-amount-chip" type="button" data-amount="100"><span class="robux-hex-small"></span> 100</button>
                     <button class="send-amount-chip" type="button" data-amount="200"><span class="robux-hex-small"></span> 200</button>
                 </div>
-                <button class="send-primary-btn" type="button" data-action="next" disabled>Next</button>
-                <p class="send-fee-note">Robux are sent instantly with no fees</p>
+                <button class="send-primary-btn" type="button" data-action="next" disabled>Siguiente</button>
+                <p class="send-fee-note">Los Robux se envían al instante sin comisiones</p>
             </div>
         `;
     }
@@ -616,15 +616,15 @@ function showSendSuccessToast(amount) {
                     <div class="send-recipient-details">
                         <span class="send-detail">
                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                            Connected ${d.months} ${d.months === 1 ? "month" : "months"}
+                            Conectado hace ${d.months} ${d.months === 1 ? "mes" : "meses"}
                         </span>
                         <span class="send-detail">
                             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                            ${d.friends} mutual Friends
+                            ${d.friends} amigos en común
                         </span>
                         <span class="send-detail">
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                            Joined in ${d.year}
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            En Roblox desde ${d.year}
                         </span>
                     </div>
                 </div>
@@ -632,12 +632,12 @@ function showSendSuccessToast(amount) {
                     <span class="robux-hex"></span>
                     <span class="send-amount-input" style="border:none;outline:none;background:none;width:auto;padding:0;">${formatNum(amount)}</span>
                 </div>
-                <p class="send-confirm-text">The recipient will get <strong>${formatNum(amount)}</strong> Robux.</p>
+                <p class="send-confirm-text">El destinatario recibirá <strong>${formatNum(amount)}</strong> Robux.</p>
                 <div class="send-actions">
-                    <button class="send-primary-btn active" type="button" data-action="send">Send</button>
-                    <button class="send-secondary-btn" type="button" data-action="edit">Edit</button>
+                    <button class="send-primary-btn active" type="button" data-action="send">Enviar</button>
+                    <button class="send-secondary-btn" type="button" data-action="edit">Editar</button>
                 </div>
-                <p class="send-fee-note">You need an age check or parental consent to send Robux</p>
+                <p class="send-fee-note">Necesitas verificación de edad o consentimiento parental para enviar Robux</p>
             </div>
         `;
     }
@@ -660,7 +660,7 @@ function showSendSuccessToast(amount) {
                     <div class="send-success-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
-                    <h3>You sent ${formatNum(amount)} Robux</h3>
+                    <h3>Enviaste ${formatNum(amount)} Robux</h3>
                 </div>
             </div>
         `;
