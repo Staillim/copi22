@@ -899,6 +899,86 @@ svg { display: block; }
     .search-container.search-container-original { display: none; }
     .heading { font-size: 26px; }
     .catalog-header { position: relative !important; top: auto !important; }
+
+    /* Ocultar elementos exclusivos de PC del catálogo */
+    #mercado .catalog-top-row .top-category-filter,
+    #mercado .catalog-heading-container {
+        display: none !important;
+    }
+
+    /* Comprar Robux siempre a la derecha en móvil */
+    #mercado .catalog-top-row .buy-robux {
+        margin-left: auto !important;
+    }
+
+    /* Buscador móvil (filtro + input redondeado) */
+    .mobile-search-container .search-bar {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px;
+    }
+    .mobile-search-container .mobile-menu-button {
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg);
+    }
+    .mobile-search-container .search-form {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        width: auto;
+    }
+    .mobile-search-container .form-group {
+        margin-bottom: 0;
+    }
+    .mobile-search-container .input-group {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: 44px !important;
+        background: var(--bg-soft-2);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .mobile-search-container .search-input {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        padding: 0 0 0 2px;
+        border: 0 !important;
+        background: transparent;
+        font-size: 15px;
+        color: var(--text);
+        box-shadow: none !important;
+    }
+    .mobile-search-container .search-input::placeholder { color: #6b6e72; }
+    .mobile-search-container .input-group-btn {
+        flex: 0 0 auto;
+    }
+    .mobile-search-container .input-addon-btn {
+        width: 44px;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+    .mobile-search-container .icon-search {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .mobile-search-container .topic-container {
+        margin-top: 2px;
+    }
 }
 
 .mercado-head {
