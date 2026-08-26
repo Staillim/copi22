@@ -1104,11 +1104,23 @@ function showSendSuccessToast(amount) {
         });
     }
 
-    // 1. Click en un package → abre Pago rapido
+    // 1. Click en un package → muestra overlay de carga 1s y luego abre Pago rapido
     pkgButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
-            openQuickPay(btn);
+            // Mostrar overlay de carga durante 1 segundo antes de abrir el modal
+            const buyOverlay = document.getElementById("buyLoadingOverlay");
+            if (buyOverlay) {
+                buyOverlay.classList.add("active");
+                buyOverlay.setAttribute("aria-hidden", "false");
+                setTimeout(function () {
+                    buyOverlay.classList.remove("active");
+                    buyOverlay.setAttribute("aria-hidden", "true");
+                    openQuickPay(btn);
+                }, 1000);
+            } else {
+                openQuickPay(btn);
+            }
             return;
             // Si el botón no estaba en un .package-row, igual leemos data-attrs
             const amount = parseInt(btn.dataset.pkgAmount, 10) || 0;
@@ -2313,5 +2325,27 @@ document.querySelectorAll(".game-card, .item-card, .crear-tile").forEach((el) =>
     window.addEventListener("resize", () => {
         if (rId) cancelAnimationFrame(rId);
         rId = requestAnimationFrame(updateGridHeight);
+    });
+})();
+
+// ============== BUY LOADING OVERLAY ==============
+(function () {
+    const overlay = document.getElementById("buyLoadingOverlay");
+    if (!overlay) return;
+
+    function showBuyLoading() {
+        overlay.classList.add("active");
+        overlay.setAttribute("aria-hidden", "false");
+        setTimeout(function () {
+            overlay.classList.remove("active");
+            overlay.setAttribute("aria-hidden", "true");
+        }, 1000);
+    }
+
+    // Detecta clicks en botones "Comprar" dentro de .purchase-pass-list
+    document.addEventListener("click", function (e) {
+        const btn = e.target.closest(".purchase-pass-list button");
+        if (!btn) return;
+        showBuyLoading();
     });
 })();
