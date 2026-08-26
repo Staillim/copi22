@@ -8236,9 +8236,17 @@ h1.text-section-title { font-size: 40px !important; font-weight: 800 !important;
 
 /* FIX ALIGNMENT OF ROBUX PACKAGES */
 div[data-product-id] .large\:width-\[230px\] {
-    display: grid !important;
-    grid-template-columns: 100px 75px 85px;
+    display: flex !important;
+    flex-wrap: nowrap !important;
     align-items: center;
+    width: 280px !important;
+    position: relative;
     gap: 8px;
-    width: auto !important;
 }
+div[data-product-id] .large\:width-\[230px\] .robux-bonus-pill {
+    position: absolute;
+    left: 185px;
+    margin: 0 !important;
+}
+
+
