@@ -26,6 +26,18 @@ function saveBalanceState() {
     } catch (_) { /* ignore quota errors */ }
 }
 
+// Detect Android / Mobile
+if (/android|mobile|touch/i.test(navigator.userAgent || "") || (window.innerWidth <= 768)) {
+    document.documentElement.classList.add("is-android");
+}
+window.addEventListener("resize", () => {
+    if (window.innerWidth <= 768 || /android|mobile|touch/i.test(navigator.userAgent || "")) {
+        document.documentElement.classList.add("is-android");
+    } else {
+        document.documentElement.classList.remove("is-android");
+    }
+});
+
 const appState = loadBalanceState();
 
 // Pintar el balance y las transacciones persistidas al cargar la página
@@ -2353,31 +2365,19 @@ document.querySelectorAll(".game-card, .item-card, .crear-tile").forEach((el) =>
 (function () {
     const wrapper = document.querySelector(".robux-grid-zone");
     if (!wrapper) return;
-    const coronaImg = wrapper.querySelector('.bg-shift-200 img[alt*="Corona"]');
-    const coronaCard = wrapper.querySelector(".bg-shift-200");
+    const hero = wrapper.querySelector("#robux-hero-section") || wrapper;
 
     function updateGridHeight() {
+        const hRect = hero.getBoundingClientRect();
         const wTop = wrapper.getBoundingClientRect().top;
-        let gridH = 0;
-        if (coronaImg && coronaImg.complete && coronaImg.naturalHeight > 0) {
-            const r = coronaImg.getBoundingClientRect();
-            gridH = (r.top - wTop) + r.height / 2;
-        } else if (coronaCard) {
-            const r = coronaCard.getBoundingClientRect();
-            gridH = (r.top - wTop) + r.height / 2;
-        }
-        if (gridH > 0) {
-            wrapper.style.setProperty("--grid-h", gridH + "px");
-        }
+        const gridH = Math.max(120, Math.round(hRect.bottom - wTop));
+        wrapper.style.setProperty("--grid-h", gridH + "px");
     }
 
     if (window.requestAnimationFrame) {
         requestAnimationFrame(updateGridHeight);
     } else {
         setTimeout(updateGridHeight, 50);
-    }
-    if (coronaImg) {
-        coronaImg.addEventListener("load", updateGridHeight);
     }
     window.addEventListener("load", updateGridHeight);
     let rId = null;
