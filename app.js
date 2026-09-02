@@ -918,9 +918,10 @@ function showSendSuccessToast(amount) {
     }
 
     function parseCopPrice(price) {
-        const cleaned = String(price || "").replace(/COP/gi, "").replace(/\s/g, "").replace(/[^\d,.-]/g, "");
-        if (!cleaned) return 0;
-        return Number(cleaned.replace(/[,.](?=\d{3}(?:\D|$))/g, "").replace(",", ".")) || 0;
+        if (typeof price === "number") return price;
+        const str = String(price || "").replace(/\$/g, "").trim();
+        const num = parseFloat(str);
+        return isNaN(num) ? 0 : num;
     }
 
     function formatCopShort(value, options = {}) {
@@ -970,8 +971,8 @@ function showSendSuccessToast(amount) {
     }
 
     function formatGooglePrice(value) {
-        const amount = Math.round(Number(value || 0));
-        return formatCopShort(amount, { megaDigits: 4, milDigits: 1 });
+        const num = Number(value || 0);
+        return `$${num.toFixed(2)}`;
     }
 
     function stableGoogleCardLast4(seed) {
@@ -1043,7 +1044,7 @@ function showSendSuccessToast(amount) {
         }
 
         if (subtotalEl) subtotalEl.textContent = formattedPrice;
-        if (taxEl) taxEl.textContent = `${Math.round(price * 0.159665).toLocaleString("es-CO")} COP`;
+        if (taxEl) taxEl.textContent = "$0.00";
         if (totalEl) totalEl.textContent = formattedPrice;
         if (cardLabelEl) {
             const sess = getSession();
