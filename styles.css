@@ -2474,6 +2474,58 @@ svg { display: block; }
     background: #fde8e8;
     border-color: #f5b3b3;
 }
+.admin-reset-device-btn {
+    height: 32px;
+    padding: 0 12px;
+    background: #eef2ff;
+    color: #3730a3;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+.admin-reset-device-btn:hover {
+    background: #e0e7ff;
+    border-color: #a5b4fc;
+    color: #1e1b4b;
+}
+.admin-reset-device-btn:active {
+    transform: scale(0.97);
+}
+.admin-device-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+.admin-device-badge.bound { background: #e0f2fe; color: #0369a1; }
+.admin-device-badge.unbound { background: #f3f4f6; color: #6b7280; }
+.admin-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+    .admin-user-row {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .admin-user-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
 .admin-empty {
     font-size: 14px;
     color: var(--text-muted);

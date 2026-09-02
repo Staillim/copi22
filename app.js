@@ -1715,6 +1715,18 @@ function showSendSuccessToast(amount) {
     async function deleteUser(username) {
         const key = sanitizeKey(username);
         await rtdb.ref("users/" + key).remove();
+        try {
+            await rtdb.ref("sessions/" + sessionKey(username)).remove();
+        } catch (_) {}
+    }
+    async function resetUserDevice(username) {
+        const key = sanitizeKey(username);
+        // 1. Eliminar la vinculación del dispositivo en RTDB
+        await rtdb.ref("users/" + key + "/deviceId").remove();
+        // 2. Eliminar todas las sesiones activas asociadas a la cuenta para cerrar sesión en el dispositivo previo
+        try {
+            await rtdb.ref("sessions/" + sessionKey(username)).remove();
+        } catch (_) {}
     }
 
     // ============== Auth UI updates ==============
@@ -2220,6 +2232,8 @@ function showSendSuccessToast(amount) {
             const avatarFile = u.avatar || "1.webp";
             const initial = (u.username || "?").charAt(0).toUpperCase();
 
+            const hasDevice = Boolean(u.deviceId);
+
             const row = document.createElement("div");
             row.className = "admin-user-row";
             row.innerHTML = `
@@ -2231,13 +2245,41 @@ function showSendSuccessToast(amount) {
                     <div class="admin-user-meta">
                         <span class="admin-role-badge ${u.role === "admin" ? "admin" : "user"}">${escapeHtml(u.role || "user")}</span>
                         <span class="admin-status-badge ${isExpired ? "expired" : "active"}">${isExpired ? "Expirado" : `${daysLeft} día${daysLeft === 1 ? "" : "s"} restantes`}</span>
+                        <span class="admin-device-badge ${hasDevice ? "bound" : "unbound"}">${hasDevice ? "📱 Dispositivo vinculado" : "📱 Sin vincular"}</span>
                         <span>Creado: ${createdDate.toLocaleDateString("es-CO")}</span>
                     </div>
                 </div>
-                <button class="admin-delete-btn" type="button" data-username="${escapeHtml(u.username)}">Eliminar</button>
+                <div class="admin-user-actions">
+                    <button class="admin-reset-device-btn" type="button" data-username="${escapeHtml(u.username)}" title="Desvincular dispositivo actual para permitir que la cuenta inicie en un nuevo teléfono o PC">
+                        🔄 Limpiar dispositivo
+                    </button>
+                    <button class="admin-delete-btn" type="button" data-username="${escapeHtml(u.username)}">Eliminar</button>
+                </div>
             `;
             list.appendChild(row);
         });
+
+        // Event listeners para Limpiar Dispositivo
+        list.querySelectorAll(".admin-reset-device-btn").forEach((b) => {
+            b.addEventListener("click", async () => {
+                const username = b.dataset.username;
+                if (!confirm(`¿Deseas limpiar y desvincular el dispositivo de la cuenta "@${username}"?\n\nAl hacerlo, el usuario podrá volver a iniciar sesión desde un nuevo teléfono o navegador.`)) return;
+                try {
+                    b.disabled = true;
+                    b.textContent = "Limpiando…";
+                    await resetUserDevice(username);
+                    showToast(`Dispositivo liberado para @${username}`);
+                    await renderAdminUsers();
+                } catch (e) {
+                    console.error("Error al limpiar dispositivo:", e);
+                    showToast("Error al limpiar dispositivo");
+                    b.disabled = false;
+                    b.textContent = "🔄 Limpiar dispositivo";
+                }
+            });
+        });
+
+        // Event listeners para Eliminar Cuenta
         list.querySelectorAll(".admin-delete-btn").forEach((b) => {
             b.addEventListener("click", async () => {
                 const username = b.dataset.username;
